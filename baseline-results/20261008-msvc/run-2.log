@@ -1,0 +1,34 @@
+[2026-10-08 21:50:50.045] [ticcd] [debug] Progress bar: false
+[2026-10-08 21:50:50.046] [ticcd] [debug] Using double precision floating point numbers
+[2026-10-08 21:50:51.673] [ticcd] [info] total # of queries:    100000
+[2026-10-08 21:50:51.673] [ticcd] [info] total positives:          169
+[2026-10-08 21:50:51.673] [ticcd] [info] # of false positives:       0
+[2026-10-08 21:50:51.673] [ticcd] [info] # of false negatives:       0
+[2026-10-08 21:50:51.673] [ticcd] [info] total time:           0.0772803 s
+[2026-10-08 21:50:51.673] [ticcd] [info] average time:         0.772803 μs
+[2026-10-08 21:50:53.307] [ticcd] [info] total # of queries:    100000
+[2026-10-08 21:50:53.307] [ticcd] [info] total positives:            3
+[2026-10-08 21:50:53.307] [ticcd] [info] # of false positives:       0
+[2026-10-08 21:50:53.307] [ticcd] [info] # of false negatives:       0
+[2026-10-08 21:50:53.307] [ticcd] [info] total time:           0.081012 s
+[2026-10-08 21:50:53.307] [ticcd] [info] average time:         0.81012 μs
+[2026-10-08 21:50:58.327] [ticcd] [info] total # of queries:      3085
+[2026-10-08 21:50:58.327] [ticcd] [info] total positives:          248
+[2026-10-08 21:50:58.327] [ticcd] [info] # of false positives:      85
+[2026-10-08 21:50:58.327] [ticcd] [info] # of false negatives:       0
+[2026-10-08 21:50:58.327] [ticcd] [info] total time:           4.97401 s
+[2026-10-08 21:50:58.327] [ticcd] [info] average time:         1612.32 μs
+[2026-10-08 21:51:15.347] [ticcd] [info] total # of queries:      4194
+[2026-10-08 21:51:15.347] [ticcd] [info] total positives:          187
+[2026-10-08 21:51:15.347] [ticcd] [info] # of false positives:     137
+[2026-10-08 21:51:15.347] [ticcd] [info] # of false negatives:       0
+[2026-10-08 21:51:15.347] [ticcd] [info] total time:           16.9548 s
+[2026-10-08 21:51:15.347] [ticcd] [info] average time:         4042.64 μs
+
+Running simulation vertex-face data:
+
+Running simulation edge-edge data:
+
+Running handcrafted vertex-face data:
+
+Running handcrafted edge-edge data:

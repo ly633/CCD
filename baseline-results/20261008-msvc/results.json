@@ -1,0 +1,266 @@
+{
+  "created_utc": "2026-10-08T13:49:59.131663+00:00",
+  "upstream_tag": "v1.0.6",
+  "upstream_commit": "7377d78162f9fdb5fe44b54b6f9c01bc6ce0885a",
+  "checkout_commit": "7377d78162f9fdb5fe44b54b6f9c01bc6ce0885a",
+  "branch": "baseline/tight-inclusion-v1.0.6",
+  "core_source_diff": "",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.9",
+  "logical_cpu_affinity": 0,
+  "benchmark_threads": 1,
+  "executable": "D:\\ly\\DGP-Autoreasearch\\build-baseline\\app\\Release\\Tight_Inclusion_bin.exe",
+  "executable_sha256": "d756758a87f00d9f6ffdc703b2ed17a3b8ed409ad1bd05b18b663f7efc758a60",
+  "dependencies": {
+    "spdlog": "ad0e89cbfb4d0c1ce4d097e134eb7be67baebb36",
+    "CCD-Query-IO": "efca80cda21d95d74a1477ed22d42db8aabb5835",
+    "pbar": "226b9ad291d72c6859456d5188f33c932e2e730b",
+    "CLI11": "291c58789c031208f08f4f261a858b5b7083e8e2",
+    "Sample-Queries": "4d6cce33477d8d5c666c31c8ea23e1aea97be371"
+  },
+  "parameters": {
+    "precision": "double",
+    "method": "BREADTH_FIRST_SEARCH",
+    "tolerance": 1e-06,
+    "minimum_separation": 0.0,
+    "max_iterations": 1000000,
+    "t_max": 1.0,
+    "numerical_error": [
+      -1,
+      -1,
+      -1
+    ],
+    "no_zero_toi": false
+  },
+  "timing_scope": "Upstream per-query timers; excludes file loading; wall time recorded separately",
+  "warmups": [
+    {
+      "log": "warmup-1.log",
+      "wall_seconds": 25.327381700044498,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 100000,
+          "ground_truth_positives": 169,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0778946,
+          "average_microseconds": 0.778946
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 100000,
+          "ground_truth_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0822558,
+          "average_microseconds": 0.822558
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 3085,
+          "ground_truth_positives": 248,
+          "false_positives": 85,
+          "false_negatives": 0,
+          "ccd_seconds": 4.98333,
+          "average_microseconds": 1615.34
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 4194,
+          "ground_truth_positives": 187,
+          "false_positives": 137,
+          "false_negatives": 0,
+          "ccd_seconds": 16.9605,
+          "average_microseconds": 4044.0
+        }
+      ],
+      "ccd_seconds": 22.103980399999998
+    }
+  ],
+  "runs": [
+    {
+      "log": "run-1.log",
+      "wall_seconds": 25.41904540010728,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 100000,
+          "ground_truth_positives": 169,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0793847,
+          "average_microseconds": 0.793847
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 100000,
+          "ground_truth_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0847723,
+          "average_microseconds": 0.847723
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 3085,
+          "ground_truth_positives": 248,
+          "false_positives": 85,
+          "false_negatives": 0,
+          "ccd_seconds": 4.94508,
+          "average_microseconds": 1602.94
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 4194,
+          "ground_truth_positives": 187,
+          "false_positives": 137,
+          "false_negatives": 0,
+          "ccd_seconds": 16.9437,
+          "average_microseconds": 4039.98
+        }
+      ],
+      "ccd_seconds": 22.052937
+    },
+    {
+      "log": "run-2.log",
+      "wall_seconds": 25.317265999969095,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 100000,
+          "ground_truth_positives": 169,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0772803,
+          "average_microseconds": 0.772803
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 100000,
+          "ground_truth_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.081012,
+          "average_microseconds": 0.81012
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 3085,
+          "ground_truth_positives": 248,
+          "false_positives": 85,
+          "false_negatives": 0,
+          "ccd_seconds": 4.97401,
+          "average_microseconds": 1612.32
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 4194,
+          "ground_truth_positives": 187,
+          "false_positives": 137,
+          "false_negatives": 0,
+          "ccd_seconds": 16.9548,
+          "average_microseconds": 4042.64
+        }
+      ],
+      "ccd_seconds": 22.087102299999998
+    },
+    {
+      "log": "run-3.log",
+      "wall_seconds": 24.7089596001897,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 100000,
+          "ground_truth_positives": 169,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0753631,
+          "average_microseconds": 0.753631
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 100000,
+          "ground_truth_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0806444,
+          "average_microseconds": 0.806444
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 3085,
+          "ground_truth_positives": 248,
+          "false_positives": 85,
+          "false_negatives": 0,
+          "ccd_seconds": 4.85777,
+          "average_microseconds": 1574.64
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 4194,
+          "ground_truth_positives": 187,
+          "false_positives": 137,
+          "false_negatives": 0,
+          "ccd_seconds": 16.4868,
+          "average_microseconds": 3931.05
+        }
+      ],
+      "ccd_seconds": 21.5005775
+    }
+  ],
+  "limitations": [
+    "Official sample subset, not the full 60-million-query dataset",
+    "Boolean ground truth only; no exact TOI error measurement",
+    "Passing this dataset is not a proof of conservativeness"
+  ],
+  "summary": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 100000,
+      "ground_truth_positives": 169,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "median_ccd_seconds": 0.0772803,
+      "min_ccd_seconds": 0.0753631,
+      "max_ccd_seconds": 0.0793847,
+      "median_microseconds_per_query": 0.772803
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 100000,
+      "ground_truth_positives": 3,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "median_ccd_seconds": 0.081012,
+      "min_ccd_seconds": 0.0806444,
+      "max_ccd_seconds": 0.0847723,
+      "median_microseconds_per_query": 0.81012
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 3085,
+      "ground_truth_positives": 248,
+      "false_positives": 85,
+      "false_negatives": 0,
+      "median_ccd_seconds": 4.94508,
+      "min_ccd_seconds": 4.85777,
+      "max_ccd_seconds": 4.97401,
+      "median_microseconds_per_query": 1602.9432739059966
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 4194,
+      "ground_truth_positives": 187,
+      "false_positives": 137,
+      "false_negatives": 0,
+      "median_ccd_seconds": 16.9437,
+      "min_ccd_seconds": 16.4868,
+      "max_ccd_seconds": 16.9548,
+      "median_microseconds_per_query": 4039.985693848355
+    }
+  ],
+  "total_queries_per_run": 207279,
+  "median_total_ccd_seconds": 22.052937,
+  "correctness_passed": true
+}

@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-10-08T21:49:31.7123867+08:00",
+  "cpu": {
+    "Name": "Intel(R) Core(TM) Ultra 7 265KF",
+    "NumberOfCores": 20,
+    "NumberOfLogicalProcessors": 20
+  },
+  "os": {
+    "Caption": "Microsoft Windows 11 专业版",
+    "Version": "10.0.26200",
+    "TotalVisibleMemorySize": 66727316
+  },
+  "git": "git version 2.53.0.windows.2",
+  "cmake": "cmake version 4.3.3",
+  "python": "Python 3.13.9",
+  "visual_studio": "Build Tools 2022 17.14.33",
+  "msvc": "19.44.35227.0",
+  "windows_sdk": "10.0.26100.0",
+  "eigen": "3.4.0",
+  "eigen_config_dir": "C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/eigen3/cmake",
+  "gmp": "6.3.0 h537511b_0 (Anaconda win-64)",
+  "gmp_dll_sha256": "8FE88335FA3DAB1B6B969A721C04DC1A8AB6130869CD82650620905FB5CE7FB6",
+  "gmp_header_sha256": "C8527225722ABE3E9C42F4427C092B1323DCDD060F974BE0D1BEE250E690D555",
+  "build_type": "Release",
+  "cmake_flags": [
+    "CCD_IO_SAMPLE_QUERIES_DIR:PATH=D:/ly/DGP-Autoreasearch/external/baseline/Sample-Queries-4d6cce3",
+    "CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc /utf-8",
+    "CMAKE_CXX_FLAGS_RELEASE:STRING=/O2 /Ob2 /DNDEBUG",
+    "Eigen3_DIR:UNINITIALIZED=C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/eigen3/cmake",
+    "GMP_INCLUDES:PATH=C:/Users/ustc/anaconda3/Library/include",
+    "GMP_LIBRARIES:FILEPATH=C:/Users/ustc/anaconda3/Library/lib/gmp.lib",
+    "GMP_RUNTIME_LIB:FILEPATH=C:/Users/ustc/anaconda3/Library/bin/gmp.dll",
+    "TIGHT_INCLUSION_FLOAT_WITH_DOUBLE_INPUT:BOOL=OFF",
+    "TIGHT_INCLUSION_LIMIT_QUEUE_SIZE:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_CCACHE:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_DOUBLE_PRECISION:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_RATIONAL:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_SAMPLE_QUERIES:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_TIMER:BOOL=OFF",
+    "GMP_INCLUDES-ADVANCED:INTERNAL=1",
+    "GMP_LIBRARIES-ADVANCED:INTERNAL=1"
+  ]
+}
