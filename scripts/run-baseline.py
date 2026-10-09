@@ -1,4 +1,4 @@
-"""Run the unchanged upstream sample benchmark and retain auditable results."""
+"""Run the unchanged upstream benchmark on sample/full data with audit records."""
 import argparse
 import ctypes
 import datetime as dt
@@ -57,6 +57,36 @@ def dataset_manifest(data):
     return groups
 
 
+def prepared_full_manifest(data):
+    """Use hashes computed during full extraction, validating inventory and sizes."""
+    manifest = json.loads((data / "dataset-manifest.json").read_text(encoding="utf-8"))
+    provenance = json.loads((data / "provenance.json").read_text(encoding="utf-8"))
+    expected_groups = {f"{category}/{primitive}" for category in FOLDERS
+                       for primitive in ("vertex-face", "edge-edge")}
+    if set(manifest) != expected_groups or len(provenance["archives"]) != 5:
+        raise RuntimeError("Full dataset provenance/inventory is incomplete")
+    recorded = set()
+    for key, group in manifest.items():
+        category, primitive = key.split("/")
+        if sum(item["queries"] for item in group["files"]) != group["queries"]:
+            raise RuntimeError(f"Manifest query count mismatch: {key}")
+        for item in group["files"]:
+            path = (data / item["path"]).resolve()
+            parts = Path(item["path"]).parts
+            if (not path.is_relative_to(data.resolve()) or len(parts) != 3
+                    or parts[0] not in FOLDERS[category] or parts[1] != primitive
+                    or path.suffix != ".csv" or item["path"] in recorded):
+                raise RuntimeError(f"Invalid manifest path: {item['path']}")
+            if not path.is_file() or path.stat().st_size != item["bytes"]:
+                raise RuntimeError(f"Dataset changed since extraction: {path}")
+            recorded.add(item["path"])
+    actual = {path.relative_to(data).as_posix() for path in data.rglob("*.csv")}
+    total = sum(group["queries"] for group in manifest.values())
+    if actual != recorded or total != provenance["total_queries"] or total < 59_000_000:
+        raise RuntimeError("Dataset does not contain the complete original benchmark")
+    return manifest, provenance
+
+
 def parse_output(output, manifest):
     pattern = r"Running (simulation|handcrafted) (vertex-face|edge-edge) data:"
     matches = list(re.finditer(pattern, output))
@@ -94,6 +124,8 @@ def parse_output(output, manifest):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--build-dir", default="build-baseline")
+    parser.add_argument("--dataset", choices=("sample", "full-2020"), default="sample")
+    parser.add_argument("--data-dir", default=None)
     parser.add_argument("--output", default=None,
                         help="Result directory; defaults to a new timestamped directory")
     parser.add_argument("--repeats", type=int, default=3)
@@ -105,7 +137,9 @@ def main():
         parser.error("repeats must be >= 1 and warmups must be >= 0")
     build = ROOT / args.build_dir
     executable = build / "app/Release/Tight_Inclusion_bin.exe"
-    data = ROOT / "external/baseline/Sample-Queries-4d6cce3"
+    default_data = ("external/baseline/Full-CCD-2020" if args.dataset == "full-2020"
+                    else "external/baseline/Sample-Queries-4d6cce3")
+    data = (ROOT / (args.data_dir or default_data)).resolve()
     output_dir = ROOT / (args.output or ("baseline-results/" + dt.datetime.now().strftime("%Y%m%d-%H%M%S-msvc")))
     if (output_dir / "results.json").exists():
         raise FileExistsError(f"Existing results will not be overwritten: {output_dir}")
@@ -119,14 +153,24 @@ def main():
         kernel.SetProcessAffinityMask.restype = ctypes.c_int
         if not kernel.SetProcessAffinityMask(kernel.GetCurrentProcess(), 1 << args.cpu):
             raise ctypes.WinError(ctypes.get_last_error())
-    manifest = dataset_manifest(data)
+    cache_text = (build / "CMakeCache.txt").read_text(encoding="utf-8")
+    compiled_data = re.search(r"^CCD_IO_SAMPLE_QUERIES_DIR:[^=]+=(.*)$", cache_text, re.MULTILINE)
+    if compiled_data is None or Path(compiled_data[1].strip()).resolve() != data:
+        raise RuntimeError("Executable build configuration does not match requested dataset directory")
+    provenance = None
+    if args.dataset == "full-2020":
+        manifest, provenance = prepared_full_manifest(data)
+        (output_dir / "dataset-provenance.json").write_text(json.dumps(provenance, indent=2), encoding="utf-8")
+    else:
+        manifest = dataset_manifest(data)
     (output_dir / "dataset-manifest.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8")
     dependencies = {}
     for name in ("spdlog", "CCD-Query-IO", "pbar", "CLI11"):
         directory = ROOT / "external/baseline" / name
         dependencies[name] = command("git", "-C", str(directory), "rev-parse", "HEAD")
-    dependencies["Sample-Queries"] = "4d6cce33477d8d5c666c31c8ea23e1aea97be371"
+    if args.dataset == "sample":
+        dependencies["Sample-Queries"] = "4d6cce33477d8d5c666c31c8ea23e1aea97be371"
     cache_prefixes = ("CMAKE_CXX_FLAGS", "CMAKE_GENERATOR:", "CMAKE_GENERATOR_PLATFORM:",
                       "TIGHT_INCLUSION_", "GMP_", "Eigen3_DIR:", "CCD_IO_SAMPLE_QUERIES_DIR:")
     build_settings = [line for line in (build / "CMakeCache.txt").read_text(encoding="utf-8").splitlines()
@@ -138,6 +182,10 @@ def main():
         "branch": command("git", "branch", "--show-current"),
         "core_source_diff": command("git", "diff", "v1.0.6", "--", "src", "app", "CMakeLists.txt", "cmake"),
         "platform": platform.platform(), "python": platform.python_version(),
+        "dataset": args.dataset, "data_directory": str(data),
+        "dataset_manifest_sha256": sha256(output_dir / "dataset-manifest.json"),
+        "dataset_integrity_check": ("SHA-256 at extraction; file inventory and sizes at run start"
+                                    if provenance else "SHA-256 and query counts at run start"),
         "logical_cpu_affinity": args.cpu, "benchmark_threads": 1,
         "executable": str(executable), "executable_sha256": sha256(executable),
         "gmp_runtime_sha256": sha256(executable.parent / "gmp.dll"),
@@ -149,7 +197,8 @@ def main():
                        "numerical_error": [-1, -1, -1], "no_zero_toi": False},
         "timing_scope": "Upstream per-query timers; excludes file loading; wall time recorded separately",
         "warmups": [], "runs": [],
-        "limitations": ["Official sample subset, not the full 60-million-query dataset",
+        "limitations": (["Official sample subset, not the full 60-million-query dataset"]
+                        if args.dataset == "sample" else ["Complete NYU 2020 archive contents; counts may differ from paper tables"]) + [
                         "Boolean ground truth only; no exact TOI error measurement",
                         "Passing this dataset is not a proof of conservativeness"],
     }

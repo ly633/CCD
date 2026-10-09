@@ -2,12 +2,14 @@ param(
     [string]$GmpPrefix = 'C:/Users/ustc/anaconda3/Library',
     [string]$EigenConfigDir = 'C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/eigen3/cmake',
     [string]$BuildDirectory = 'build-baseline',
+    [string]$LogDirectory = 'baseline-results/setup',
+    [string]$DataDirectory = '',
     [switch]$ConfigureOnly
 )
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $repo
-$results = Join-Path $repo 'baseline-results/setup'
+$results = if ([System.IO.Path]::IsPathRooted($LogDirectory)) { $LogDirectory } else { Join-Path $repo $LogDirectory }
 New-Item -ItemType Directory -Force -Path $results | Out-Null
 
 function Invoke-GitChecked {
@@ -42,8 +44,12 @@ Get-PinnedSource 'spdlog' 'https://github.com/gabime/spdlog.git' 'ad0e89cbfb4d0c
 Get-PinnedSource 'CCD-Query-IO' 'https://github.com/Continuous-Collision-Detection/CCD-Query-IO.git' 'efca80cda21d95d74a1477ed22d42db8aabb5835'
 Get-PinnedSource 'pbar' 'https://github.com/estshorter/pbar.git' '226b9ad291d72c6859456d5188f33c932e2e730b'
 Get-PinnedSource 'CLI11' 'https://github.com/CLIUtils/CLI11.git' '291c58789c031208f08f4f261a858b5b7083e8e2' # v2.3.2
-& python (Join-Path $PSScriptRoot 'fetch-sample-data.py')
-if ($LASTEXITCODE -ne 0) { throw 'Dataset preparation failed' }
+if (-not $DataDirectory) {
+    & python (Join-Path $PSScriptRoot 'fetch-sample-data.py')
+    if ($LASTEXITCODE -ne 0) { throw 'Dataset preparation failed' }
+    $DataDirectory = Join-Path $repo 'external/baseline/Sample-Queries-4d6cce3'
+}
+$dataPath = (Resolve-Path -LiteralPath $DataDirectory).Path.Replace('\', '/')
 
 $root = $repo.Replace('\', '/')
 $arguments = @(
@@ -66,7 +72,7 @@ $arguments = @(
     "-DCPM_CCD-Query-IO_SOURCE=$root/external/baseline/CCD-Query-IO",
     "-DCPM_pbar_SOURCE=$root/external/baseline/pbar",
     "-DCPM_CLI11_SOURCE=$root/external/baseline/CLI11",
-    "-DCCD_IO_SAMPLE_QUERIES_DIR=$root/external/baseline/Sample-Queries-4d6cce3"
+    "-DCCD_IO_SAMPLE_QUERIES_DIR=$dataPath"
 )
 & cmake @arguments 2>&1 | Tee-Object -FilePath (Join-Path $results 'configure.log')
 if ($LASTEXITCODE -ne 0) { throw 'CMake configure failed' }

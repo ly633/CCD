@@ -1,0 +1,9 @@
+閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.40+3e7442088
+
+  1>Checking Build System
+  spdlog.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion\build-baseline-full\_deps\spdlog-build\Release\spdlog.lib
+  ccd_io_ccd_io.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion\build-baseline-full\_deps\ccd-query-io-build\Release\ccd_io_ccd_io.lib
+  Building Custom Rule D:/ly/DGP-Autoreasearch/Tight-Inclusion/CMakeLists.txt
+  tight_inclusion.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion\build-baseline-full\Release\tight_inclusion.lib
+  Tight_Inclusion_bin.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion\build-baseline-full\app\Release\Tight_Inclusion_bin.exe
+  Building Custom Rule D:/ly/DGP-Autoreasearch/Tight-Inclusion/CMakeLists.txt

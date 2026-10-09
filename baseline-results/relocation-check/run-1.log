@@ -1,0 +1,34 @@
+[2026-10-08 22:06:37.221] [ticcd] [debug] Progress bar: false
+[2026-10-08 22:06:37.222] [ticcd] [debug] Using double precision floating point numbers
+[2026-10-08 22:06:38.913] [ticcd] [info] total # of queries:    100000
+[2026-10-08 22:06:38.914] [ticcd] [info] total positives:          169
+[2026-10-08 22:06:38.914] [ticcd] [info] # of false positives:       0
+[2026-10-08 22:06:38.914] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:06:38.914] [ticcd] [info] total time:           0.0764232 s
+[2026-10-08 22:06:38.914] [ticcd] [info] average time:         0.764232 μs
+[2026-10-08 22:06:40.584] [ticcd] [info] total # of queries:    100000
+[2026-10-08 22:06:40.584] [ticcd] [info] total positives:            3
+[2026-10-08 22:06:40.584] [ticcd] [info] # of false positives:       0
+[2026-10-08 22:06:40.584] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:06:40.584] [ticcd] [info] total time:           0.0862994 s
+[2026-10-08 22:06:40.584] [ticcd] [info] average time:         0.862994 μs
+[2026-10-08 22:06:45.289] [ticcd] [info] total # of queries:      3085
+[2026-10-08 22:06:45.289] [ticcd] [info] total positives:          248
+[2026-10-08 22:06:45.289] [ticcd] [info] # of false positives:      85
+[2026-10-08 22:06:45.289] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:06:45.289] [ticcd] [info] total time:           4.65869 s
+[2026-10-08 22:06:45.289] [ticcd] [info] average time:         1510.11 μs
+[2026-10-08 22:07:01.524] [ticcd] [info] total # of queries:      4194
+[2026-10-08 22:07:01.524] [ticcd] [info] total positives:          187
+[2026-10-08 22:07:01.524] [ticcd] [info] # of false positives:     137
+[2026-10-08 22:07:01.524] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:07:01.524] [ticcd] [info] total time:           16.1729 s
+[2026-10-08 22:07:01.524] [ticcd] [info] average time:         3856.2 μs
+
+Running simulation vertex-face data:
+
+Running simulation edge-edge data:
+
+Running handcrafted vertex-face data:
+
+Running handcrafted edge-edge data:

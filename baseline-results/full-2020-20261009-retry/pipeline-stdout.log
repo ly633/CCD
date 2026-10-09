@@ -1,0 +1,152 @@
+{
+  "created_utc": "2026-10-09T02:00:43.416564+00:00",
+  "pid": 47148,
+  "status": "complete",
+  "phase": "complete",
+  "root": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion",
+  "output": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion\\baseline-results\\full-2020-20261009-retry",
+  "warmups": 1,
+  "repeats": 3,
+  "scope": "Complete original NYU 2020 dataset, Tight-Inclusion v1.0.6 only",
+  "updated_utc": "2026-10-09T04:30:48.875061+00:00",
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "-u",
+    "scripts/run-baseline.py",
+    "--dataset",
+    "full-2020",
+    "--build-dir",
+    "build-baseline-full",
+    "--data-dir",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion\\external\\baseline\\Full-CCD-2020",
+    "--output",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion\\baseline-results\\full-2020-20261009-retry",
+    "--warmups",
+    "1",
+    "--repeats",
+    "3",
+    "--cpu",
+    "0"
+  ],
+  "active_child_pid": null,
+  "downloads": {
+    "handcrafted": {
+      "downloaded_bytes": 1395440,
+      "total_bytes": 1395440,
+      "percent": 100.0,
+      "transfer": {
+        "updated_utc": "2026-10-09T02:00:43.753129+00:00",
+        "name": "handcrafted",
+        "phase": "download_complete",
+        "saved_bytes": 1395440,
+        "sha256": "9cd9b71b91cb3c441bcaff3862a6fad0d51f9842d1446e30939d0a6015a10158"
+      }
+    },
+    "simulation-cow-heads": {
+      "downloaded_bytes": 666336779,
+      "total_bytes": 666336779,
+      "percent": 100.0,
+      "transfer": {
+        "updated_utc": "2026-10-09T02:59:20.466676+00:00",
+        "name": "simulation-cow-heads",
+        "phase": "download_complete",
+        "saved_bytes": 666336779,
+        "sha256": "3a4e1e35189ec177f311553b0cfa659d362341300293e0e795b15cb486c62b84"
+      }
+    },
+    "simulation-chain": {
+      "downloaded_bytes": 1451673931,
+      "total_bytes": 1451673931,
+      "percent": 100.0,
+      "transfer": {
+        "updated_utc": "2026-10-09T03:19:02.119710+00:00",
+        "name": "simulation-chain",
+        "phase": "download_complete",
+        "saved_bytes": 1451673931,
+        "sha256": "088edbca5d1e4eb4ae2a46acc1dd085e82f928c9f6ac81064f63a8ac08c6af9a"
+      }
+    },
+    "simulation-golf-ball": {
+      "downloaded_bytes": 833187667,
+      "total_bytes": 833187667,
+      "percent": 100.0,
+      "transfer": {
+        "updated_utc": "2026-10-09T02:15:49.019703+00:00",
+        "name": "simulation-golf-ball",
+        "phase": "download_complete",
+        "saved_bytes": 833187667,
+        "sha256": "24096ec4f123c5f133261819674e8b2b1e037840f27754031ac42ac1c12fbb6b"
+      }
+    },
+    "simulation-mat-twist": {
+      "downloaded_bytes": 413467056,
+      "total_bytes": 413467056,
+      "percent": 100.0,
+      "transfer": {
+        "updated_utc": "2026-10-09T02:09:22.781674+00:00",
+        "name": "simulation-mat-twist",
+        "phase": "download_complete",
+        "saved_bytes": 413467056,
+        "sha256": "08d44cd20097c854094f7fabd914b8e0de6e6d233b942495096ed2b7924b34e5"
+      }
+    }
+  },
+  "last_exit_code": 0,
+  "total_queries": 59387883,
+  "groups": {
+    "simulation/vertex-face": 17959962,
+    "simulation/edge-edge": 41372584,
+    "handcrafted/vertex-face": 21208,
+    "handcrafted/edge-edge": 34129
+  },
+  "validating_archive": "simulation-mat-twist",
+  "validating_uncompressed_bytes": 17590910976,
+  "completed_utc": "2026-10-09T04:30:48.875055+00:00",
+  "median_ccd_seconds": 74.37439,
+  "summary": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 17959962,
+      "ground_truth_positives": 18711,
+      "false_positives": 2,
+      "false_negatives": 0,
+      "median_ccd_seconds": 12.3776,
+      "min_ccd_seconds": 12.2648,
+      "max_ccd_seconds": 12.7004,
+      "median_microseconds_per_query": 0.6891774047183397
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 41372584,
+      "ground_truth_positives": 7325,
+      "false_positives": 17,
+      "false_negatives": 0,
+      "median_ccd_seconds": 29.0423,
+      "min_ccd_seconds": 28.833,
+      "max_ccd_seconds": 29.1932,
+      "median_microseconds_per_query": 0.7019696908464794
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "ground_truth_positives": 544,
+      "false_positives": 90,
+      "false_negatives": 0,
+      "median_ccd_seconds": 8.14962,
+      "min_ccd_seconds": 8.14789,
+      "max_ccd_seconds": 8.23034,
+      "median_microseconds_per_query": 384.2710298000755
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "ground_truth_positives": 402,
+      "false_positives": 203,
+      "false_negatives": 0,
+      "median_ccd_seconds": 24.8948,
+      "min_ccd_seconds": 24.0719,
+      "max_ccd_seconds": 24.9194,
+      "median_microseconds_per_query": 729.4324474786838
+    }
+  ]
+}

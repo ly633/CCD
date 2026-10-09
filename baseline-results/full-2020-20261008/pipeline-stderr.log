@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\ly\DGP-Autoreasearch\Tight-Inclusion\scripts\run-full-baseline.py", line 110, in main
+    raise RuntimeError(f"Adopted downloader exited with code {exit_code.value}")
+RuntimeError: Adopted downloader exited with code 1
+Traceback (most recent call last):
+  File "D:\ly\DGP-Autoreasearch\Tight-Inclusion\scripts\run-full-baseline.py", line 176, in <module>
+    main()
+    ~~~~^^
+  File "D:\ly\DGP-Autoreasearch\Tight-Inclusion\scripts\run-full-baseline.py", line 110, in main
+    raise RuntimeError(f"Adopted downloader exited with code {exit_code.value}")
+RuntimeError: Adopted downloader exited with code 1

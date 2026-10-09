@@ -243,3 +243,8 @@ app/config.hpp
 !baseline-results/setup/build.log
 !baseline-results/**/run-*.log
 !baseline-results/**/warmup-*.log
+!baseline-results/full-2020-setup/*.log
+!baseline-results/full-2020-*/setup/*.log
+!baseline-results/full-2020-*/*driver.log
+!baseline-results/full-2020-*/pipeline-*.log
+!baseline-results/full-2020-*/download.log

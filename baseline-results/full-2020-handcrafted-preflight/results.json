@@ -1,0 +1,30 @@
+{
+  "scope": "Complete handcrafted archive only; simulation archives still downloading. This is not the final full benchmark.",
+  "wall_seconds": 33.42215639981441,
+  "metrics_in_order_simulation_vf_ee_handcrafted_vf_ee": {
+    "queries": [
+      0,
+      0,
+      21208,
+      34129
+    ],
+    "false_positives": [
+      0,
+      0,
+      90,
+      203
+    ],
+    "false_negatives": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ccd_seconds": [
+      0.0,
+      0.0,
+      8.00249,
+      23.752
+    ]
+  }
+}

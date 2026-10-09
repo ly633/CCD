@@ -1,0 +1,58 @@
+Starting warmup-1: Tight_Inclusion_bin.exe --no-pbar
+Completed warmup-1: CCD 76.576990s, wall 1025.532s, FN=0
+Starting run-1: Tight_Inclusion_bin.exe --no-pbar
+Completed run-1: CCD 74.938020s, wall 1028.192s, FN=0
+Starting run-2: Tight_Inclusion_bin.exe --no-pbar
+Completed run-2: CCD 73.512840s, wall 992.581s, FN=0
+Starting run-3: Tight_Inclusion_bin.exe --no-pbar
+Completed run-3: CCD 74.374390s, wall 1031.357s, FN=0
+{
+  "total_queries_per_run": 59387883,
+  "median_total_ccd_seconds": 74.37439,
+  "summary": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 17959962,
+      "ground_truth_positives": 18711,
+      "false_positives": 2,
+      "false_negatives": 0,
+      "median_ccd_seconds": 12.3776,
+      "min_ccd_seconds": 12.2648,
+      "max_ccd_seconds": 12.7004,
+      "median_microseconds_per_query": 0.6891774047183397
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 41372584,
+      "ground_truth_positives": 7325,
+      "false_positives": 17,
+      "false_negatives": 0,
+      "median_ccd_seconds": 29.0423,
+      "min_ccd_seconds": 28.833,
+      "max_ccd_seconds": 29.1932,
+      "median_microseconds_per_query": 0.7019696908464794
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "ground_truth_positives": 544,
+      "false_positives": 90,
+      "false_negatives": 0,
+      "median_ccd_seconds": 8.14962,
+      "min_ccd_seconds": 8.14789,
+      "max_ccd_seconds": 8.23034,
+      "median_microseconds_per_query": 384.2710298000755
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "ground_truth_positives": 402,
+      "false_positives": 203,
+      "false_negatives": 0,
+      "median_ccd_seconds": 24.8948,
+      "min_ccd_seconds": 24.0719,
+      "max_ccd_seconds": 24.9194,
+      "median_microseconds_per_query": 729.4324474786838
+    }
+  ]
+}

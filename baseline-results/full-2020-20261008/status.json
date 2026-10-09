@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-10-08T14:17:08.488587+00:00",
+  "pid": 47556,
+  "status": "failed",
+  "phase": "download_and_extract",
+  "root": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion",
+  "output": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion\\baseline-results\\full-2020-20261008",
+  "warmups": 1,
+  "repeats": 3,
+  "scope": "Complete original NYU 2020 dataset, Tight-Inclusion v1.0.6 only",
+  "updated_utc": "2026-10-08T15:08:48.990358+00:00",
+  "active_child_pid": 36632,
+  "downloads": {
+    "handcrafted": {
+      "downloaded_bytes": 1395440,
+      "total_bytes": 1395440,
+      "percent": 100.0
+    },
+    "simulation-cow-heads": {
+      "downloaded_bytes": 12681287,
+      "total_bytes": 666336779,
+      "percent": 1.9
+    },
+    "simulation-chain": {
+      "downloaded_bytes": 197969556,
+      "total_bytes": 1451673931,
+      "percent": 13.64
+    },
+    "simulation-golf-ball": {
+      "downloaded_bytes": 457179136,
+      "total_bytes": 833187667,
+      "percent": 54.87
+    },
+    "simulation-mat-twist": {
+      "downloaded_bytes": 40099157,
+      "total_bytes": 413467056,
+      "percent": 9.7
+    }
+  },
+  "error": "Adopted downloader exited with code 1",
+  "failed_utc": "2026-10-08T15:08:48.990338+00:00"
+}

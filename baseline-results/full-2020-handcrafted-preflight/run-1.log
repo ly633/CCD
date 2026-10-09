@@ -1,0 +1,34 @@
+[2026-10-08 22:15:04.438] [ticcd] [debug] Progress bar: false
+[2026-10-08 22:15:04.439] [ticcd] [debug] Using double precision floating point numbers
+[2026-10-08 22:15:04.439] [ticcd] [info] total # of queries:         0
+[2026-10-08 22:15:04.439] [ticcd] [info] total positives:            0
+[2026-10-08 22:15:04.439] [ticcd] [info] # of false positives:       0
+[2026-10-08 22:15:04.439] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:15:04.439] [ticcd] [info] total time:           0 s
+[2026-10-08 22:15:04.439] [ticcd] [info] average time:         -nan μs
+[2026-10-08 22:15:04.439] [ticcd] [info] total # of queries:         0
+[2026-10-08 22:15:04.439] [ticcd] [info] total positives:            0
+[2026-10-08 22:15:04.439] [ticcd] [info] # of false positives:       0
+[2026-10-08 22:15:04.439] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:15:04.439] [ticcd] [info] total time:           0 s
+[2026-10-08 22:15:04.439] [ticcd] [info] average time:         -nan μs
+[2026-10-08 22:15:12.778] [ticcd] [info] total # of queries:     21208
+[2026-10-08 22:15:12.778] [ticcd] [info] total positives:          544
+[2026-10-08 22:15:12.778] [ticcd] [info] # of false positives:      90
+[2026-10-08 22:15:12.778] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:15:12.778] [ticcd] [info] total time:           8.00249 s
+[2026-10-08 22:15:12.778] [ticcd] [info] average time:         377.333 μs
+[2026-10-08 22:15:37.052] [ticcd] [info] total # of queries:     34129
+[2026-10-08 22:15:37.052] [ticcd] [info] total positives:          402
+[2026-10-08 22:15:37.052] [ticcd] [info] # of false positives:     203
+[2026-10-08 22:15:37.052] [ticcd] [info] # of false negatives:       0
+[2026-10-08 22:15:37.052] [ticcd] [info] total time:           23.752 s
+[2026-10-08 22:15:37.052] [ticcd] [info] average time:         695.947 μs
+
+Running simulation vertex-face data:
+
+Running simulation edge-edge data:
+
+Running handcrafted vertex-face data:
+
+Running handcrafted edge-edge data:

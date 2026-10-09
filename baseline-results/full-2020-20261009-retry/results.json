@@ -1,0 +1,298 @@
+{
+  "created_utc": "2026-10-09T03:22:48.971188+00:00",
+  "upstream_tag": "v1.0.6",
+  "upstream_commit": "7377d78162f9fdb5fe44b54b6f9c01bc6ce0885a",
+  "checkout_commit": "073cc0113cc7fb6e176a3af00eaec71be945a183",
+  "branch": "baseline/tight-inclusion-v1.0.6",
+  "core_source_diff": "",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.9",
+  "dataset": "full-2020",
+  "data_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion\\external\\baseline\\Full-CCD-2020",
+  "dataset_manifest_sha256": "92417a5c23055344bc1c17f2e6dc9a3c126c187be735467f2dc0289f03c963fa",
+  "dataset_integrity_check": "SHA-256 at extraction; file inventory and sizes at run start",
+  "logical_cpu_affinity": 0,
+  "benchmark_threads": 1,
+  "executable": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion\\build-baseline-full\\app\\Release\\Tight_Inclusion_bin.exe",
+  "executable_sha256": "ef848950ea75a132ee68af35251b9779ac57ded34278567991497f56208e93f2",
+  "gmp_runtime_sha256": "8fe88335fa3dab1b6b969a721c04dc1a8ab6130869cd82650620905fb5ce7fb6",
+  "build_settings": [
+    "CCD_IO_SAMPLE_QUERIES_DIR:PATH=D:/ly/DGP-Autoreasearch/Tight-Inclusion/external/baseline/Full-CCD-2020",
+    "CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc /utf-8",
+    "CMAKE_CXX_FLAGS_DEBUG:STRING=/Zi /Ob0 /Od /RTC1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=/O1 /Ob1 /DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELEASE:STRING=/O2 /Ob2 /DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=/Zi /O2 /Ob1 /DNDEBUG",
+    "Eigen3_DIR:UNINITIALIZED=C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/eigen3/cmake",
+    "GMP_INCLUDES:PATH=C:/Users/ustc/anaconda3/Library/include",
+    "GMP_LIBRARIES:FILEPATH=C:/Users/ustc/anaconda3/Library/lib/gmp.lib",
+    "GMP_RUNTIME_LIB:FILEPATH=C:/Users/ustc/anaconda3/Library/bin/gmp.dll",
+    "TIGHT_INCLUSION_FLOAT_WITH_DOUBLE_INPUT:BOOL=OFF",
+    "TIGHT_INCLUSION_LIMIT_QUEUE_SIZE:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_CCACHE:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_DOUBLE_PRECISION:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_RATIONAL:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_SAMPLE_QUERIES:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_TIMER:BOOL=OFF",
+    "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1",
+    "CMAKE_GENERATOR:INTERNAL=Visual Studio 17 2022",
+    "CMAKE_GENERATOR_PLATFORM:INTERNAL=x64",
+    "GMP_INCLUDES-ADVANCED:INTERNAL=1",
+    "GMP_LIBRARIES-ADVANCED:INTERNAL=1"
+  ],
+  "dependencies": {
+    "spdlog": "ad0e89cbfb4d0c1ce4d097e134eb7be67baebb36",
+    "CCD-Query-IO": "efca80cda21d95d74a1477ed22d42db8aabb5835",
+    "pbar": "226b9ad291d72c6859456d5188f33c932e2e730b",
+    "CLI11": "291c58789c031208f08f4f261a858b5b7083e8e2"
+  },
+  "parameters": {
+    "precision": "double",
+    "method": "BREADTH_FIRST_SEARCH",
+    "tolerance": 1e-06,
+    "minimum_separation": 0.0,
+    "max_iterations": 1000000,
+    "t_max": 1.0,
+    "numerical_error": [
+      -1,
+      -1,
+      -1
+    ],
+    "no_zero_toi": false
+  },
+  "timing_scope": "Upstream per-query timers; excludes file loading; wall time recorded separately",
+  "warmups": [
+    {
+      "log": "warmup-1.log",
+      "wall_seconds": 1025.5315336999483,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 17959962,
+          "ground_truth_positives": 18711,
+          "false_positives": 2,
+          "false_negatives": 0,
+          "ccd_seconds": 13.0647,
+          "average_microseconds": 0.727436
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 41372584,
+          "ground_truth_positives": 7325,
+          "false_positives": 17,
+          "false_negatives": 0,
+          "ccd_seconds": 29.2218,
+          "average_microseconds": 0.706309
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 21208,
+          "ground_truth_positives": 544,
+          "false_positives": 90,
+          "false_negatives": 0,
+          "ccd_seconds": 8.47179,
+          "average_microseconds": 399.462
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 34129,
+          "ground_truth_positives": 402,
+          "false_positives": 203,
+          "false_negatives": 0,
+          "ccd_seconds": 25.8187,
+          "average_microseconds": 756.504
+        }
+      ],
+      "ccd_seconds": 76.57699
+    }
+  ],
+  "runs": [
+    {
+      "log": "run-1.log",
+      "wall_seconds": 1028.1919917999767,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 17959962,
+          "ground_truth_positives": 18711,
+          "false_positives": 2,
+          "false_negatives": 0,
+          "ccd_seconds": 12.7004,
+          "average_microseconds": 0.707149
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 41372584,
+          "ground_truth_positives": 7325,
+          "false_positives": 17,
+          "false_negatives": 0,
+          "ccd_seconds": 29.1932,
+          "average_microseconds": 0.705618
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 21208,
+          "ground_truth_positives": 544,
+          "false_positives": 90,
+          "false_negatives": 0,
+          "ccd_seconds": 8.14962,
+          "average_microseconds": 384.271
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 34129,
+          "ground_truth_positives": 402,
+          "false_positives": 203,
+          "false_negatives": 0,
+          "ccd_seconds": 24.8948,
+          "average_microseconds": 729.432
+        }
+      ],
+      "ccd_seconds": 74.93802
+    },
+    {
+      "log": "run-2.log",
+      "wall_seconds": 992.5807165000588,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 17959962,
+          "ground_truth_positives": 18711,
+          "false_positives": 2,
+          "false_negatives": 0,
+          "ccd_seconds": 12.3776,
+          "average_microseconds": 0.689179
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 41372584,
+          "ground_truth_positives": 7325,
+          "false_positives": 17,
+          "false_negatives": 0,
+          "ccd_seconds": 28.833,
+          "average_microseconds": 0.696912
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 21208,
+          "ground_truth_positives": 544,
+          "false_positives": 90,
+          "false_negatives": 0,
+          "ccd_seconds": 8.23034,
+          "average_microseconds": 388.077
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 34129,
+          "ground_truth_positives": 402,
+          "false_positives": 203,
+          "false_negatives": 0,
+          "ccd_seconds": 24.0719,
+          "average_microseconds": 705.32
+        }
+      ],
+      "ccd_seconds": 73.51284
+    },
+    {
+      "log": "run-3.log",
+      "wall_seconds": 1031.3574779001065,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 17959962,
+          "ground_truth_positives": 18711,
+          "false_positives": 2,
+          "false_negatives": 0,
+          "ccd_seconds": 12.2648,
+          "average_microseconds": 0.682896
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 41372584,
+          "ground_truth_positives": 7325,
+          "false_positives": 17,
+          "false_negatives": 0,
+          "ccd_seconds": 29.0423,
+          "average_microseconds": 0.701969
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 21208,
+          "ground_truth_positives": 544,
+          "false_positives": 90,
+          "false_negatives": 0,
+          "ccd_seconds": 8.14789,
+          "average_microseconds": 384.189
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 34129,
+          "ground_truth_positives": 402,
+          "false_positives": 203,
+          "false_negatives": 0,
+          "ccd_seconds": 24.9194,
+          "average_microseconds": 730.152
+        }
+      ],
+      "ccd_seconds": 74.37439
+    }
+  ],
+  "limitations": [
+    "Complete NYU 2020 archive contents; counts may differ from paper tables",
+    "Boolean ground truth only; no exact TOI error measurement",
+    "Passing this dataset is not a proof of conservativeness"
+  ],
+  "summary": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 17959962,
+      "ground_truth_positives": 18711,
+      "false_positives": 2,
+      "false_negatives": 0,
+      "median_ccd_seconds": 12.3776,
+      "min_ccd_seconds": 12.2648,
+      "max_ccd_seconds": 12.7004,
+      "median_microseconds_per_query": 0.6891774047183397
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 41372584,
+      "ground_truth_positives": 7325,
+      "false_positives": 17,
+      "false_negatives": 0,
+      "median_ccd_seconds": 29.0423,
+      "min_ccd_seconds": 28.833,
+      "max_ccd_seconds": 29.1932,
+      "median_microseconds_per_query": 0.7019696908464794
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "ground_truth_positives": 544,
+      "false_positives": 90,
+      "false_negatives": 0,
+      "median_ccd_seconds": 8.14962,
+      "min_ccd_seconds": 8.14789,
+      "max_ccd_seconds": 8.23034,
+      "median_microseconds_per_query": 384.2710298000755
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "ground_truth_positives": 402,
+      "false_positives": 203,
+      "false_negatives": 0,
+      "median_ccd_seconds": 24.8948,
+      "min_ccd_seconds": 24.0719,
+      "max_ccd_seconds": 24.9194,
+      "median_microseconds_per_query": 729.4324474786838
+    }
+  ],
+  "total_queries_per_run": 59387883,
+  "median_total_ccd_seconds": 74.37439,
+  "correctness_passed": true
+}

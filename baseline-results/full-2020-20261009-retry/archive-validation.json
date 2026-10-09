@@ -1,0 +1,32 @@
+[
+  {
+    "archive": "handcrafted",
+    "sha256": "9cd9b71b91cb3c441bcaff3862a6fad0d51f9842d1446e30939d0a6015a10158",
+    "gzip_crc_passed": true,
+    "tar_bytes": 44451840
+  },
+  {
+    "archive": "simulation-cow-heads",
+    "sha256": "3a4e1e35189ec177f311553b0cfa659d362341300293e0e795b15cb486c62b84",
+    "gzip_crc_passed": true,
+    "tar_bytes": 12334141440
+  },
+  {
+    "archive": "simulation-chain",
+    "sha256": "088edbca5d1e4eb4ae2a46acc1dd085e82f928c9f6ac81064f63a8ac08c6af9a",
+    "gzip_crc_passed": true,
+    "tar_bytes": 22456668160
+  },
+  {
+    "archive": "simulation-golf-ball",
+    "sha256": "24096ec4f123c5f133261819674e8b2b1e037840f27754031ac42ac1c12fbb6b",
+    "gzip_crc_passed": true,
+    "tar_bytes": 8558438400
+  },
+  {
+    "archive": "simulation-mat-twist",
+    "sha256": "08d44cd20097c854094f7fabd914b8e0de6e6d233b942495096ed2b7924b34e5",
+    "gzip_crc_passed": true,
+    "tar_bytes": 5896970240
+  }
+]
