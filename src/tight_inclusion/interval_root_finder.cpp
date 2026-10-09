@@ -147,13 +147,18 @@ namespace ticcd {
         const Vector3 &c_t1, const Vector3 &d_t1,
         const Array3 &err, const Scalar ms)
     {
-        const Interval zero_to_one(NumCCD(0, 0), NumCCD(1, 0));
-        const Interval3 iset = {{zero_to_one, zero_to_one, zero_to_one}};
+        // Exact arrays returned by convert_tuv_to_array for [0,1]^3.
+        std::array<Scalar, 8> t = {{0,0,0,0,1,1,1,1}};
+        std::array<Scalar, 8> u = {{0,0,1,1,0,0,1,1}};
+        std::array<Scalar, 8> v = {{0,1,0,1,0,1,0,1}};
+        std::array<Scalar, 8> den = {{1,1,1,1,1,1,1,1}};
         bool box_in;
-        Array3 true_tol;
-        return origin_in_function_bounding_box_vector<is_vertex_face>(
-            iset, a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1,
-            err, box_in, ms, &true_tol);
+        for (int dim=0;dim<3;++dim) {
+            if (!evaluate_bbox_one_dimension_vector<is_vertex_face>(
+                    t,den,u,den,v,den,a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1,
+                    dim,err[dim],box_in,ms)) return false;
+        }
+        return true;
     }
 
     template bool initial_root_box_overlaps<false>(

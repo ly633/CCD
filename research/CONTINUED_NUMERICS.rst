@@ -26,3 +26,13 @@ EE combines the same four (u,v) pairs by subtraction; VF keeps the original
 (u_term + v_term) + b parentheses before subtraction from a. Operand order,
 rounded intermediate values and output corner order are unchanged; added
 rounding error is zero relative to C03 and thus to the original evaluator.
+
+C05: materialize initial-box dyadic arrays directly
+-------------------------------------------------
+
+For [0,1]^3, convert_tuv_to_array always produces the same arrays of zeros
+and ones and denominators all equal to one. Materializing those arrays
+directly is exact and calls the same dimension evaluator in the same x,y,z
+order. Computing true_tol is unnecessary on this precheck because only its
+Boolean result is used; removing this unused subtraction does not change
+the comparisons. No endpoint interpolation is replaced by an input endpoint.
