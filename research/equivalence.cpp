@@ -1,11 +1,27 @@
 #include <tight_inclusion/avx.hpp>
 #include <tight_inclusion/corner_evaluation.hpp>
+#include <tight_inclusion/bernstein_filter.hpp>
 #include <random>
 #include <cstring>
 #include <iostream>
 #include <cmath>
 using namespace ticcd;
 int main() {
+    const Vector3 b(0,0,0),c(1,0,0),d(0,1,0);
+    for(int k=0;k<1000;++k) {
+        const double h=std::ldexp(1.,-k);
+        const Vector3 a0(.25,.25,h),a1(.25,.25,-h),touch(.25,.25,0);
+        // Known collisions at interior t=1/2 and at either endpoint.
+        if(detail::bernstein_separated(a0,b,c,d,a1,b,c,d) ||
+           detail::bernstein_separated(touch,b,c,d,a0,b,c,d) ||
+           detail::bernstein_separated(a0,b,c,d,touch,b,c,d)) {
+            std::cerr<<"Bernstein rejected a known contact, exponent "<<k<<"\n";return 1;
+        }
+    }
+    const Vector3 separated(.25,.25,.5);
+    if(!detail::bernstein_separated(separated,b,c,d,separated,b,c,d)) {
+        std::cerr<<"Bernstein failed simple separated certificate\n";return 1;
+    }
     std::mt19937_64 rng(0xCCD20261009ULL);
     uint64_t checks=0;
     for(int n=0;n<200000;++n) {

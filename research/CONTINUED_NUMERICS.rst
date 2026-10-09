@@ -73,3 +73,40 @@ become no-hit with infinity/input tolerance as permitted removals, and rejects
 EVERY other mismatch (including changed TOI of retained hits). FN must remain
 zero and per-group FP cannot increase. This stronger-than-required retained
 TOI check is not silently disabled to accept Boolean-only results.
+
+C08: outward-rounded Bernstein coplanarity certificate
+------------------------------------------------------
+
+A VF or EE collision requires the four vertices to be coplanar. Define the
+three relative linear trajectories r=a-d, s=b-d, q=c-d. By multilinearity,
+their determinant on [0,1] is
+
+  (1-t)^3 D000 + t(1-t)^2 (D100+D010+D001)
+  + t^2(1-t) (D011+D101+D110) + t^3 D111,
+
+where Dijk=det(r_i,s_j,q_k). Every scalar basis factor is nonnegative.
+If all four displayed coefficient groups have the same strict sign, the
+determinant is strictly nonzero for every t, including endpoints, so there
+is no collision. Division of middle Bernstein coefficients by three is
+unnecessary for a sign test.
+
+Every input coordinate is first enclosed by its two adjacent doubles. This
+contains both the exact supplied double and its source rational under the
+pinned reader's correctly truncated conversion. Interval add/subtract use
+nextafter toward -infinity on the lower result and +infinity on the upper
+result. Multiplication uses all four endpoint products followed by the same
+outward expansion. Correctly rounded arithmetic is at most one adjacent
+representable value from the exact result, including subnormal underflow,
+so each operation encloses its exact interval image. Induction through the
+determinants and sums gives rigorous coefficient enclosures, not empirical
+epsilon choices. Dependency overestimation can only make the test inconclusive.
+
+The filter falls back without rejecting unless every input is finite with
+absolute value <=1e90. All intermediate interval magnitudes are then bounded
+by a small constant times 1e270, far below double overflow. No fast-math or
+FMA contraction is introduced. It is enabled only for double, BFS, ms=0,
+after the original initial-box test has accepted. Strict signs exclude zero;
+uncertain or zero-containing bounds fall through to the original algorithm.
+All surviving collision times are computed by the unchanged solver. Known
+interior/endpoint contacts across 1000 binary scales are tested separately,
+in addition to the full fixed-subset FN/FP and retained-output comparison.

@@ -1,6 +1,7 @@
 #include "ccd.hpp"
 
 #include <tight_inclusion/interval_root_finder.hpp>
+#include <tight_inclusion/bernstein_filter.hpp>
 #include <tight_inclusion/timer.hpp>
 
 #include <vector>
@@ -227,6 +228,12 @@ namespace ticcd {
                     a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, err, ms)) {
                 toi = std::numeric_limits<Scalar>::infinity();
                 output_tolerance = tolerance;
+                return false;
+            }
+            if (ms == 0 && detail::bernstein_separated(
+                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1)) {
+                toi=std::numeric_limits<Scalar>::infinity();
+                output_tolerance=tolerance;
                 return false;
             }
         }
