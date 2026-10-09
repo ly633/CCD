@@ -33,6 +33,12 @@
       "winerror": 4551,
       "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
       "started": false
+    },
+    {
+      "log": "c08-equivalence-attempt-5.log",
+      "winerror": 4551,
+      "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
+      "started": false
     }
   ],
   "built_hashes": {

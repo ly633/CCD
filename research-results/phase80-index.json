@@ -15,5 +15,6 @@
   "best_full_validated": "C07",
   "best_source_commit": "0752bc0",
   "best_summary": "phase80-c07-summary.json",
-  "status": "goal incomplete; system execution blocker"
+  "status": "blocked; Windows Code Integrity restriction verified in three consecutive goal turns",
+  "execution_attempts_total": 5
 }

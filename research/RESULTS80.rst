@@ -189,3 +189,15 @@ is no live benchmark process to wait on. This is the second consecutive
 goal turn with this blocker, not four effective candidate experiments.
 Evidence: ../research-results/c08-continuation-1-environment.json and
 ../research-results/blocker-audit.json. The 80% goal remains incomplete.
+
+Blocked audit: 2026-10-09 15:16 UTC
+---------------------------------
+
+Attempt 5 again failed on the unchanged file at its original path. New
+CodeIntegrity 3077/3033 events confirm the same policy restriction, and no
+benchmark process is running. This is the third consecutive goal turn with
+the same blocker. Goal status is now BLOCKED, not complete. The best validated
+version remains C07 with 41.58294% reduction; seven candidates are effective.
+Further evaluated research requires legitimate executable access to be
+restored. No security policy or signing trust was changed. See
+../research-results/c08-continuation-2-environment.json and blocker-audit.json.

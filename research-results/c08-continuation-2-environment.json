@@ -1,0 +1,28 @@
+{
+  "checked_utc": "2026-10-09T15:16:13.2946953Z",
+  "policy_state": 1,
+  "running_processes": [],
+  "baseline_status": null,
+  "events": [
+    {
+      "TimeCreated": "2026-10-09T23:15:58.327262+08:00",
+      "Id": 3077,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\ustc\\anaconda3\\python.exe) attempted to load \\Device\\HarddiskVolume5\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\build-autoresearch-sample\\research\\Release\\research_equivalence.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+    },
+    {
+      "TimeCreated": "2026-10-09T23:15:58.3259758+08:00",
+      "Id": 3033,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\ustc\\anaconda3\\python.exe) attempted to load \\Device\\HarddiskVolume5\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\build-autoresearch-sample\\research\\Release\\research_equivalence.exe that did not meet the Enterprise signing level requirements."
+    },
+    {
+      "TimeCreated": "2026-10-09T23:14:42.6937465+08:00",
+      "Id": 3077,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\ustc\\anaconda3\\python.exe) attempted to load \\Device\\HarddiskVolume5\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\build-autoresearch-sample\\research\\Release\\research_equivalence.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+    },
+    {
+      "TimeCreated": "2026-10-09T23:14:42.6935862+08:00",
+      "Id": 3033,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\ustc\\anaconda3\\python.exe) attempted to load \\Device\\HarddiskVolume5\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\build-autoresearch-sample\\research\\Release\\research_equivalence.exe that did not meet the Enterprise signing level requirements."
+    }
+  ]
+}
