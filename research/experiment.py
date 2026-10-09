@@ -12,6 +12,7 @@ p.add_argument('--id',required=True)
 p.add_argument('--parent',required=True)
 p.add_argument('--hypothesis',required=True)
 p.add_argument('--repeats',type=int,default=1)
+p.add_argument('--allow-fp-removal',action='store_true')
 a=p.parse_args()
 identifier=a.id.lower()
 record_path=r.OUT/f'{identifier}-experiment.json'
@@ -21,7 +22,7 @@ record=dict(id=a.id,parent=a.parent,hypothesis=a.hypothesis,revision=r.git('rev-
             build_log=f'{identifier}-build.log',focused_test=f'{identifier}-equivalence.log')
 r.save(record_path,record)
 with (r.OUT/record['build_log']).open('wb') as log:
-    proc=sp.run(['cmake','--build',str(r.BUILD),'--config','Release','--target','research_candidate','research_equivalence','--parallel','8'],cwd=r.ROOT,stdout=log,stderr=sp.STDOUT)
+    proc=sp.run(['cmake','--build',str(r.BUILD),'--config','Release','--target','research_reference','research_candidate','research_equivalence','--parallel','8'],cwd=r.ROOT,stdout=log,stderr=sp.STDOUT)
 record['build_exit_code']=proc.returncode
 if proc.returncode:
     record.update(status='build failed',effective_experiment=False);r.save(record_path,record);sys.exit(1)
@@ -33,9 +34,14 @@ record['focused_exit_code']=test.returncode
 cmd=[sys.executable,str(r.ROOT/'research/research.py'),'run','--id',f'{identifier}-subset',
      '--kind','candidate','--expected',str(r.OUT/'runs/ref-subset'),'--hypothesis',a.hypothesis,
      '--repeats',str(a.repeats)]
+if a.allow_fp_removal:cmd.append('--allow-fp-removal')
 record['command']=cmd;r.save(record_path,record)
 proc=sp.run(cmd,cwd=r.ROOT)
 result=json.loads((r.OUT/'runs'/f'{identifier}-subset'/'results.json').read_text())
+if not result['runs']:
+    record.update(effective_experiment=False,valid=False,status='execution blocked before dataset evaluation',
+                  execution_error=result.get('execution_error'),subset_exit_code=proc.returncode)
+    r.save(record_path,record);sys.exit(proc.returncode or 1)
 record.update(effective_experiment=True,subset_exit_code=proc.returncode,
     valid=proc.returncode==0 and test.returncode==0,
     subset_seconds=result.get('median_ccd_seconds',result['runs'][0]['ccd_seconds']),

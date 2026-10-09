@@ -62,7 +62,7 @@ int main(int argc,char** argv) try {
     std::ifstream expected;
     if(argc>5) expected.open(argv[5],std::ios::binary);
     if(!answers || (argc>5 && !expected)) throw std::runtime_error("answer file unavailable");
-    uint64_t n[4]={},gt[4]={},fp[4]={},fn[4]={},mismatch[4]={},hash[4];
+    uint64_t n[4]={},gt[4]={},fp[4]={},fn[4]={},mismatch[4]={},removed_fp[4]={},hash[4];
     for(auto& h:hash) h=14695981039346656037ULL;
     double us[4]={}; Timer timer;
     for(const auto& e:entries) {
@@ -89,7 +89,14 @@ int main(int argc,char** argv) try {
             result[i]={toi,tol,uint64_t(hit)};
             ++n[e.group]; gt[e.group]+=r.truth;
             fp[e.group]+=hit&&!r.truth; fn[e.group]+=!hit&&r.truth;
-            if(argc>5 && std::memcmp(&result[i],&ref[i],sizeof(Answer))) ++mismatch[e.group];
+            if(argc>5 && std::memcmp(&result[i],&ref[i],sizeof(Answer))) {
+                ++mismatch[e.group];
+                // Explicitly classify only old false positives becoming
+                // no-hit. All other output/TOI changes remain failures.
+                if(!r.truth && ref[i].hit && !hit &&
+                   toi==std::numeric_limits<double>::infinity() && tol==1e-6)
+                    ++removed_fp[e.group];
+            }
         }
         hash[e.group]=hash_bytes(hash[e.group],result.data(),result.size()*sizeof(Answer));
         answers.write(reinterpret_cast<const char*>(result.data()),result.size()*sizeof(Answer));
@@ -98,6 +105,7 @@ int main(int argc,char** argv) try {
     if(argc>5 && expected.peek()!=EOF) throw std::runtime_error("long expected file");
     for(int g=0;g<4;++g)
         std::cout<<std::setprecision(17)<<"RESULT "<<g<<" "<<n[g]<<" "<<gt[g]<<" "<<fp[g]<<" "<<fn[g]<<" "<<us[g]/1e6<<" "<<mismatch[g]<<" "<<hash[g]<<std::endl;
+    for(int g=0;g<4;++g) std::cout<<"REMOVED_FP "<<g<<" "<<removed_fp[g]<<std::endl;
 #ifdef RESEARCH_PROFILE
     print_times();
 #endif

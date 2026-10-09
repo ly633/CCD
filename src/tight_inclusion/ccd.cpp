@@ -8,6 +8,31 @@
 
 namespace ticcd {
 
+    // A linearly moving simplex stays inside the coordinate-wise hull of
+    // its endpoint vertices. Strictly separated closed hulls cannot collide.
+    template <bool is_vertex_face>
+    bool swept_boxes_disjoint(
+        const Vector3& a0, const Vector3& b0, const Vector3& c0, const Vector3& d0,
+        const Vector3& a1, const Vector3& b1, const Vector3& c1, const Vector3& d1)
+    {
+        for (int axis=0;axis<3;++axis) {
+            Scalar lo_a, hi_a, lo_b, hi_b;
+            if constexpr (is_vertex_face) {
+                lo_a=std::min(a0[axis],a1[axis]);
+                hi_a=std::max(a0[axis],a1[axis]);
+                lo_b=std::min({b0[axis],c0[axis],d0[axis],b1[axis],c1[axis],d1[axis]});
+                hi_b=std::max({b0[axis],c0[axis],d0[axis],b1[axis],c1[axis],d1[axis]});
+            } else {
+                lo_a=std::min({a0[axis],b0[axis],a1[axis],b1[axis]});
+                hi_a=std::max({a0[axis],b0[axis],a1[axis],b1[axis]});
+                lo_b=std::min({c0[axis],d0[axis],c1[axis],d1[axis]});
+                hi_b=std::max({c0[axis],d0[axis],c1[axis],d1[axis]});
+            }
+            if (hi_a<lo_b || hi_b<lo_a) return true;
+        }
+        return false;
+    }
+
 #ifdef TIGHT_INCLUSION_USE_MAX_ABS_TOL
     static constexpr Scalar CCD_MAX_TIME_TOL = 1e-3;
     static constexpr Scalar CCD_MAX_COORD_TOL = 1e-2;
@@ -161,6 +186,15 @@ namespace ticcd {
         const CCDRootFindingMethod ccd_method)
     {
         constexpr int MAX_NO_ZERO_TOI_ITER = std::numeric_limits<int>::max();
+        if (ccd_method == CCDRootFindingMethod::BREADTH_FIRST_SEARCH && ms_in == 0) {
+            assert(t_max_in >= 0 && t_max_in <= 1);
+            if (swept_boxes_disjoint<is_vertex_face>(
+                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1)) {
+                toi=std::numeric_limits<Scalar>::infinity();
+                output_tolerance=tolerance_in;
+                return false;
+            }
+        }
         // unsigned so can be larger than MAX_NO_ZERO_TOI_ITER
         unsigned int no_zero_toi_iter = 0;
 

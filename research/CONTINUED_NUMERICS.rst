@@ -45,3 +45,31 @@ retaining the same integer shifts, unsigned multiplications, branches and
 assertions. They compute exactly the same integer comparison. This changes
 call overhead only; it does not convert comparisons to approximate doubles
 or change the priority-queue comparator/order.
+
+C07: exact swept AABB rejection, minimum_separation=0 only
+--------------------------------------------------------
+
+For t in [0,1], each coordinate of p(t)=(1-t)p0+t*p1 lies in the closed
+interval [min(p0,p1),max(p0,p1)]. A segment/triangle point is a convex
+combination of its moving vertices and therefore stays in the coordinate
+hull of all its endpoint vertices. Strict separation of either coordinate
+interval is a necessary-condition failure for any collision, including
+endpoint and grazing contact (equal bounds are NOT rejected).
+
+The hull uses only min/max selections and strict comparisons of finite input
+doubles, not subtractions, interpolations, or rounded differences. Its added
+numerical error is zero. A common monotone rational-to-double conversion also
+cannot turn overlapping endpoint coordinate intervals into strictly disjoint
+ones, so the archive's exact-rational provenance does not invalidate this
+necessary condition. The test is only enabled for BFS with ms=0 and valid
+t_max in [0,1]; the full [0,1] hull is conservative when t_max<1.
+
+Rejected queries provably have no collision and return toi=infinity and the
+input tolerance. All surviving queries use the unchanged solver and retain
+its exact TOI and conservative error bounds. This can remove original false
+positives and is allowed by the user's FP ceilings. The evaluator records
+all bitwise mismatches, classifies only old ground-truth-negative hits that
+become no-hit with infinity/input tolerance as permitted removals, and rejects
+EVERY other mismatch (including changed TOI of retained hits). FN must remain
+zero and per-group FP cannot increase. This stronger-than-required retained
+TOI check is not silently disabled to accept Boolean-only results.

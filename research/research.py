@@ -104,31 +104,46 @@ def run(args):
     out.mkdir(parents=True,exist_ok=False)
     cache=OUT/'cache'
     ready=json.loads((cache/'ready.json').read_text())
-    exe=BUILD/f'research/Release/research_{args.kind}.exe'
+    snapshot=(ROOT/args.snapshot).resolve() if getattr(args,'snapshot',None) else None
+    frozen=json.loads((snapshot/'results.json').read_text()) if snapshot else None
+    exe=(snapshot/f'research_{args.kind}.exe') if snapshot else BUILD/f'research/Release/research_{args.kind}.exe'
+    if frozen and (frozen['kind']!=args.kind or sha(exe)!=frozen['executable_sha256']):
+        raise RuntimeError('Snapshot kind or executable SHA256 mismatch')
     shutil.copy2(exe,out/exe.name); shutil.copy2(exe.parent/'gmp.dll',out/'gmp.dll')
-    source = ROOT/'src' if args.kind=='candidate' else ROOT/'research/reference/src'
+    source = snapshot/'src' if snapshot else (ROOT/'src' if args.kind=='candidate' else ROOT/'research/reference/src')
     shutil.copytree(source,out/'src')
-    shutil.copy2(ROOT/'research/runner.cpp',out/'runner.cpp')
-    shutil.copy2(BUILD/'CMakeCache.txt',out/'CMakeCache.txt')
-    (out/'source.patch').write_text(git('diff','v1.0.6','--','src','app','CMakeLists.txt','research'),encoding='utf-8')
+    runner=snapshot/'runner.cpp' if snapshot else ROOT/'research/runner.cpp'
+    build_cache=snapshot/'CMakeCache.txt' if snapshot else BUILD/'CMakeCache.txt'
+    shutil.copy2(runner,out/'runner.cpp')
+    shutil.copy2(build_cache,out/'CMakeCache.txt')
+    if snapshot: shutil.copy2(snapshot/'source.patch',out/'source.patch')
+    else: (out/'source.patch').write_text(git('diff','v1.0.6','--','src','app','CMakeLists.txt','research'),encoding='utf-8')
     expected=Path(args.expected).resolve() if args.expected else None
     reference=json.loads((expected/'results.json').read_text()) if expected else None
     report=dict(id=args.id,kind=args.kind,dataset=args.dataset,hypothesis=args.hypothesis,
-        created_utc=dt.datetime.now(dt.timezone.utc).isoformat(),revision=git('rev-parse','HEAD'),
+        created_utc=dt.datetime.now(dt.timezone.utc).isoformat(),revision=frozen['revision'] if frozen else git('rev-parse','HEAD'),
+        snapshot=str(snapshot) if snapshot else None,
+        allow_fp_removal=getattr(args,'allow_fp_removal',False),
         core_source={str(p.relative_to(source)):sha(p) for p in sorted(source.rglob('*')) if p.is_file()},
-        build_settings=[l for l in (BUILD/'CMakeCache.txt').read_text().splitlines() if l.startswith(('CMAKE_CXX_FLAGS','TIGHT_INCLUSION_','CMAKE_GENERATOR','Eigen3_DIR','GMP_'))],
-        executable_sha256=sha(exe),runner_sha256=sha(ROOT/'research/runner.cpp'),
+        build_settings=[l for l in build_cache.read_text().splitlines() if l.startswith(('CMAKE_CXX_FLAGS','TIGHT_INCLUSION_','CMAKE_GENERATOR','Eigen3_DIR','GMP_'))],
+        executable_sha256=sha(exe),runner_sha256=sha(runner),
         parameters=PARAMS,logical_cpu=0,threads=1,cache=ready,
         timing='Unchanged upstream per-query Timer; includes API argument conversion and CCD call; excludes cache/CSV I/O, result comparison, hashing and writes',
         expected=str(expected) if expected else None,runs=[])
     save(out/'results.json',report)
     for i in range(1,args.repeats+1):
-        cmd=[str(out/exe.name),'run',str(cache/f'{args.dataset}.txt'),str(cache/args.dataset),str(out/f'answers-{i}.bin')]
+        cmd=[str(exe if snapshot else out/exe.name),'run',str(cache/f'{args.dataset}.txt'),str(cache/args.dataset),str(out/f'answers-{i}.bin')]
         if expected: cmd.append(str(expected/'answers-1.bin'))
         print(f'{args.id} run {i} starting',flush=True)
         t=time.perf_counter()
-        with (out/f'run-{i}.log').open('wb') as log:
-            proc=sp.run(cmd,cwd=ROOT,stdout=log,stderr=sp.STDOUT)
+        try:
+            with (out/f'run-{i}.log').open('wb') as log:
+                proc=sp.run(cmd,cwd=ROOT,stdout=log,stderr=sp.STDOUT)
+        except OSError as error:
+            report.update(valid=False,execution_error=dict(type=type(error).__name__,winerror=getattr(error,'winerror',None),message=str(error),command=cmd),status='execution did not start')
+            save(out/'results.json',report)
+            (out/f'run-{i}.log').write_text(str(error),encoding='utf-8')
+            raise
         item=dict(command=cmd,exit_code=proc.returncode,wall_seconds=time.perf_counter()-t,groups=[])
         report['runs'].append(item)
         for line in (out/f'run-{i}.log').read_text(encoding='utf-8',errors='replace').splitlines():
@@ -136,11 +151,15 @@ def run(args):
                 _,g,n,gt,fp,fn,sec,mm,h=line.split()
                 item['groups'].append(dict(group=GROUPS[int(g)],queries=int(n),positives=int(gt),fp=int(fp),fn=int(fn),ccd_seconds=float(sec),bitwise_mismatches=int(mm),output_hash=h))
         item['ccd_seconds']=sum(g['ccd_seconds'] for g in item['groups'])
+        for line in (out/f'run-{i}.log').read_text(encoding='utf-8',errors='replace').splitlines():
+            if line.startswith('REMOVED_FP '):
+                _,g,count=line.split();item['groups'][int(g)]['removed_false_positives']=int(count)
         valid=proc.returncode==0 and len(item['groups'])==4
         if valid:
             valid &= sum(g['queries'] for g in item['groups'])==ready['inventories'][args.dataset]['queries']
             for g,cap in zip(item['groups'],[2,17,90,203]):
-                valid &= g['fn']==0 and g['fp']<=cap and g['bitwise_mismatches']==0
+                allowed=g.get('removed_false_positives',0) if report['allow_fp_removal'] else 0
+                valid &= g['fn']==0 and g['fp']<=cap and g['bitwise_mismatches']==allowed
             if reference:
                 valid &= args.dataset==reference['dataset']
                 valid &= all(g['fp']<=ref['fp'] for g,ref in zip(item['groups'],reference['runs'][0]['groups']))
@@ -164,7 +183,8 @@ def summarize(prefix, target_reduction=.80):
             assert x['logical_cpu']==0 and x['threads']==1 and x['parameters']==PARAMS
             assert len(x['runs'])==1 and sum(g['queries'] for g in x['runs'][0]['groups'])==59387883
             for g,n,cap in zip(x['runs'][0]['groups'],[17959962,41372584,21208,34129],[2,17,90,203]):
-                assert g['queries']==n and g['fn']==0 and g['fp']<=cap and g['bitwise_mismatches']==0
+                allowed=g.get('removed_false_positives',0) if x.get('allow_fp_removal') else 0
+                assert g['queries']==n and g['fn']==0 and g['fp']<=cap and g['bitwise_mismatches']==allowed
     ordered=[reports[k][i]['created_utc'] for i in range(3) for k in ('reference','candidate')]
     assert ordered==sorted(ordered)
     assert len({x['runner_sha256'] for items in reports.values() for x in items})==1
@@ -178,11 +198,13 @@ def summarize(prefix, target_reduction=.80):
     save(OUT/f'{prefix}-summary.json',result)
     print(json.dumps(result,indent=2),flush=True)
 
-def paired(prefix, target_reduction=.80):
+def paired(prefix, target_reduction=.80, candidate_snapshot=None, allow_fp_removal=False):
     expected=str(OUT/'runs'/f'{prefix}-reference-1')
     for i in range(1,4):
         for kind in ('reference','candidate'):
             run(argparse.Namespace(id=f'{prefix}-{kind}-{i}',kind=kind,dataset='full',repeats=1,
+                snapshot=candidate_snapshot if kind=='candidate' else None,
+                allow_fp_removal=allow_fp_removal if kind=='candidate' else False,
                 expected=None if i==1 and kind=='reference' else expected,
                 hypothesis=f'Final alternating comparison, round {i}, {kind}'))
     summarize(prefix, target_reduction)
@@ -192,17 +214,21 @@ def main():
     subs.add_parser('init')
     prep=subs.add_parser('prepare');prep.add_argument('--workers',type=int,default=8)
     pair=subs.add_parser('paired');pair.add_argument('--prefix',required=True)
+    pair.add_argument('--candidate-snapshot')
+    pair.add_argument('--allow-fp-removal',action='store_true')
     summary=subs.add_parser('summarize');summary.add_argument('--prefix',required=True)
     for cmd in (pair,summary):cmd.add_argument('--target-reduction',type=float,default=.80)
     r=subs.add_parser('run');r.add_argument('--id',required=True)
     r.add_argument('--kind',choices=['reference','profile','candidate'],required=True)
     r.add_argument('--dataset',choices=['subset','full'],default='subset')
     r.add_argument('--repeats',type=int,default=1);r.add_argument('--expected')
+    r.add_argument('--snapshot',help='Use an immutable earlier run executable and matching source snapshot')
+    r.add_argument('--allow-fp-removal',action='store_true',help='Allow ONLY old ground-truth-negative hits to become no-hit; every other bitwise change fails')
     r.add_argument('--hypothesis',required=True)
     args=p.parse_args()
     if args.cmd=='init': init()
     elif args.cmd=='prepare': prepare(args.workers)
-    elif args.cmd=='paired': paired(args.prefix,args.target_reduction)
+    elif args.cmd=='paired': paired(args.prefix,args.target_reduction,args.candidate_snapshot,args.allow_fp_removal)
     elif args.cmd=='summarize': summarize(args.prefix,args.target_reduction)
     else: run(args)
 if __name__=='__main__': main()
