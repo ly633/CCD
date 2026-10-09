@@ -62,3 +62,15 @@ Read-only diagnostics found almost no exact repeated geometry and only one
 shared-start-vertex contact in the subset; those are not promising speedups.
 Diagnostics, build successes, failed process creation and repeated timings
 are not effective candidate experiments.
+
+Execution recheck: 2026-10-09 15:15 UTC
+-------------------------------------
+
+The first goal continuation verified the same binary hashes and retried C08
+at its original path. Attempt 4 still failed before process creation with
+WinError 4551. New CodeIntegrity events 3077/3033 confirm the same signing
+policy block; policy state remains 1 and the executable is unsigned. There
+is no live benchmark process to wait on. This is the second consecutive
+goal turn with this blocker, not four effective candidate experiments.
+Evidence: ../research-results/c08-continuation-1-environment.json and
+../research-results/blocker-audit.json. The 80% goal remains incomplete.

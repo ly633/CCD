@@ -177,3 +177,15 @@ Smart App Control、签名信任或安全策略，也未移动或改写拒绝的
 
 resume 首先检查已保存二进制哈希；不得将重新构建的代码冒充
 同一次重试。后续假设与未执行工作见 NEXT_STEPS.rst。
+
+Execution recheck: 2026-10-09 15:15 UTC
+-------------------------------------
+
+The first goal continuation verified the same binary hashes and retried C08
+at its original path. Attempt 4 still failed before process creation with
+WinError 4551. New CodeIntegrity events 3077/3033 confirm the same signing
+policy block; policy state remains 1 and the executable is unsigned. There
+is no live benchmark process to wait on. This is the second consecutive
+goal turn with this blocker, not four effective candidate experiments.
+Evidence: ../research-results/c08-continuation-1-environment.json and
+../research-results/blocker-audit.json. The 80% goal remains incomplete.
