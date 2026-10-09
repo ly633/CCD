@@ -1,0 +1,18 @@
+Numerical arguments for the 80 percent research phase
+====================================================
+
+C03: exact dyadic reciprocal multiplication
+------------------------------------------
+
+The internal denominators originate in NumCCD.denominator() and are exactly
+2^n for 0 <= n < 63. Both d and r=1/d=2^-n are exactly representable normal
+doubles. For a stored rounded intermediate x, the exact real quantities x/d
+and x*r are equal; correctly rounded IEEE division and multiplication
+therefore return the same double (including gradual underflow and signed
+zero). Crucially, the preceding multiplication x=fl(delta*numerator) remains
+separate; delta*(numerator/d) would not have this property and is not used.
+No FMA contraction or reassociation is enabled. The original error bound,
+corner order, and every root-finder decision are preserved. The generic
+public array evaluator is unchanged; this specialization is only used with
+the dyadic arrays produced by convert_tuv_to_array. As in earlier proofs,
+the original supported-input and fixed FP environment assumptions apply.

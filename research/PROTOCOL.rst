@@ -4,8 +4,11 @@ Tight-Inclusion CCD research protocol
 Goal and protection
 -------------------
 
-The user activated research on 2026-10-09. Stop after a >=20% reduction of
+The user raised the target on 2026-10-09. Stop after a >=80% reduction of
 median full CCD core time with validation, or 20 evaluated candidates.
+C01 and C02 remain preserved and count as the first two experiments; the
+continued series starts at C03. The earlier 20% result is historical evidence,
+not completion of the new 80% objective. Historical reports are not overwritten.
 The sibling Tight-Inclusion worktree and its data/results are read-only inputs.
 All changes and new results belong to Tight-Inclusion-autoresearch.
 Historical 74.37439 s is context only, never the comparison denominator.

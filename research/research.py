@@ -152,7 +152,7 @@ def run(args):
     report['valid']=all(r['valid'] for r in report['runs'])
     save(out/'results.json',report)
 
-def summarize(prefix):
+def summarize(prefix, target_reduction=.80):
     """Only declare the speed target on three validated full runs per side."""
     reports={k:[json.loads((OUT/'runs'/f'{prefix}-{k}-{i}'/'results.json').read_text())
                 for i in range(1,4)] for k in ('reference','candidate')}
@@ -173,19 +173,19 @@ def summarize(prefix):
     reduction=1-medians['candidate']/medians['reference']
     result=dict(prefix=prefix,queries_per_run=59387883,parameters=PARAMS,medians=medians,
         time_reduction=reduction,speedup=medians['reference']/medians['candidate'],
-        target_passed=reduction>=.20,all_correct=True,
+        target_reduction=target_reduction,target_passed=reduction>=target_reduction,all_correct=True,
         runs={k:[dict(id=x['id'],ccd_seconds=x['median_ccd_seconds'],groups=x['runs'][0]['groups']) for x in v] for k,v in reports.items()})
     save(OUT/f'{prefix}-summary.json',result)
     print(json.dumps(result,indent=2),flush=True)
 
-def paired(prefix):
+def paired(prefix, target_reduction=.80):
     expected=str(OUT/'runs'/f'{prefix}-reference-1')
     for i in range(1,4):
         for kind in ('reference','candidate'):
             run(argparse.Namespace(id=f'{prefix}-{kind}-{i}',kind=kind,dataset='full',repeats=1,
                 expected=None if i==1 and kind=='reference' else expected,
                 hypothesis=f'Final alternating comparison, round {i}, {kind}'))
-    summarize(prefix)
+    summarize(prefix, target_reduction)
 
 def main():
     p=argparse.ArgumentParser(description=__doc__); subs=p.add_subparsers(dest='cmd',required=True)
@@ -193,6 +193,7 @@ def main():
     prep=subs.add_parser('prepare');prep.add_argument('--workers',type=int,default=8)
     pair=subs.add_parser('paired');pair.add_argument('--prefix',required=True)
     summary=subs.add_parser('summarize');summary.add_argument('--prefix',required=True)
+    for cmd in (pair,summary):cmd.add_argument('--target-reduction',type=float,default=.80)
     r=subs.add_parser('run');r.add_argument('--id',required=True)
     r.add_argument('--kind',choices=['reference','profile','candidate'],required=True)
     r.add_argument('--dataset',choices=['subset','full'],default='subset')
@@ -201,7 +202,7 @@ def main():
     args=p.parse_args()
     if args.cmd=='init': init()
     elif args.cmd=='prepare': prepare(args.workers)
-    elif args.cmd=='paired': paired(args.prefix)
-    elif args.cmd=='summarize': summarize(args.prefix)
+    elif args.cmd=='paired': paired(args.prefix,args.target_reduction)
+    elif args.cmd=='summarize': summarize(args.prefix,args.target_reduction)
     else: run(args)
 if __name__=='__main__': main()

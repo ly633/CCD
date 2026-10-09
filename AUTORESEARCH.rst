@@ -5,10 +5,10 @@ CCD Autoresearch 工作树
 分支：research/ccd-autoresearch
 起点：497baaab37b9a080d8d0db5b84ea13f50fc507e0（完整 baseline 已验证）
 研究目标：2026-10-09 用户已启动自动优化研究；目标为同期全量 CCD
-核心耗时中位数降低至少 20%，或完成 20 个有效候选实验后如实交付。
+核心耗时中位数降低至少 80%，或完成 20 个有效候选实验后如实交付。
 当前实验协议见 research/PROTOCOL.rst，数值保守性论证见
 research/NUMERICS.rst，全部新实验记录见 research-results/。
-研究已完成：C02 在三组交替全量对照中，将 CCD 核心耗时中位数从
+前阶段 20% 目标已完成，当前 80% 目标尚未达到。C02 曾在三组交替全量对照中，将 CCD 核心耗时中位数从
 72.602181521 秒降低至 52.472144881 秒，降低 27.72649%；完整报告与
 复现命令见 research/RESULTS.rst。共评测两个候选，所有正确性约束通过。
 
