@@ -2,6 +2,7 @@
 #pragma once
 
 #include <array>
+#include <cassert>
 
 #include <Eigen/Core>
 
@@ -11,7 +12,11 @@
 namespace ticcd {
 
     // calculate a*(2^b)
-    uint64_t power(const uint64_t a, const uint8_t b);
+    inline uint64_t power(const uint64_t a, const uint8_t b)
+    {
+        assert(b < 8 * sizeof(uint64_t) - 1);
+        return a << b;
+    }
 
     // calculate 2^exponent
     inline uint64_t pow2(const uint8_t exponent) { return power(1l, exponent); }
@@ -50,7 +55,17 @@ namespace ticcd {
                    && denom_power == other.denom_power;
         }
         bool operator!=(const NumCCD &other) const { return !(*this == other); }
-        bool operator<(const NumCCD &other) const;
+        bool operator<(const NumCCD &other) const
+        {
+            uint64_t k1 = numerator, k2 = other.numerator;
+            if (denom_power < other.denom_power) {
+                k1 = pow2(other.denom_power - denom_power) * k1;
+            } else if (denom_power > other.denom_power) {
+                k2 = pow2(denom_power - other.denom_power) * k2;
+            }
+            assert((value() < other.value()) == (k1 < k2));
+            return k1 < k2;
+        }
         bool operator<=(const NumCCD &other) const
         {
             return (*this == other) || (*this < other);

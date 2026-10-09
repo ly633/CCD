@@ -7,15 +7,6 @@ namespace ticcd {
 
     static constexpr uint8_t MAX_DENOM_POWER = 8 * sizeof(uint64_t) - 1;
 
-    // calculate a*(2^b)
-    uint64_t power(const uint64_t a, const uint8_t b)
-    {
-        // The fast bit shifting power trick only works if b is not too larger.
-        assert(b < MAX_DENOM_POWER);
-        // WARNING: Technically this can still fail with `b < MAX_DENOM_POWER` if `a > 1`.
-        return a << b;
-    }
-
     // return power t. n=result*2^t
     uint8_t reduction(const uint64_t n, uint64_t &result)
     {
@@ -81,21 +72,6 @@ namespace ticcd {
             result.denom_power = n1;
         }
         return result;
-    }
-
-    bool NumCCD::operator<(const NumCCD &other) const
-    {
-        const uint64_t &k1 = numerator, &k2 = other.numerator;
-        const uint8_t &n1 = denom_power, &n2 = other.denom_power;
-
-        uint64_t tmp_k1 = k1, tmp_k2 = k2;
-        if (n1 < n2) {
-            tmp_k1 = pow2(n2 - n1) * k1;
-        } else if (n1 > n2) {
-            tmp_k2 = pow2(n1 - n2) * k2;
-        }
-        assert((value() < other.value()) == (tmp_k1 < tmp_k2));
-        return tmp_k1 < tmp_k2;
     }
 
     bool NumCCD::is_sum_leq_1(const NumCCD &num1, const NumCCD &num2)

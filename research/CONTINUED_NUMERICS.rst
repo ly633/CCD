@@ -36,3 +36,12 @@ directly is exact and calls the same dimension evaluator in the same x,y,z
 order. Computing true_tol is unnecessary on this precheck because only its
 Boolean result is used; removing this unused subtraction does not change
 the comparisons. No endpoint interpolation is replaced by an input endpoint.
+
+C06: inline dyadic powers and comparisons
+---------------------------------------
+
+Move power() and NumCCD::operator< into the header as inline definitions,
+retaining the same integer shifts, unsigned multiplications, branches and
+assertions. They compute exactly the same integer comparison. This changes
+call overhead only; it does not convert comparisons to approximate doubles
+or change the priority-queue comparator/order.
