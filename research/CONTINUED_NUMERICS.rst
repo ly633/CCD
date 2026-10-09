@@ -16,3 +16,13 @@ corner order, and every root-finder decision are preserved. The generic
 public array evaluator is unchanged; this specialization is only used with
 the dyadic arrays produced by convert_tuv_to_array. As in earlier proofs,
 the original supported-input and fixed FP environment assumptions apply.
+
+C04: reuse repeated spatial interpolations
+-----------------------------------------
+
+For each fixed t, the two u values repeat across v and the two v values
+repeat across u. Cache those identical rounded spatial subexpressions.
+EE combines the same four (u,v) pairs by subtraction; VF keeps the original
+(u_term + v_term) + b parentheses before subtraction from a. Operand order,
+rounded intermediate values and output corner order are unchanged; added
+rounding error is zero relative to C03 and thus to the original evaluator.

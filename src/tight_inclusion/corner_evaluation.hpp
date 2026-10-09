@@ -32,17 +32,24 @@ namespace ticcd::detail {
             const Scalar b = (b1 - b0) * t_up[k] * ti + b0;
             const Scalar c = (c1 - c0) * t_up[k] * ti + c0;
             const Scalar d = (d1 - d0) * t_up[k] * ti + d0;
-            for (int j = 0; j < 4; ++j) {
-                const int i = k + j;
-                if constexpr (is_vertex_face) {
-                    const Scalar pt = (c - b) * u_up[i] * ui[j / 2]
-                                      + (d - b) * v_up[i] * vi[j % 2] + b;
-                    result[i] = a - pt;
-                } else {
-                    const Scalar va = (b - a) * u_up[i] * ui[j / 2] + a;
-                    const Scalar vb = (d - c) * v_up[i] * vi[j % 2] + c;
-                    result[i] = va - vb;
-                }
+            if constexpr (is_vertex_face) {
+                const Scalar x0 = (c - b) * u_up[k] * ui[0];
+                const Scalar x1 = (c - b) * u_up[k + 2] * ui[1];
+                const Scalar y0 = (d - b) * v_up[k] * vi[0];
+                const Scalar y1 = (d - b) * v_up[k + 1] * vi[1];
+                result[k] = a - (x0 + y0 + b);
+                result[k + 1] = a - (x0 + y1 + b);
+                result[k + 2] = a - (x1 + y0 + b);
+                result[k + 3] = a - (x1 + y1 + b);
+            } else {
+                const Scalar x0 = (b - a) * u_up[k] * ui[0] + a;
+                const Scalar x1 = (b - a) * u_up[k + 2] * ui[1] + a;
+                const Scalar y0 = (d - c) * v_up[k] * vi[0] + c;
+                const Scalar y1 = (d - c) * v_up[k + 1] * vi[1] + c;
+                result[k] = x0 - y0;
+                result[k + 1] = x0 - y1;
+                result[k + 2] = x1 - y0;
+                result[k + 3] = x1 - y1;
             }
         }
         return result;
