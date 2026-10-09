@@ -171,15 +171,6 @@ namespace ticcd {
         Scalar tolerance = tolerance_in;
         Scalar ms = ms_in;
 
-        Array3 tol;
-        if constexpr (is_vertex_face) {
-            tol = compute_vertex_face_tolerances(
-                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
-        } else {
-            tol = compute_edge_edge_tolerances(
-                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
-        }
-
         //////////////////////////////////////////////////////////
         // this should be the error of the whole mesh
         Array3 err;
@@ -193,6 +184,27 @@ namespace ticcd {
             err = err_in;
         }
         //////////////////////////////////////////////////////////
+
+        if (ccd_method == CCDRootFindingMethod::BREADTH_FIRST_SEARCH) {
+            assert(t_max >= 0 && t_max <= 1);
+            // Exactly the original first BFS predicate on [0,1]^3.
+            // If it rejects, no subdivision/tolerance/queue work is needed.
+            if (!initial_root_box_overlaps<is_vertex_face>(
+                    a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, err, ms)) {
+                toi = std::numeric_limits<Scalar>::infinity();
+                output_tolerance = tolerance;
+                return false;
+            }
+        }
+
+        Array3 tol;
+        if constexpr (is_vertex_face) {
+            tol = compute_vertex_face_tolerances(
+                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
+        } else {
+            tol = compute_edge_edge_tolerances(
+                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
+        }
 
         do {
             switch (ccd_method) {

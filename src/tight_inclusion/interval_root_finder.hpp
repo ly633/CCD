@@ -8,6 +8,16 @@
 #include <vector>
 
 namespace ticcd {
+    // Evaluate the same conservative initial [0,1]^3 box as BFS, before
+    // allocating the search queue or computing subdivision tolerances.
+    template <bool is_vertex_face>
+    bool initial_root_box_overlaps(
+        const Vector3 &a_t0, const Vector3 &b_t0,
+        const Vector3 &c_t0, const Vector3 &d_t0,
+        const Vector3 &a_t1, const Vector3 &b_t1,
+        const Vector3 &c_t1, const Vector3 &d_t1,
+        const Array3 &err, Scalar ms);
+
     // this version cannot give the impact time at t=1, although this collision can
     // be detected at t=0 of the next time step, but still may cause problems in
     // line-search based physical simulation

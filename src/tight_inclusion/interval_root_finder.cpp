@@ -139,6 +139,32 @@ namespace ticcd {
         return true;
     }
 
+    template <bool is_vertex_face>
+    bool initial_root_box_overlaps(
+        const Vector3 &a_t0, const Vector3 &b_t0,
+        const Vector3 &c_t0, const Vector3 &d_t0,
+        const Vector3 &a_t1, const Vector3 &b_t1,
+        const Vector3 &c_t1, const Vector3 &d_t1,
+        const Array3 &err, const Scalar ms)
+    {
+        const Interval zero_to_one(NumCCD(0, 0), NumCCD(1, 0));
+        const Interval3 iset = {{zero_to_one, zero_to_one, zero_to_one}};
+        bool box_in;
+        Array3 true_tol;
+        return origin_in_function_bounding_box_vector<is_vertex_face>(
+            iset, a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1,
+            err, box_in, ms, &true_tol);
+    }
+
+    template bool initial_root_box_overlaps<false>(
+        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
+        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
+        const Array3&, Scalar);
+    template bool initial_root_box_overlaps<true>(
+        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
+        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
+        const Array3&, Scalar);
+
     // find the largest width/tol dimension that is greater than its tolerance
     int find_next_split(const Array3 &widths, const Array3 &tols)
     {

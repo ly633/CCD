@@ -65,3 +65,31 @@ original returned TOI exactly establishes no loss of its time accuracy;
 it is not an independent absolute TOI-error measurement. The supplied
 1e-6 tolerance is the algorithm's distance tolerance, not a new guarantee
 of an absolute 1e-6 time error.
+
+C02: move the original initial-box rejection before setup
+--------------------------------------------------------
+
+C02 builds on C01 and calls the very same origin_in_function_bounding_box_vector
+on the very same [0,1]^3 interval used by the first BFS iteration. It passes
+the unchanged error vector and minimum separation and evaluates the same
+true_tol output. The tolerance computation is delayed until this predicate
+accepts. No threshold, endpoint expression, or bounding-box computation is
+changed. Even for t_max<1 the original BFS initially tests [0,1]^3, so the
+same box is deliberately retained.
+
+At the first BFS iteration current.t.lower=0, TOI_SKIP=4, and the queue
+contains only the initial box. If the predicate returns false, the original
+algorithm executes continue, observes an empty queue, and returns false,
+toi=infinity, output_tolerance=input tolerance. C02 returns exactly this
+state before allocating the queue or computing unused subdivision
+tolerances. If the predicate returns true, C02 enters the original code;
+the predicate is evaluated again rather than changing the iteration count,
+queue order, or stopping logic. Thus a C02 rejection implies the identical
+original rejection, with the same original inclusion error bound. The
+remaining branch preserves the original computation and outputs. The DFS
+path is not filtered. This is not an additional heuristic broad phase.
+
+As with C01, this argument assumes the original supported input domain and
+fixed floating-point environment. The moved setup operations have no
+outputs needed by the reject branch and do not change that environment.
+Floating-point exception trapping is not enabled in the baseline setting.
