@@ -1,0 +1,157 @@
+{
+  "id": "final-c02-reference-2",
+  "kind": "reference",
+  "dataset": "full",
+  "hypothesis": "Final alternating comparison, round 2, reference",
+  "created_utc": "2026-10-09T14:08:28.731769+00:00",
+  "revision": "aa821e07e003a435885f12d929b947a5d0dcdf51",
+  "core_source": {
+    "tight_inclusion\\avx.cpp": "c1d3e90c75dc70bc66efb7a880c0608782342e23fd47a363fde3ea0b86d6bf80",
+    "tight_inclusion\\avx.hpp": "1cb9c6bb1882c601622548acd5b3c6823d0faeab53ea089eea8b23bf5e88ab90",
+    "tight_inclusion\\ccd.cpp": "5a384e1a9e63df9bc705d2ed826b0800676641328780a4c192ab7a0237bac848",
+    "tight_inclusion\\ccd.hpp": "c4141b82729907627d267bafd4914c35b2d54de3ff2fd4c64baab73773d2cdc6",
+    "tight_inclusion\\CMakeLists.txt": "b5979ec266943b9dd4ac141b3d089383d095407b83fc088365d0309072884299",
+    "tight_inclusion\\config.hpp": "740752242440882e339ced4472c4201ebdc5ce20d03904aeaecba3ec08f8afe9",
+    "tight_inclusion\\config.hpp.in": "01908d886681fb51e2cb3581a3e7c00235b1cd6950c69058486697537f2b248b",
+    "tight_inclusion\\interval.cpp": "368b9f65d07cf0211e13cfd37722ec74676ed959503f98c0dca233bd4b32f19e",
+    "tight_inclusion\\interval.hpp": "7522157508cc00f6d8d17a3c57ce51e9ae11b73e61019145a2b8832b2a202a31",
+    "tight_inclusion\\interval_root_finder.cpp": "7f225fb921cc76786e4bb4cef80bfabb35a97e290ffdb0781d1f05f97e5f1a2d",
+    "tight_inclusion\\interval_root_finder.hpp": "a280c4568d109a339e13550ab71e02297e3eed10e811c9629a267c466c3479c8",
+    "tight_inclusion\\logger.cpp": "16a770112c0ecc6998991593cab4ab26b503631dec770f30a17525d458dc7529",
+    "tight_inclusion\\logger.hpp": "a596ce6791a1246f751221794cad61f67da49649d72144d0aea4696bc4e420e4",
+    "tight_inclusion\\rational\\ccd.cpp": "df723ec6b80bc49f0d16195998e122e74c13fa2eeb71c30f62e7905b2666d9be",
+    "tight_inclusion\\rational\\ccd.hpp": "645cca7b377d4ce15379a3ea39f074bfa9ae01c7c52f82fd3c44da25b4a4405c",
+    "tight_inclusion\\rational\\CMakeLists.txt": "bc8dabeaefdfb033be54cf74d110446ddfd9ad78fc8d30c82bd985ec233fe257",
+    "tight_inclusion\\rational\\interval_root_finder.cpp": "b9f9b8e82f89fd736b6def364dd390b45cd361586f97e2fc40741195ae02d08f",
+    "tight_inclusion\\rational\\interval_root_finder.hpp": "fcaf2972ebc63bbf4d4793b10e11d2191b6c18f11ef0b52a96cd1f3b41de0fd0",
+    "tight_inclusion\\timer.hpp": "00f9176db581d2f3f5bfd3f8e4bc72c05339455f84685b0f23a99043a09d3a68",
+    "tight_inclusion\\types.hpp": "95777f48cc5ea47c02a7e1c2189c9ebcdca4e8c9d1973f3424100b9972257159"
+  },
+  "build_settings": [
+    "CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc /utf-8",
+    "CMAKE_CXX_FLAGS_DEBUG:STRING=/Zi /Ob0 /Od /RTC1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=/O1 /Ob1 /DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELEASE:STRING=/O2 /Ob2 /DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=/Zi /O2 /Ob1 /DNDEBUG",
+    "Eigen3_DIR:UNINITIALIZED=C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/eigen3/cmake",
+    "GMP_INCLUDES:PATH=C:/Users/ustc/anaconda3/Library/include",
+    "GMP_LIBRARIES:FILEPATH=C:/Users/ustc/anaconda3/Library/lib/gmp.lib",
+    "GMP_RUNTIME_LIB:FILEPATH=C:/Users/ustc/anaconda3/Library/bin/gmp.dll",
+    "TIGHT_INCLUSION_FLOAT_WITH_DOUBLE_INPUT:BOOL=OFF",
+    "TIGHT_INCLUSION_LIMIT_QUEUE_SIZE:BOOL=OFF",
+    "TIGHT_INCLUSION_RESEARCH:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_CCACHE:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_DOUBLE_PRECISION:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_RATIONAL:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_SAMPLE_QUERIES:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_TIMER:BOOL=OFF",
+    "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1",
+    "CMAKE_GENERATOR:INTERNAL=Visual Studio 17 2022",
+    "CMAKE_GENERATOR_INSTANCE:INTERNAL=C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools",
+    "CMAKE_GENERATOR_PLATFORM:INTERNAL=x64",
+    "CMAKE_GENERATOR_TOOLSET:INTERNAL=",
+    "GMP_INCLUDES-ADVANCED:INTERNAL=1",
+    "GMP_LIBRARIES-ADVANCED:INTERNAL=1"
+  ],
+  "executable_sha256": "964a76125e13774aa57785a783c9510dac7fd95a6125aebce67aa6f2a0ff13e5",
+  "runner_sha256": "8a692474820e4473539b631e466c106fc0baa676c2b5952bb72c6ef80c5b8d99",
+  "parameters": {
+    "precision": "double",
+    "tolerance": 1e-06,
+    "max_iterations": 1000000,
+    "minimum_separation": 0,
+    "t_max": 1,
+    "no_zero_toi": false,
+    "numerical_error": [
+      -1,
+      -1,
+      -1
+    ],
+    "method": "BREADTH_FIRST_SEARCH"
+  },
+  "logical_cpu": 0,
+  "threads": 1,
+  "cache": {
+    "inventories": {
+      "full": {
+        "queries": 59387883,
+        "manifest_sha256": "e2f90206b983389f3920f1d5bf7755606e318019cf55b243adf7c07f2041ed83"
+      },
+      "subset": {
+        "queries": 546337,
+        "manifest_sha256": "e1a8b656b5a50faf7997a12d1bc11dcb6716a5fd338dca837ccf1bc48d23a409"
+      }
+    },
+    "source_manifest_sha256": "92417a5c23055344bc1c17f2e6dc9a3c126c187be735467f2dc0289f03c963fa",
+    "conversion": "Unchanged pinned CCD-Query-IO GMP reader; native little-endian 24 doubles + uint64 truth; every CSV SHA256 revalidated",
+    "subset": "All handcrafted + every 128th simulation query per CSV (index 0,128,...) + all simulation ground-truth positives; sorted relative CSV paths",
+    "preparation_workers": 8,
+    "preparation_excluded_from_timing": true
+  },
+  "timing": "Unchanged upstream per-query Timer; includes API argument conversion and CCD call; excludes cache/CSV I/O, result comparison, hashing and writes",
+  "expected": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\final-c02-reference-1",
+  "runs": [
+    {
+      "command": [
+        "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\final-c02-reference-2\\research_reference.exe",
+        "run",
+        "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\cache\\full.txt",
+        "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\cache\\full",
+        "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\final-c02-reference-2\\answers-1.bin",
+        "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\final-c02-reference-1\\answers-1.bin"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 84.8948437999934,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 17959962,
+          "positives": 18711,
+          "fp": 2,
+          "fn": 0,
+          "ccd_seconds": 12.086835183837891,
+          "bitwise_mismatches": 0,
+          "output_hash": "2582929271375930863"
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 41372584,
+          "positives": 7325,
+          "fp": 17,
+          "fn": 0,
+          "ccd_seconds": 28.442130258789064,
+          "bitwise_mismatches": 0,
+          "output_hash": "1337375763354161953"
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 21208,
+          "positives": 544,
+          "fp": 90,
+          "fn": 0,
+          "ccd_seconds": 7.9087678125,
+          "bitwise_mismatches": 0,
+          "output_hash": "15626249075451830123"
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 34129,
+          "positives": 402,
+          "fp": 203,
+          "fn": 0,
+          "ccd_seconds": 24.221724903808592,
+          "bitwise_mismatches": 0,
+          "output_hash": "15937733726205787145"
+        }
+      ],
+      "ccd_seconds": 72.65945815893555,
+      "valid": true
+    }
+  ],
+  "median_ccd_seconds": 72.65945815893555,
+  "valid": true
+}

@@ -4,10 +4,20 @@ CCD Autoresearch 工作树
 工作树：D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch
 分支：research/ccd-autoresearch
 起点：497baaab37b9a080d8d0db5b84ea13f50fc507e0（完整 baseline 已验证）
-研究目标：等待用户指定；尚未启动 Goal Mode / 自动研究循环。
+研究目标：2026-10-09 用户已启动自动优化研究；目标为同期全量 CCD
+核心耗时中位数降低至少 20%，或完成 20 个有效候选实验后如实交付。
+当前实验协议见 research/PROTOCOL.rst，数值保守性论证见
+research/NUMERICS.rst，全部新实验记录见 research-results/。
+研究已完成：C02 在三组交替全量对照中，将 CCD 核心耗时中位数从
+72.602181521 秒降低至 52.472144881 秒，降低 27.72649%；完整报告与
+复现命令见 research/RESULTS.rst。共评测两个候选，所有正确性约束通过。
 
 准备状态
 --------
+
+2026-10-09 21:46 更新：本次环境预检已成功执行，207,279 条官方样例
+查询漏检为 0，CCD 核心耗时 20.4054306 秒。此前拦截本次未复现，
+没有为此更改系统安全设置。以下为前次准备工作的历史记录。
 
 2026-10-09 已完成独立 Release 编译，原 baseline 工作树仍保持干净。
 新程序的样例运行被 Windows Smart App Control 阻止，错误为 WinError 4551。
@@ -63,9 +73,13 @@ code-integrity-events.json。实际运行实验前需解决系统执行策略问
 指定目标
 --------
 
-下一步由用户说明希望优化的指标、允许修改的范围、正确性约束和停止条件。
-给定具体目标后，研究工作应限定在本工作树，并记录每轮假设、修改、结果及保留/放弃理由。
-本次准备没有预设加速百分比、运行预算或自动启动研究。
+本次用户要求使用全部 59,387,883 条查询，double、tolerance=1e-6、
+max_iterations=1e6、minimum_separation=0；四组漏检均为 0，误报上限
+依次为 2/17/90/203。最终需原版与最佳候选交替全量运行各至少三次。
+固定筛选集为 546,337 条查询，在候选实现前确定；保留全部人工案例、
+全部仿真真碰撞及每个仿真 CSV 从索引 0 开始每 128 条采样。
+研究入口为 research/research.py，不修改原 run-baseline.py 的原版检查。
+缓存由原版 GMP 读取器转换，数据读取、输出比较和写盘均排除在 CCD 计时之外。
 
 OpenAI 官方 Goal Mode 科研工作流参考：
 https://learn.chatgpt.com/use-cases/discover-protein-folding-architectures#run-the-search-with-goal-mode

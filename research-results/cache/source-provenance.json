@@ -1,0 +1,47 @@
+{
+  "created_utc": "2026-10-09T03:21:30.488871+00:00",
+  "collection": "https://archive.nyu.edu/handle/2451/61518",
+  "dataset": "Complete original 2020 handcrafted and simulation datasets",
+  "archives": [
+    {
+      "name": "handcrafted",
+      "url": "https://archive.nyu.edu/bitstream/2451/61519/2/ccd-queries-handcrafted.tar.gz",
+      "bytes": 1395440,
+      "sha256": "9cd9b71b91cb3c441bcaff3862a6fad0d51f9842d1446e30939d0a6015a10158",
+      "archive": ".cache\\downloads\\full-ccd-2020\\ccd-queries-handcrafted.tar.gz"
+    },
+    {
+      "name": "simulation-cow-heads",
+      "url": "https://archive.nyu.edu/bitstream/2451/61520/3/ccd-queries-simulation-cow-heads.tar.gz",
+      "bytes": 666336779,
+      "sha256": "3a4e1e35189ec177f311553b0cfa659d362341300293e0e795b15cb486c62b84",
+      "archive": ".cache\\downloads\\full-ccd-2020\\ccd-queries-simulation-cow-heads.tar.gz"
+    },
+    {
+      "name": "simulation-chain",
+      "url": "https://archive.nyu.edu/bitstream/2451/61520/4/ccd-queries-simulation-chain.tar.gz",
+      "bytes": 1451673931,
+      "sha256": "088edbca5d1e4eb4ae2a46acc1dd085e82f928c9f6ac81064f63a8ac08c6af9a",
+      "archive": ".cache\\downloads\\full-ccd-2020\\ccd-queries-simulation-chain.tar.gz"
+    },
+    {
+      "name": "simulation-golf-ball",
+      "url": "https://archive.nyu.edu/bitstream/2451/61520/5/ccd-queries-simulation-golf-ball.tar.gz",
+      "bytes": 833187667,
+      "sha256": "24096ec4f123c5f133261819674e8b2b1e037840f27754031ac42ac1c12fbb6b",
+      "archive": ".cache\\downloads\\full-ccd-2020\\ccd-queries-simulation-golf-ball.tar.gz"
+    },
+    {
+      "name": "simulation-mat-twist",
+      "url": "https://archive.nyu.edu/bitstream/2451/61520/6/ccd-queries-simulation-mat-twist.tar.gz",
+      "bytes": 413467056,
+      "sha256": "08d44cd20097c854094f7fabd914b8e0de6e6d233b942495096ed2b7924b34e5",
+      "archive": ".cache\\downloads\\full-ccd-2020\\ccd-queries-simulation-mat-twist.tar.gz"
+    }
+  ],
+  "files": 5203,
+  "uncompressed_bytes": 49286607490,
+  "total_queries": 59387883,
+  "integrity": "Published HTTP sizes, archive SHA-256 recheck, gzip CRC to EOF, per-CSV SHA-256 at extraction and row counts",
+  "gzip_crc_validated_utc": "2026-10-09T03:22:36.362791+00:00"
+}

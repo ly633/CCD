@@ -1,0 +1,17 @@
+{
+  "inventories": {
+    "full": {
+      "queries": 59387883,
+      "manifest_sha256": "e2f90206b983389f3920f1d5bf7755606e318019cf55b243adf7c07f2041ed83"
+    },
+    "subset": {
+      "queries": 546337,
+      "manifest_sha256": "e1a8b656b5a50faf7997a12d1bc11dcb6716a5fd338dca837ccf1bc48d23a409"
+    }
+  },
+  "source_manifest_sha256": "92417a5c23055344bc1c17f2e6dc9a3c126c187be735467f2dc0289f03c963fa",
+  "conversion": "Unchanged pinned CCD-Query-IO GMP reader; native little-endian 24 doubles + uint64 truth; every CSV SHA256 revalidated",
+  "subset": "All handcrafted + every 128th simulation query per CSV (index 0,128,...) + all simulation ground-truth positives; sorted relative CSV paths",
+  "preparation_workers": 8,
+  "preparation_excluded_from_timing": true
+}

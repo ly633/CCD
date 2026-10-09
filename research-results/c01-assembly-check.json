@@ -1,0 +1,12 @@
+{
+  "no_fma_in_changed_corner_evaluator": true,
+  "all_fma_symbols_are_unchanged_eigen_math": true,
+  "corner_operation_instructions": {
+    "vsubsd": 42,
+    "vmulsd": 48,
+    "vdivsd": 48,
+    "vaddsd": 50
+  },
+  "compiler": "MSVC 19.44.35227.0",
+  "flags": "Release /O2 /Ob2 /DNDEBUG /arch:AVX2 default precise FP"
+}

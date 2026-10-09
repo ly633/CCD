@@ -1,0 +1,20 @@
+{
+  "id": "C01",
+  "revision": "31d8312b38fbf09c35c741912b7cd131acbd1fc8",
+  "hypothesis": "Reuse temporal interpolation across four equal-time corners, retaining scalar operation order",
+  "subset_reference_seconds": 34.71214245495605,
+  "subset_candidate_seconds": 28.513259764404296,
+  "subset_reduction": 0.17857966268131353,
+  "valid": true,
+  "bitwise_mismatches": 0,
+  "status": "valid but insufficient speed; retain as C02 parent",
+  "numerical_argument": "research/NUMERICS.rst",
+  "build_log": "research-results/c01-build.log",
+  "focused_test": "research-results/c01-equivalence.log",
+  "full_reference_seconds": 72.6645542409668,
+  "full_candidate_seconds": 62.64022519165039,
+  "full_reduction": 0.13795349264889445,
+  "full_queries": 59387883,
+  "full_bitwise_mismatches": 0,
+  "failure_reason": "Full one-pair reduction 13.7953%, below 20%; subset overpredicted total benefit"
+}

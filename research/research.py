@@ -49,7 +49,10 @@ def init():
             p.parent.mkdir(parents=True,exist_ok=True)
             p.write_bytes(sp.check_output(['git','show',f'v1.0.6:{f}'],cwd=ROOT))
     OUT.mkdir(exist_ok=True)
-    save(OUT/'environment.json',dict(time=dt.datetime.now().astimezone().isoformat(),
+    environment_path=OUT/'environment.json'
+    if environment_path.exists():
+        environment_path=OUT/f"environment-init-{dt.datetime.now().strftime('%Y%m%d-%H%M%S-%f')}.json"
+    save(environment_path,dict(time=dt.datetime.now().astimezone().isoformat(),
         platform=platform.platform(),python=platform.python_version(),
         upstream=git('rev-parse','v1.0.6'),start_revision=git('rev-parse','HEAD'),
         baseline_status=git('-C',str(ROOT.parent/'Tight-Inclusion'),'status','--porcelain'),
@@ -160,6 +163,8 @@ def summarize(prefix):
             assert x['valid'] and x['dataset']=='full' and x['kind']==kind
             assert x['logical_cpu']==0 and x['threads']==1 and x['parameters']==PARAMS
             assert len(x['runs'])==1 and sum(g['queries'] for g in x['runs'][0]['groups'])==59387883
+            for g,n,cap in zip(x['runs'][0]['groups'],[17959962,41372584,21208,34129],[2,17,90,203]):
+                assert g['queries']==n and g['fn']==0 and g['fp']<=cap and g['bitwise_mismatches']==0
     ordered=[reports[k][i]['created_utc'] for i in range(3) for k in ('reference','candidate')]
     assert ordered==sorted(ordered)
     assert len({x['runner_sha256'] for items in reports.values() for x in items})==1

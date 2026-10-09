@@ -1,0 +1,11 @@
+{
+  "evaluated_candidates": 2,
+  "stop_reason": "Target >=20% achieved and three alternating full runs per variant validated",
+  "best_candidate": "C02",
+  "best_source_commit": "aa821e07e003a435885f12d929b947a5d0dcdf51",
+  "experiments": [
+    "c01-experiment.json",
+    "c02-experiment.json"
+  ],
+  "final_summary": "final-c02-summary.json"
+}
