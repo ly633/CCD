@@ -3,6 +3,7 @@
 
 #include <tight_inclusion/timer.hpp>
 #include <tight_inclusion/avx.hpp>
+#include <tight_inclusion/corner_evaluation.hpp>
 #include <tight_inclusion/logger.hpp>
 
 #include <queue>
@@ -59,12 +60,12 @@ namespace ticcd {
 
         std::array<Scalar, 8> vs;
         if constexpr (is_vertex_face) {
-            vs = function_vf(
+            vs = detail::evaluate_corners_tuv<true>(
                 a_t0[dim], b_t0[dim], c_t0[dim], d_t0[dim], a_t1[dim],
                 b_t1[dim], c_t1[dim], d_t1[dim], t_up, t_dw, u_up, u_dw, v_up,
                 v_dw);
         } else {
-            vs = function_ee(
+            vs = detail::evaluate_corners_tuv<false>(
                 a_t0[dim], b_t0[dim], c_t0[dim], d_t0[dim], a_t1[dim],
                 b_t1[dim], c_t1[dim], d_t1[dim], t_up, t_dw, u_up, u_dw, v_up,
                 v_dw);
