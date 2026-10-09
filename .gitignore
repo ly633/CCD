@@ -248,3 +248,4 @@ app/config.hpp
 !baseline-results/full-2020-*/*driver.log
 !baseline-results/full-2020-*/pipeline-*.log
 !baseline-results/full-2020-*/download.log
+!baseline-results/autoresearch-worktree-setup/*.log

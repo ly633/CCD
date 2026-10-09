@@ -1,0 +1,312 @@
+{
+  "simulation/vertex-face": {
+    "queries": 100000,
+    "files": [
+      {
+        "path": "chain/vertex-face/data_0_0.csv",
+        "sha256": "801e4dc1568eee0a6006227c68ede06eaf48876597d7424dd70486426ed43175",
+        "queries": 12500
+      },
+      {
+        "path": "chain/vertex-face/data_0_1.csv",
+        "sha256": "176bbda835b6e308ec42ca0ca522e30774e72cbf81818c581526bfb2ade88ef5",
+        "queries": 12500
+      },
+      {
+        "path": "cow-heads/vertex-face/data_0_0.csv",
+        "sha256": "5473266108523df36225e9904ef74fb58628d81bf122b40a6ec28f57f985d661",
+        "queries": 12500
+      },
+      {
+        "path": "cow-heads/vertex-face/data_0_1.csv",
+        "sha256": "64f6c4d84b24521c250e591dc7a5f9612205892fd8cbd6b2fa1b1aac632bcda0",
+        "queries": 12500
+      },
+      {
+        "path": "golf-ball/vertex-face/data_0_0.csv",
+        "sha256": "46aa268a1b7a8ca3c6306c96c611c14a594f5dc176a9afc1e875102315909421",
+        "queries": 12500
+      },
+      {
+        "path": "golf-ball/vertex-face/data_0_1.csv",
+        "sha256": "a1b1c5608bc3a3b2417c06a807dad3fec610c776344e33280ade2dec62e34f8e",
+        "queries": 12500
+      },
+      {
+        "path": "mat-twist/vertex-face/data_0_0.csv",
+        "sha256": "7d1593cd287a86e5af2f32bc3bfff1e3b9b110d3e806d62573bb1b547c62e83f",
+        "queries": 12500
+      },
+      {
+        "path": "mat-twist/vertex-face/data_0_1.csv",
+        "sha256": "f5e9adcf17a0a6e372ec2b3aa9f74e7300cf57b8a79ef73c394613b443cf177f",
+        "queries": 12500
+      }
+    ]
+  },
+  "simulation/edge-edge": {
+    "queries": 100000,
+    "files": [
+      {
+        "path": "chain/edge-edge/data_0_0.csv",
+        "sha256": "0aaa46f0bdc58352f01e9143865a494d81b8df3952cec9db86365dea0e1653f6",
+        "queries": 12500
+      },
+      {
+        "path": "chain/edge-edge/data_0_1.csv",
+        "sha256": "cbe9b7179fac9acb43ba1b05fbbef7ba2fba3fc790b0b4213a292dd89b6cb369",
+        "queries": 12500
+      },
+      {
+        "path": "cow-heads/edge-edge/data_0_0.csv",
+        "sha256": "8bf603f8390a7ea5fa0825046036d34f7bd510a267d0d983198d00dd4651d2c3",
+        "queries": 12500
+      },
+      {
+        "path": "cow-heads/edge-edge/data_0_1.csv",
+        "sha256": "3194ff46bde1d9b6f764bb6c7228ddeded8423e7659ca45aa9e27f27dec3309a",
+        "queries": 12500
+      },
+      {
+        "path": "golf-ball/edge-edge/data_0_0.csv",
+        "sha256": "c683518e5d385eaf6b3aa0ded22e6fa1a43457ee7ec7d14e5d2cf9cbdcef6470",
+        "queries": 12500
+      },
+      {
+        "path": "golf-ball/edge-edge/data_0_1.csv",
+        "sha256": "d6126a3c29d711db0af9564ad31b78a2be7e1e99ceb6872f328c87e4d38b9efe",
+        "queries": 12500
+      },
+      {
+        "path": "mat-twist/edge-edge/data_0_0.csv",
+        "sha256": "5ec5bb346a998f1630bb05a7b5b4e327a2c446b52b077496ac5d98f60c1cca1c",
+        "queries": 12500
+      },
+      {
+        "path": "mat-twist/edge-edge/data_0_1.csv",
+        "sha256": "90d8c8c74825fac52ff6cbb7d60bff26a402723d6a0531feda47006a2fda5559",
+        "queries": 12500
+      }
+    ]
+  },
+  "handcrafted/vertex-face": {
+    "queries": 3085,
+    "files": [
+      {
+        "path": "erleben-sliding-spike/vertex-face/data_0_0.csv",
+        "sha256": "edd8fab106f0a47b67fcd9160271bbcd07528ac947bc39babd3148ac98f42892",
+        "queries": 125
+      },
+      {
+        "path": "erleben-sliding-spike/vertex-face/data_0_1.csv",
+        "sha256": "8ce6827c8f414aeaf8ca4911ae60de9a25e68cdbacbcb033b49145e02c600f8b",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-wedge/vertex-face/data_0_0.csv",
+        "sha256": "467e1d0db2b02cddeca17b2e5406d7b494b7ccfa411b5587439ee2a50180577c",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-wedge/vertex-face/data_0_1.csv",
+        "sha256": "2b9889d68c3ea3cc4c3d07bf53cee1437535df24f101782af9912fd09f22d3f9",
+        "queries": 125
+      },
+      {
+        "path": "erleben-sliding-wedge/vertex-face/data_0_0.csv",
+        "sha256": "539892d6364b0baaee439dbf637bf20a58595037385ef153f3e9c0d0d6b2cb0c",
+        "queries": 125
+      },
+      {
+        "path": "erleben-sliding-wedge/vertex-face/data_0_1.csv",
+        "sha256": "b8c10293b66a52ae2fdc77eed209cfafbf1c3fec92f645bad3fec16d4dcf391d",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedge-crack/vertex-face/data_0_0.csv",
+        "sha256": "c364345e839bff29aea27fa7159ba2319d487721353bf9ef231f33ca1d8cd3e4",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedge-crack/vertex-face/data_0_1.csv",
+        "sha256": "6a3208e0bfaf13eebbd5a3848b579ed9b0edfcf69a1d52e2c21403b0a8d6135f",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-crack/vertex-face/data_0_0.csv",
+        "sha256": "b54de9343c2c6f2ce6a253f094d159ace075c3d4702b820187468e66c4289cb9",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-crack/vertex-face/data_0_1.csv",
+        "sha256": "10b77ecc7c148bb8ca3b0e4ae4babab97c0d38269171a73c9983e50cd321119a",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedges/vertex-face/data_0_0.csv",
+        "sha256": "a0d6c29282810ed29de4c161211c5d423be089e5fd79ffffd15e901025c0099c",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedges/vertex-face/data_0_1.csv",
+        "sha256": "bce250a4cd90b489753b5348a2763952deaebd1bdca0569f1e06cd91a2e67e48",
+        "queries": 125
+      },
+      {
+        "path": "erleben-cube-cliff-edges/vertex-face/data_0_0.csv",
+        "sha256": "9a685a1e4669a556ba395c2e2313a284c37235a2dc4d3ebf451a54f4f85bdbc7",
+        "queries": 125
+      },
+      {
+        "path": "erleben-cube-cliff-edges/vertex-face/data_0_1.csv",
+        "sha256": "4557393b242f135dad411d94184076a796e03917da8e264b7ee9359dc81a62cf",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-hole/vertex-face/data_0_0.csv",
+        "sha256": "fbef188550a49ed139abe0217d0bd511af41d4aeeb8a323ab90d7f9b4b90a913",
+        "queries": 585
+      },
+      {
+        "path": "erleben-cube-internal-edges/vertex-face/data_0_0.csv",
+        "sha256": "dcb766b759e36c9b68b403ba792605a8d58d87b1177e6b601ecbae9a93cad055",
+        "queries": 125
+      },
+      {
+        "path": "erleben-cube-internal-edges/vertex-face/data_0_1.csv",
+        "sha256": "0478b01c9efbc4ed5c6066d7d045004682ebb5138fddcbe61fa177cd362c8f54",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spikes/vertex-face/data_0_0.csv",
+        "sha256": "c1ebf2c8e5eecbf3dd7502ffb2245376e56963c9127ee1defe3b0461e8f4b2a9",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spikes/vertex-face/data_0_1.csv",
+        "sha256": "28703d151221f18217d3cb4bc43c97eb35230132897ad7e24f1b353f762e0bf9",
+        "queries": 125
+      },
+      {
+        "path": "unit-tests/vertex-face/data_0_0.csv",
+        "sha256": "dda67c52f09880020814b62b9d3ddfbb9d2b1a9c22431563b61dfb96001c1c0a",
+        "queries": 125
+      },
+      {
+        "path": "unit-tests/vertex-face/data_0_1.csv",
+        "sha256": "275c3813fff6bb26cb115522345926a7f707548e0f5a3041d64699f3c2e15010",
+        "queries": 125
+      }
+    ]
+  },
+  "handcrafted/edge-edge": {
+    "queries": 4194,
+    "files": [
+      {
+        "path": "erleben-sliding-spike/edge-edge/data_0_0.csv",
+        "sha256": "6dc90e789382598b8154111cda5823800ee54d6f11646cef91086a6eb12f3780",
+        "queries": 125
+      },
+      {
+        "path": "erleben-sliding-spike/edge-edge/data_0_1.csv",
+        "sha256": "3d37ff0cbf69e3d9db6dc7d6266ab25f4a8bb16a9f1231bb93d4fb9f73bfee8c",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-wedge/edge-edge/data_0_0.csv",
+        "sha256": "8d884acee4e940442f7a633e68594805838729d307385fe2d84f0d808dfccf7e",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-wedge/edge-edge/data_0_1.csv",
+        "sha256": "deae077c51462e527fa2b8767237fc9bd86e506f314c2d41c2545f352a1dad73",
+        "queries": 125
+      },
+      {
+        "path": "erleben-sliding-wedge/edge-edge/data_0_0.csv",
+        "sha256": "19f537720e7ba79245731a78bf2c08281513e1e1bf3cfae751f32d514dff3235",
+        "queries": 125
+      },
+      {
+        "path": "erleben-sliding-wedge/edge-edge/data_0_1.csv",
+        "sha256": "a6cf0cfc7d6ee326d99106e3576b495bc8520fb8f88dcfcbd057158844b35f68",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedge-crack/edge-edge/data_0_0.csv",
+        "sha256": "4ce8aa1753878f133daa8fc8250d2787141f914d854590360f283561376bf3b6",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedge-crack/edge-edge/data_0_1.csv",
+        "sha256": "d7da7fc2f2adcff472a9755b43621f3b909bede14e9eb03b9ab5fbd4ba441e9b",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-crack/edge-edge/data_0_0.csv",
+        "sha256": "2ed0190969bfe848eb48dae378e0ee0905393a0fdb6c007142b35386745107ad",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-crack/edge-edge/data_0_1.csv",
+        "sha256": "32d6b9213a8e0bd9b8d0da7393ca22d205cc9039bf0667de9707a7d32f3dc339",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedges/edge-edge/data_0_0.csv",
+        "sha256": "5f7168289739fc1f0b40df97330eea196bbbaaf2089c30bc4e46c5f197cb3590",
+        "queries": 125
+      },
+      {
+        "path": "erleben-wedges/edge-edge/data_0_1.csv",
+        "sha256": "395b4cfa28d836ce729ce2892adb8f3675652952f1b84236fcee868244175f92",
+        "queries": 125
+      },
+      {
+        "path": "erleben-cube-cliff-edges/edge-edge/data_0_0.csv",
+        "sha256": "aa6476aef3273bb2735ba1a1fd37f09c8474976075e7fc32b105cabe2bd8936c",
+        "queries": 125
+      },
+      {
+        "path": "erleben-cube-cliff-edges/edge-edge/data_0_1.csv",
+        "sha256": "18034e0dffd1432947d3d633eeef9248ea4296743c41d00ae0124deec83c49ec",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spike-hole/edge-edge/data_0_0.csv",
+        "sha256": "8d10bb15ad5428aea72f0fe9e3abf5bcc0b93a6c71ba19cf805a6be141e50466",
+        "queries": 1870
+      },
+      {
+        "path": "erleben-cube-internal-edges/edge-edge/data_0_0.csv",
+        "sha256": "ad1b6cf1f2b7a63ce550d971eaa61900e32ede58e3b7aa8e2b72bc041318818c",
+        "queries": 125
+      },
+      {
+        "path": "erleben-cube-internal-edges/edge-edge/data_0_1.csv",
+        "sha256": "41240a4249a18c577dacf2d1bfb4ca760b01fad28a954824642385df6b4ce77d",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spikes/edge-edge/data_0_0.csv",
+        "sha256": "21ab68b6904997fd6a1b420d3a0f797579a54f7ab965a972264f6e04af532495",
+        "queries": 125
+      },
+      {
+        "path": "erleben-spikes/edge-edge/data_0_1.csv",
+        "sha256": "42c6d0683c2dcd19e02801fea38de52bfa1826445d207120a034f4516af1f675",
+        "queries": 125
+      },
+      {
+        "path": "unit-tests/edge-edge/data_0_0.csv",
+        "sha256": "673377d95106eb1468f06141be950a9303bfef10630060630ba1af7dbb3cdad5",
+        "queries": 54
+      },
+      {
+        "path": "unit-tests/edge-edge/data_0_1.csv",
+        "sha256": "4fb97d793fa5576fde7c9a4acfe3a222981fb902ac9d310ee822275db8009356",
+        "queries": 20
+      }
+    ]
+  }
+}

@@ -1,0 +1,172 @@
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+-- The CXX compiler identification is MSVC 19.44.35227.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Warning (dev) at cmake/tight_inclusion/tight_inclusion_cpm_cache.cmake:17 (file):
+-- Using CPM cache folder: D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/.cache/CPM
+  Policy CMP0152 is not set: file(REAL_PATH) resolves symlinks before
+  collapsing ../ components.  Run "cmake --help-policy CMP0152" for policy
+  details.  Use the cmake_policy command to set the policy and suppress this
+  warning.
+
+  From input path:
+
+    C:\Users\ustc/.cache/CPM
+
+  the policy OLD behavior produces path:
+
+    C:/Users/ustc/.cache/CPM
+
+  but the policy NEW behavior produces path:
+
+    C:\Users\ustc/.cache/CPM
+
+  Since the policy is not set, CMake is using the OLD behavior for
+  compatibility.
+Call Stack (most recent call first):
+  CMakeLists.txt:88 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at cmake/tight_inclusion/tight_inclusion_cpm_cache.cmake:17 (file):
+  Given path:
+
+    C:\Users\ustc/.cache/CPM
+
+  does not refer to an existing path on disk.
+Call Stack (most recent call first):
+  CMakeLists.txt:88 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Third-party: creating target 'spdlog::spdlog'
+-- CPM: Adding package spdlog@ (D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/external/baseline/spdlog)
+CMake Warning (dev) at C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/cmake-4.3/Modules/FetchContent.cmake:1966 (message):
+  Calling FetchContent_Populate(spdlog) is deprecated, call
+  FetchContent_MakeAvailable(spdlog) instead.  Policy CMP0169 can be set to
+  OLD to allow FetchContent_Populate(spdlog) to be called directly for now,
+  but the ability to call it with declared details will be removed completely
+  in a future version.
+Call Stack (most recent call first):
+  .cache/CPM/cpm/CPM_0.38.1.cmake:1005 (FetchContent_Populate)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:799 (cpm_fetch_package)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:626 (CPMAddPackage)
+  cmake/recipes/spdlog.cmake:22 (CPMAddPackage)
+  CMakeLists.txt:129 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Build spdlog: 1.11.0
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Found Threads: TRUE
+-- Build type: Release
+-- Generating install
+-- Searching for AVX...
+-- Performing Test DETECTED_AVX_20
+-- Performing Test DETECTED_AVX_20 - Success
+-- Performing Test DETECTED_AVX_10
+-- Performing Test DETECTED_AVX_10 - Success
+--   Found AVX 2.0 extensions, using flags:  /arch:AVX2
+-- Third-party: creating target 'ccd_io::ccd_io'
+-- CPM: Adding package CCD-Query-IO@ (D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/external/baseline/CCD-Query-IO)
+CMake Warning (dev) at C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/cmake-4.3/Modules/FetchContent.cmake:1966 (message):
+  Calling FetchContent_Populate(CCD-Query-IO) is deprecated, call
+  FetchContent_MakeAvailable(CCD-Query-IO) instead.  Policy CMP0169 can be
+  set to OLD to allow FetchContent_Populate(CCD-Query-IO) to be called
+  directly for now, but the ability to call it with declared details will be
+  removed completely in a future version.
+Call Stack (most recent call first):
+  .cache/CPM/cpm/CPM_0.38.1.cmake:1005 (FetchContent_Populate)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:799 (cpm_fetch_package)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:626 (CPMAddPackage)
+  cmake/recipes/ccd_query_io.cmake:11 (CPMAddPackage)
+  app/CMakeLists.txt:15 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at external/baseline/CCD-Query-IO/cmake/ccd_io/ccd_io_cpm_cache.cmake:17 (file):
+  Policy CMP0152 is not set: file(REAL_PATH) resolves symlinks before
+  collapsing ../ components.  Run "cmake --help-policy CMP0152" for policy
+  details.  Use the cmake_policy command to set the policy and suppress this
+  warning.
+
+  From input path:
+
+    C:\Users\ustc/.cache/CPM
+
+  the policy OLD behavior produces path:
+
+    C:/Users/ustc/.cache/CPM
+
+  but the policy NEW behavior produces path:
+
+    C:\Users\ustc/.cache/CPM
+
+  Since the policy is not set, CMake is using the OLD behavior for
+  compatibility.
+Call Stack (most recent call first):
+  external/baseline/CCD-Query-IO/CMakeLists.txt:80 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+-- Using CPM cache folder: D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/.cache/CPM
+
+CMake Warning (dev) at external/baseline/CCD-Query-IO/cmake/ccd_io/ccd_io_cpm_cache.cmake:17 (file):
+  Given path:
+
+    C:\Users\ustc/.cache/CPM
+
+  does not refer to an existing path on disk.
+Call Stack (most recent call first):
+  external/baseline/CCD-Query-IO/CMakeLists.txt:80 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found GMP: C:/Users/ustc/anaconda3/Library/include
+-- Third-party: creating target 'nlohmann_json::nlohmann_json'
+-- CPM: CCD-Query-IO: Adding package nlohmann_json@ ( at D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/.cache/CPM/nlohmann_json/3cc46c5b3b30780707857320f5d2655b293c4330)
+-- Third-party: creating target 'pbar::pbar'
+-- CPM: Adding package pbar@ (D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/external/baseline/pbar)
+CMake Warning (dev) at C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/cmake-4.3/Modules/FetchContent.cmake:1966 (message):
+  Calling FetchContent_Populate(pbar) is deprecated, call
+  FetchContent_MakeAvailable(pbar) instead.  Policy CMP0169 can be set to OLD
+  to allow FetchContent_Populate(pbar) to be called directly for now, but the
+  ability to call it with declared details will be removed completely in a
+  future version.
+Call Stack (most recent call first):
+  .cache/CPM/cpm/CPM_0.38.1.cmake:1005 (FetchContent_Populate)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:799 (cpm_fetch_package)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:626 (CPMAddPackage)
+  cmake/recipes/pbar.cmake:8 (CPMAddPackage)
+  app/CMakeLists.txt:19 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Third-party: creating target 'CLI11::CLI11'
+-- CPM: Adding package CLI11@ (D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/external/baseline/CLI11)
+CMake Warning (dev) at C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/cmake-4.3/Modules/FetchContent.cmake:1966 (message):
+  Calling FetchContent_Populate(CLI11) is deprecated, call
+  FetchContent_MakeAvailable(CLI11) instead.  Policy CMP0169 can be set to
+  OLD to allow FetchContent_Populate(CLI11) to be called directly for now,
+  but the ability to call it with declared details will be removed completely
+  in a future version.
+Call Stack (most recent call first):
+  .cache/CPM/cpm/CPM_0.38.1.cmake:1005 (FetchContent_Populate)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:799 (cpm_fetch_package)
+  .cache/CPM/cpm/CPM_0.38.1.cmake:626 (CPMAddPackage)
+  cmake/recipes/cli11.cmake:19 (CPMAddPackage)
+  app/CMakeLists.txt:22 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Deprecation Warning at external/baseline/CLI11/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- Configuring done (11.9s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/ly/DGP-Autoreasearch/Tight-Inclusion-autoresearch/build-autoresearch-sample

@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-10-09T21:34:56.2602960+08:00",
+  "status": "blocked_by_windows_smart_app_control",
+  "build_succeeded": true,
+  "sample_run_succeeded": false,
+  "windows_error": 4551,
+  "executable": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\build-autoresearch-sample\\app\\Release\\Tight_Inclusion_bin.exe",
+  "executable_sha256": "C0C5B2477FB22E810710F82213E2462C3C7687931EE83375CB5A93C556BF3EA7",
+  "actual_research_goal_started": false,
+  "note": "Worktree created and build succeeded. Windows CodeIntegrity events 3077/3033 and Smart App Control event 3118 blocked execution of the newly compiled unsigned binary. No security policy was changed."
+}
