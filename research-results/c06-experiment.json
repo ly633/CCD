@@ -1,0 +1,46 @@
+{
+  "id": "C06",
+  "parent": "C05",
+  "hypothesis": "Inline dyadic powers and comparisons used in queue ordering and interval conversion",
+  "revision": "fac3198a209a11e9993cab2d904be69abe267e5f",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "retained as parent of next candidate; superseded by fully validated C07",
+  "build_log": "c06-build.log",
+  "focused_test": "c06-equivalence.log",
+  "build_exit_code": 0,
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c06-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Inline dyadic powers and comparisons used in queue ordering and interval conversion",
+    "--repeats",
+    "1"
+  ],
+  "effective_experiment": true,
+  "valid": true,
+  "executable_sha256": "53a8d4c51f79a5b4fa8908efa939bfb1dc8e80ac91a59a16ed4aa9948683ef19",
+  "execution_error": {
+    "winerror": 4551,
+    "policy": "Smart App Control / CodeIntegrity",
+    "events": [
+      3077,
+      3033,
+      3118
+    ],
+    "dataset_queries_executed": 0
+  },
+  "failure_reason": "Windows prevented process creation; no CCD timing or correctness results exist for C06",
+  "subset_seconds": 24.41593668408203,
+  "bitwise_mismatches": 0,
+  "retry_result": "research-results/runs/c06-subset-retry/results.json",
+  "retry_note": "Exact same executable SHA256 and original path; Smart App Control still enabled (registry state 1); no policy change by agent",
+  "selection_reason": "Focused equivalence and fixed-subset correctness passed; exploratory timing supported keeping this component. Small single-run timing differences are not significance claims."
+}

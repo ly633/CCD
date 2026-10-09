@@ -1,0 +1,37 @@
+{
+  "candidate_experiment": false,
+  "groups": [
+    {
+      "group": 0,
+      "initial_shared_vertex": 0,
+      "ground_truth_positive": 0,
+      "original_negative": 0,
+      "nonzero_toi": 0,
+      "enlarged_tolerance": 0
+    },
+    {
+      "group": 1,
+      "initial_shared_vertex": 0,
+      "ground_truth_positive": 0,
+      "original_negative": 0,
+      "nonzero_toi": 0,
+      "enlarged_tolerance": 0
+    },
+    {
+      "group": 2,
+      "initial_shared_vertex": 1,
+      "ground_truth_positive": 1,
+      "original_negative": 0,
+      "nonzero_toi": 0,
+      "enlarged_tolerance": 0
+    },
+    {
+      "group": 3,
+      "initial_shared_vertex": 0,
+      "ground_truth_positive": 0,
+      "original_negative": 0,
+      "nonzero_toi": 0,
+      "enlarged_tolerance": 0
+    }
+  ]
+}

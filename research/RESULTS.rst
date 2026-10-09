@@ -1,6 +1,9 @@
 Tight-Inclusion CCD 自动优化研究结果
 ===================================
 
+本文件保留早期 20% 目标的结果。后续目标已提高至 80%，以下 27.73%
+结果不代表达到新目标；后续记录使用 phase80 前缀保存。
+
 2026-10-09：达到目标。最佳候选 C02 的全量 CCD 核心耗时中位数为
 52.472144881 秒，同期原版为 72.602181521 秒，降低 27.72649%，
 加速比 1.383632815×。共评测 2 个候选，按“达到目标且全量验证通过”停止。
@@ -130,7 +133,7 @@ experiment-index.json 以及对应 runs/ 子目录。
 生成 research-results/reproduce-c02-01-summary.json。已有输出目录
 不会被覆盖。若仅重新计算已保存六轮的统计::
 
-    python research/research.py summarize --prefix final-c02
+    python research/research.py summarize --prefix final-c02 --target-reduction .20
 
 重新构建最佳核心和评测入口::
 

@@ -1,0 +1,1181 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 38261cc..d3d23da 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -159,3 +159,8 @@ target_compile_features(tight_inclusion PUBLIC cxx_std_17)
+ if(TIGHT_INCLUSION_TOPLEVEL_PROJECT)
+     add_subdirectory(app)
+ endif()
++
++option(TIGHT_INCLUSION_RESEARCH "Build audited research tools" OFF)
++if(TIGHT_INCLUSION_RESEARCH)
++    add_subdirectory(research)
++endif()
+diff --git a/research/CMakeLists.txt b/research/CMakeLists.txt
+new file mode 100644
+index 0000000..da96ced
+--- /dev/null
++++ b/research/CMakeLists.txt
+@@ -0,0 +1,30 @@
++# Reference files are extracted verbatim from v1.0.6 by research.py init.
++set(REF "${CMAKE_CURRENT_SOURCE_DIR}/reference/src")
++configure_file("${REF}/tight_inclusion/config.hpp.in" "${REF}/tight_inclusion/config.hpp")
++foreach(kind IN ITEMS reference profile)
++    add_library(ccd_${kind} STATIC
++        ${REF}/tight_inclusion/avx.cpp ${REF}/tight_inclusion/ccd.cpp
++        ${REF}/tight_inclusion/interval.cpp ${REF}/tight_inclusion/interval_root_finder.cpp
++        ${REF}/tight_inclusion/logger.cpp)
++    target_include_directories(ccd_${kind} PUBLIC ${REF})
++    target_link_libraries(ccd_${kind} PUBLIC Eigen3::Eigen spdlog::spdlog PRIVATE tight_inclusion::warnings)
++    target_compile_definitions(ccd_${kind} PUBLIC NOMINMAX)
++    target_compile_options(ccd_${kind} PRIVATE ${SIMD_FLAGS})
++    target_compile_features(ccd_${kind} PUBLIC cxx_std_17)
++endforeach()
++add_executable(research_equivalence equivalence.cpp)
++target_link_libraries(research_equivalence PRIVATE tight_inclusion)
++target_compile_options(research_equivalence PRIVATE ${SIMD_FLAGS})
++target_compile_definitions(ccd_profile PRIVATE TIGHT_INCLUSION_WITH_TIMER)
++foreach(kind IN ITEMS reference profile candidate)
++    add_executable(research_${kind} runner.cpp)
++    if(kind STREQUAL "candidate")
++        target_link_libraries(research_${kind} PRIVATE tight_inclusion ccd_io::ccd_io)
++    else()
++        target_link_libraries(research_${kind} PRIVATE ccd_${kind} ccd_io::ccd_io)
++    endif()
++    if(kind STREQUAL "profile")
++        target_compile_definitions(research_${kind} PRIVATE RESEARCH_PROFILE)
++    endif()
++    add_custom_command(TARGET research_${kind} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${GMP_RUNTIME_LIB}" "$<TARGET_FILE_DIR:research_${kind}>/gmp.dll")
++endforeach()
+diff --git a/research/CONTINUED_NUMERICS.rst b/research/CONTINUED_NUMERICS.rst
+new file mode 100644
+index 0000000..697001e
+--- /dev/null
++++ b/research/CONTINUED_NUMERICS.rst
+@@ -0,0 +1,47 @@
++Numerical arguments for the 80 percent research phase
++====================================================
++
++C03: exact dyadic reciprocal multiplication
++------------------------------------------
++
++The internal denominators originate in NumCCD.denominator() and are exactly
++2^n for 0 <= n < 63. Both d and r=1/d=2^-n are exactly representable normal
++doubles. For a stored rounded intermediate x, the exact real quantities x/d
++and x*r are equal; correctly rounded IEEE division and multiplication
++therefore return the same double (including gradual underflow and signed
++zero). Crucially, the preceding multiplication x=fl(delta*numerator) remains
++separate; delta*(numerator/d) would not have this property and is not used.
++No FMA contraction or reassociation is enabled. The original error bound,
++corner order, and every root-finder decision are preserved. The generic
++public array evaluator is unchanged; this specialization is only used with
++the dyadic arrays produced by convert_tuv_to_array. As in earlier proofs,
++the original supported-input and fixed FP environment assumptions apply.
++
++C04: reuse repeated spatial interpolations
++-----------------------------------------
++
++For each fixed t, the two u values repeat across v and the two v values
++repeat across u. Cache those identical rounded spatial subexpressions.
++EE combines the same four (u,v) pairs by subtraction; VF keeps the original
++(u_term + v_term) + b parentheses before subtraction from a. Operand order,
++rounded intermediate values and output corner order are unchanged; added
++rounding error is zero relative to C03 and thus to the original evaluator.
++
++C05: materialize initial-box dyadic arrays directly
++-------------------------------------------------
++
++For [0,1]^3, convert_tuv_to_array always produces the same arrays of zeros
++and ones and denominators all equal to one. Materializing those arrays
++directly is exact and calls the same dimension evaluator in the same x,y,z
++order. Computing true_tol is unnecessary on this precheck because only its
++Boolean result is used; removing this unused subtraction does not change
++the comparisons. No endpoint interpolation is replaced by an input endpoint.
++
++C06: inline dyadic powers and comparisons
++---------------------------------------
++
++Move power() and NumCCD::operator< into the header as inline definitions,
++retaining the same integer shifts, unsigned multiplications, branches and
++assertions. They compute exactly the same integer comparison. This changes
++call overhead only; it does not convert comparisons to approximate doubles
++or change the priority-queue comparator/order.
+diff --git a/research/NUMERICS.rst b/research/NUMERICS.rst
+new file mode 100644
+index 0000000..e3f8f60
+--- /dev/null
++++ b/research/NUMERICS.rst
+@@ -0,0 +1,95 @@
++Numerical preservation argument for candidate C01
++================================================
++
++Transformation
++--------------
++
++Only the internal corner evaluator is specialized for the array layout
++constructed by convert_tuv_to_array. Its time numerator/denominator pair is
++identical for lanes 0..3 and identical for lanes 4..7. The generic exported
++function_vf and function_ee remain unchanged for arbitrary array callers.
++
++Let fl denote a double operation under the same floating-point environment.
++Each original temporal interpolation has the following operation graph::
++
++    q = fl(fl(fl(fl(x1 - x0) * t_numerator) / t_denominator) + x0)
++
++C01 computes q once per group of four equal operands instead of computing
++it four times. Each node has identical operands, precision, and operation
++order. Reusing its stored double result adds no rounding. In particular it
++does NOT replace (x*n)/d by x*(n/d), use reciprocal approximation, contract
++multiply-add, or assume interpolation at t=1 equals the original endpoint.
++The original rounded interpolation at both endpoints is retained.
++
++The spatial expressions keep the original order exactly::
++
++    EE: ((b-a)*u_n/u_d+a) - ((d-c)*v_n/v_d+c)
++    VF: a - (((c-b)*u_n/u_d + (d-b)*v_n/v_d) + b)
++
++All eight output lanes retain their original order. Consequently the min/max
++scan, true_tol subtraction, error-box comparisons, subdivision choices,
++priority queue operations, iteration limit, early exits, TOI and returned
++tolerance see the same inputs. This yields equality by induction over the
++root-finder's iteration sequence, under the upstream supported finite-input
++and floating-point assumptions. It does not extend the original method's
++domain to inputs on which it already overflows or has invalid arithmetic.
++
++Error bounds and conservativeness
++--------------------------------
++
++The transformation adds zero rounding error relative to the original
++operation graph. Therefore the original inclusion-filter error bounds
++continue to apply without inflation or reduction. For double and ms=0,
++get_numerical_error uses 6.217248937900877e-15 for EE and
++6.661338147750939e-15 for VF, multiplied by the same axis scale cubed as
++the original code. Neither those constants nor the scale calculation is
++modified. Spatial tolerances, max_iterations fallback, and all conservative
++box tests remain unchanged. This is an equivalence argument preserving the
++original guarantees and assumptions, not a claim that dataset tests prove
++conservativeness for arbitrary real inputs.
++
++Build and validation controls
++-----------------------------
++
++Reference and candidate use the same MSVC 19.44 Release settings and default
++precise floating point; no fast-math or new contraction flag is enabled.
++The focused equivalence test compares each of eight scalar corner outputs
++against the unchanged generic routines using fixed-seed dyadic intervals,
++cancellation, signed zeros, subnormal numbers, and large magnitudes.
++Dataset evaluation separately compares bool, TOI, and output_tolerance
++bit for bit for every query; these empirical checks corroborate, rather
++than replace, the operation-graph argument.
++
++The data contains no exact ground-truth contact time. Preserving the
++original returned TOI exactly establishes no loss of its time accuracy;
++it is not an independent absolute TOI-error measurement. The supplied
++1e-6 tolerance is the algorithm's distance tolerance, not a new guarantee
++of an absolute 1e-6 time error.
++
++C02: move the original initial-box rejection before setup
++--------------------------------------------------------
++
++C02 builds on C01 and calls the very same origin_in_function_bounding_box_vector
++on the very same [0,1]^3 interval used by the first BFS iteration. It passes
++the unchanged error vector and minimum separation and evaluates the same
++true_tol output. The tolerance computation is delayed until this predicate
++accepts. No threshold, endpoint expression, or bounding-box computation is
++changed. Even for t_max<1 the original BFS initially tests [0,1]^3, so the
++same box is deliberately retained.
++
++At the first BFS iteration current.t.lower=0, TOI_SKIP=4, and the queue
++contains only the initial box. If the predicate returns false, the original
++algorithm executes continue, observes an empty queue, and returns false,
++toi=infinity, output_tolerance=input tolerance. C02 returns exactly this
++state before allocating the queue or computing unused subdivision
++tolerances. If the predicate returns true, C02 enters the original code;
++the predicate is evaluated again rather than changing the iteration count,
++queue order, or stopping logic. Thus a C02 rejection implies the identical
++original rejection, with the same original inclusion error bound. The
++remaining branch preserves the original computation and outputs. The DFS
++path is not filtered. This is not an additional heuristic broad phase.
++
++As with C01, this argument assumes the original supported input domain and
++fixed floating-point environment. The moved setup operations have no
++outputs needed by the reject branch and do not change that environment.
++Floating-point exception trapping is not enabled in the baseline setting.
+diff --git a/research/PROTOCOL.rst b/research/PROTOCOL.rst
+new file mode 100644
+index 0000000..c0d2e1c
+--- /dev/null
++++ b/research/PROTOCOL.rst
+@@ -0,0 +1,86 @@
++Tight-Inclusion CCD research protocol
++====================================
++
++Goal and protection
++-------------------
++
++The user raised the target on 2026-10-09. Stop after a >=80% reduction of
++median full CCD core time with validation, or 20 evaluated candidates.
++C01 and C02 remain preserved and count as the first two experiments; the
++continued series starts at C03. The earlier 20% result is historical evidence,
++not completion of the new 80% objective. Historical reports are not overwritten.
++The sibling Tight-Inclusion worktree and its data/results are read-only inputs.
++All changes and new results belong to Tight-Inclusion-autoresearch.
++Historical 74.37439 s is context only, never the comparison denominator.
++
++Experiment controls
++-------------------
++
++* Windows 11, Intel Core Ultra 7 265KF, MSVC Release /O2 /Ob2 /DNDEBUG,
++  /arch:AVX2 in the CCD library, default precise FP (no fast-math).
++* One benchmark process at a time, one computation thread, CPU affinity 0;
++  OMP/MKL/OpenBLAS threads = 1. Preprocessing may run concurrently on 8 CPUs
++  but must finish before timing. No compilation during timed experiments.
++* double, BFS, tolerance=1e-6, max_iterations=1000000,
++  minimum_separation=0, t_max=1, err=(-1,-1,-1), no_zero_toi=false.
++* All 59,387,883 source queries are parsed by the exact pinned upstream
++  CCD-Query-IO reader, which uses GMP rational conversion. Cache records
++  contain the resulting 24 doubles and the ground-truth flag verbatim.
++  Every source CSV SHA256 is checked against the extraction manifest.
++  Cache SHA256 manifests and exact record counts are retained.
++* Full group counts: 17,959,962 / 41,372,584 / 21,208 / 34,129.
++  In order: simulation VF, simulation EE, handcrafted VF, handcrafted EE.
++  FN=0 for each group. FP ceilings=2 / 17 / 90 / 203.
++* The same harness and cache order serve an unmodified upstream v1.0.6
++  library and each candidate. Timing uses the upstream per-query Timer,
++  starting before API argument conversion and stopping after the CCD call.
++  CSV/cache I/O, correctness checks, hashes and output writing are outside
++  timing. Wall time is recorded separately and is not an optimization result.
++* Every answer stores bool, TOI, and output_tolerance, including infinity
++  for no-hit. Candidates must currently match reference answers bit for bit;
++  this is stronger than Boolean regression but does not prove correctness.
++  Each numerical change also needs an analytical conservativeness argument.
++
++Screening and final comparison
++------------------------------
++
++Subset selection was fixed before candidate implementation: sorted source
++paths; all handcrafted records; simulation indices 0,128,256,... per CSV and
++all ground-truth-positive records, without duplicates.
++This emphasizes difficult cases and has a different timing composition from
++the full data. Subset improvement alone cannot meet the goal.
++
++First measure unchanged reference and profile with the upstream nested
++timers (diagnostic overhead means profile time is not a performance result).
++For each candidate retain hypothesis, code patch/snapshot, compiler config,
++binary SHA256, parameters, logs, correctness, and accept/reject reasons.
++Do not count harness checks or repeated timings as separate candidates.
++At final validation alternate reference,candidate at least three times each.
++Compare medians of per-run sums of four CCD group times, not wall time or
++the sum of independently selected group medians.
++
++Reproduction entry points
++-------------------------
++
++From the research worktree::
++
++    python research/research.py init
++    cmake -S . -B build-autoresearch-sample -DTIGHT_INCLUSION_RESEARCH=ON
++    cmake --build build-autoresearch-sample --config Release --target research_reference research_profile research_candidate --parallel 8
++    python research/research.py prepare --workers 8
++    python research/research.py run --id ref-subset --kind reference --hypothesis "Fixed subset reference" --repeats 2
++    python research/research.py run --id profile-subset --kind profile --hypothesis "Locate predicate cost; instrumented diagnostic only" --expected research-results/runs/ref-subset
++
++Use new experiment IDs for reruns; existing results/cache are not overwritten.
++The baseline run-baseline.py guard remains intact. All reference source files
++are extracted from git tag v1.0.6 into research/reference by init; they are
++not candidate edits and can always be reconstructed from git.
++
++Limitations
++-----------
++
++The archive supplies Boolean ground truth rather than exact contact times.
++Bitwise TOI equivalence establishes preservation of the original behavior,
++not an independent proof of the original algorithm's absolute TOI accuracy.
++The archive counts differ from the paper's tables; this is the full published
++archive, not a claim of exact reproduction of every number in the paper.
+diff --git a/research/RESULTS.rst b/research/RESULTS.rst
+new file mode 100644
+index 0000000..2436d26
+--- /dev/null
++++ b/research/RESULTS.rst
+@@ -0,0 +1,151 @@
++Tight-Inclusion CCD 自动优化研究结果
++===================================
++
++2026-10-09：达到目标。最佳候选 C02 的全量 CCD 核心耗时中位数为
++52.472144881 秒，同期原版为 72.602181521 秒，降低 27.72649%，
++加速比 1.383632815×。共评测 2 个候选，按“达到目标且全量验证通过”停止。
++历史 74.37439 秒没有作为加速比的分母。
++
++最终对照实验
++------------
++
++按原版、C02、原版、C02、原版、C02 顺序串行执行，每轮全部
++59,387,883 条查询。下表为四组 CCD 计算耗时之和，单位秒。
++
++=========== ============= =============
++轮次        原版          C02
++=========== ============= =============
++1           72.500458367  52.372528594
++2           72.659458159  52.472144881
++3           72.602181521  52.597744083
++中位数      72.602181521  52.472144881
++=========== ============= =============
++
++统计来源：research-results/final-c02-summary.json；每轮原始输出、
++参数、源码散列、程序散列、命令和壁钟时间位于
++research-results/runs/final-c02-{reference,candidate}-{1,2,3}/。
++性能指标不是壁钟时间，也没有把数据读取或解析加速算入成果。
++
++正确性与精度
++------------
++
++================ ============ ========== ========== ==============
++测试组           每轮查询数   原版误报   C02 误报   两版各轮漏检
++================ ============ ========== ========== ==============
++仿真点—面        17,959,962    2          2          0
++仿真边—边        41,372,584    17         17         0
++人工点—面        21,208        90         90         0
++人工边—边        34,129        203        203        0
++总计             59,387,883    312        312        0
++================ ============ ========== ========== ==============
++
++三轮候选均逐查询比较完整的 24 字节输出记录：碰撞布尔值、TOI、
++output_tolerance，与原版差异数全部为 0，包括不碰撞时的 infinity。
++这些不是仅凭摘要散列推断的一致性；程序实际逐条执行 memcmp。
++还进行了固定种子下 320 万个角点输出的逐位对照，覆盖不同二进制
++区间、抵消、正负零、次正规数和大数值。
++
++数据只有布尔真值，没有精确接触时间真值。本研究证明并验证的是
++保留原版的 TOI 输出与精度，没有声称独立测得绝对 TOI 误差。
++输入 1e-6 是原算法的距离容差，不应误写成绝对时间误差上限。
++
++最佳版本的修改与保守性
++----------------------
++
++最佳核心代码提交：aa821e07e003a435885f12d929b947a5d0dcdf51。
++工作分支：research/ccd-autoresearch；当前 src/ 中保留最佳版本。
++最佳评测程序为 build-autoresearch-sample/research/Release/research_candidate.exe，
++三轮确认目录中也各保存了一份实际运行的程序及其 SHA-256。
++
++* C01：同一盒的四个角点拥有相同时间参数，只计算一次对应的时间
++  插值，复用同一个 double 结果。保持减、乘、除、加顺序及角点顺序；
++  对任意数组的原 function_ee/function_vf 接口保持原样。
++* C02：在计算细分容差、建立搜索队列之前，调用原 BFS 使用的同一
++  初始 [0,1]^3 盒判定。若排除，返回原搜索必然返回的 false、infinity、
++  输入容差；若未排除，继续原搜索，包括重新进行原初始判定。
++
++C01 不增加相对原操作图的舍入误差，沿用原版误差过滤界；C02 的
++拒绝必然等同于原 BFS 首轮的拒绝。两项修改均保留原误差常数、
++误差尺度、所有细分和终止条件、max_iterations 回退与搜索队列顺序。
++完整的操作等价证明及适用条件见 research/NUMERICS.rst，
++不以零漏检测试代替保守性论证。
++
++环境与计时控制
++--------------
++
++* 同一台 Intel Core Ultra 7 265KF / Windows 11 10.0.26200。
++* 单计算线程，固定逻辑 CPU 0；OMP/MKL/OpenBLAS 线程设置为 1。
++* MSVC 19.44.35227.0，Release /O2 /Ob2 /DNDEBUG，CCD 库 /arch:AVX2，
++  默认 precise 浮点设置。核对了两版和原 baseline 的实际项目配置。
++* double、BFS、tolerance=1e-6、max_iterations=1000000、
++  minimum_separation=0、t_max=1、err=(-1,-1,-1)、no_zero_toi=false。
++* 原版核心的 19 个文件从 v1.0.6 提取并逐字节核验，提交为
++  7377d78162f9fdb5fe44b54b6f9c01bc6ce0885a。原版与候选链接同一个
++  评测入口的分别编译版本，使用完全相同的文件和查询顺序。
++* 沿用原版逐查询 Timer，开始于 API 参数转换之前，结束于 CCD 返回之后。
++  文件读取、结果检查、散列和写盘均在计时之外。
++
++所有源 CSV 在转换前重新核验 SHA-256，再由固定版本的原版
++CCD-Query-IO GMP 读取器转换为相同 double 值。缓存记录原样保存
++24 个 double 和真值。8 路并行只用于计时前的数据准备，未与性能
++测试重叠。最终又核验了全部 10,406 个全量及子集缓存文件的 SHA-256。
++数据读取格式的变化只用于缩短实验等待时间。
++
++全量源清单 SHA-256：
++92417a5c23055344bc1c17f2e6dc9a3c126c187be735467f2dc0289f03c963fa。
++完整转换清单和 provenance 见 research-results/cache/。
++
++候选研究记录
++------------
++
++固定筛选集在候选实现前确定：546,337 条，包括全部人工案例、
++所有仿真真碰撞、每个仿真 CSV 中索引 0,128,256,... 的查询。
++保留了耗时较高的人工案例，不能用其速度提升代替全量提升。
++带插桩的原版诊断发现包围盒判定占 37.062 秒，其中角点求值
++18.017 秒；诊断总时间 62.832 秒含计时开销，未用作性能基线。
++
++===== =========== ============ =========== ================================
++版本  子集中位秒  首次全量秒   正确性      结论
++===== =========== ============ =========== ================================
++原版  34.712142   72.664554    通过        同期筛选对照
++C01   28.513260   62.640225    逐位一致    全量仅降低 13.795%，不足 20%
++C02   28.249768   53.196764    逐位一致    进入三轮交替确认，最终达到目标
++===== =========== ============ =========== ================================
++
++C01 提交为 31d8312b38fbf09c35c741912b7cd131acbd1fc8；C02 以其为父版本。
++各候选的假设、版本、构建日志、结果和不采用原因见
++research-results/c01-experiment.json、c02-experiment.json、
++experiment-index.json 以及对应 runs/ 子目录。
++未把环境预检、重复运行、性能插桩当作额外候选。
++
++复现
++----
++
++在当前已构建且缓存完整的工作树中，使用未用过的输出前缀::
++
++    Set-Location D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch
++    python research/research.py paired --prefix reproduce-c02-01
++
++该命令串行执行三组原版/C02 全量对照，校验各组正确性及逐位输出，
++生成 research-results/reproduce-c02-01-summary.json。已有输出目录
++不会被覆盖。若仅重新计算已保存六轮的统计::
++
++    python research/research.py summarize --prefix final-c02
++
++重新构建最佳核心和评测入口::
++
++    python research/research.py init
++    .\scripts\setup-baseline.ps1 -BuildDirectory build-autoresearch-sample -LogDirectory research-results/reproduce-setup -DataDirectory ..\Tight-Inclusion\external\baseline\Sample-Queries-4d6cce3
++    cmake -S . -B build-autoresearch-sample -DTIGHT_INCLUSION_RESEARCH=ON
++    cmake --build build-autoresearch-sample --config Release --target research_reference research_candidate research_profile research_equivalence --parallel 8
++    .\build-autoresearch-sample\research\Release\research_equivalence.exe
++
++缓存尚不存在时才运行以下准备命令；它读取原 baseline 数据，但仅
++在本研究工作树写缓存，不重新下载或覆盖原始数据::
++
++    python research/research.py prepare --workers 8
++
++代码、JSON 清单、日志、差异和证明已保存到研究分支。体积较大的
++缓存、逐查询答案及 exe 保留在本地研究目录，不写入 Git；可用上述
++命令重建。原 baseline 工作树仍干净，其源码、构建、数据和历史结果
++保留原状，最终核验记录见 research-results/post-validation-integrity.json。
+diff --git a/research/equivalence.cpp b/research/equivalence.cpp
+new file mode 100644
+index 0000000..18f0004
+--- /dev/null
++++ b/research/equivalence.cpp
+@@ -0,0 +1,38 @@
++#include <tight_inclusion/avx.hpp>
++#include <tight_inclusion/corner_evaluation.hpp>
++#include <random>
++#include <cstring>
++#include <iostream>
++#include <cmath>
++using namespace ticcd;
++int main() {
++    std::mt19937_64 rng(0xCCD20261009ULL);
++    uint64_t checks=0;
++    for(int n=0;n<200000;++n) {
++        Interval3 itv;
++        for(auto& x:itv) {
++            uint8_t power=uint8_t(rng()%62);
++            uint64_t denom=uint64_t(1)<<power, k=rng()%denom;
++            x=Interval(NumCCD(k,power),NumCCD(k+1,power));
++        }
++        std::array<Scalar,8> t,td,u,ud,v,vd;
++        convert_tuv_to_array(itv,t,td,u,ud,v,vd);
++        double p[8];
++        for(auto& x:p) {
++            // Includes cancellation, signed zeros, subnormals and large values.
++            x=std::ldexp(double(int64_t(rng()%2000001)-1000000)/1000000.,int(rng()%2075)-1074);
++            if(n%17==0) x=std::copysign(0.,x);
++        }
++        auto a=function_ee(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],t,td,u,ud,v,vd);
++        auto b=detail::evaluate_corners_tuv<false>(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],t,td,u,ud,v,vd);
++        auto c=function_vf(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],t,td,u,ud,v,vd);
++        auto d=detail::evaluate_corners_tuv<true>(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],t,td,u,ud,v,vd);
++        for(int i=0;i<8;++i) {
++            if(std::memcmp(&a[i],&b[i],8)||std::memcmp(&c[i],&d[i],8)) {
++                std::cerr<<"mismatch case "<<n<<" lane "<<i<<"\n"; return 1;
++            }
++            checks+=2;
++        }
++    }
++    std::cout<<"PASS "<<checks<<" bitwise scalar corner comparisons (seed 0xCCD20261009)\n";
++}
+diff --git a/research/experiment.py b/research/experiment.py
+new file mode 100644
+index 0000000..01f7d6b
+--- /dev/null
++++ b/research/experiment.py
+@@ -0,0 +1,50 @@
++"""Build and evaluate one implemented candidate, preserving even failed evidence."""
++import argparse
++import json
++import subprocess as sp
++import sys
++import time
++from pathlib import Path
++import research as r
++
++p=argparse.ArgumentParser(description=__doc__)
++p.add_argument('--id',required=True)
++p.add_argument('--parent',required=True)
++p.add_argument('--hypothesis',required=True)
++p.add_argument('--repeats',type=int,default=1)
++a=p.parse_args()
++identifier=a.id.lower()
++record_path=r.OUT/f'{identifier}-experiment.json'
++if record_path.exists():raise FileExistsError(record_path)
++record=dict(id=a.id,parent=a.parent,hypothesis=a.hypothesis,revision=r.git('rev-parse','HEAD'),
++            numerical_argument='research/CONTINUED_NUMERICS.rst',status='building',
++            build_log=f'{identifier}-build.log',focused_test=f'{identifier}-equivalence.log')
++r.save(record_path,record)
++with (r.OUT/record['build_log']).open('wb') as log:
++    proc=sp.run(['cmake','--build',str(r.BUILD),'--config','Release','--target','research_candidate','research_equivalence','--parallel','8'],cwd=r.ROOT,stdout=log,stderr=sp.STDOUT)
++record['build_exit_code']=proc.returncode
++if proc.returncode:
++    record.update(status='build failed',effective_experiment=False);r.save(record_path,record);sys.exit(1)
++with (r.OUT/record['focused_test']).open('wb') as log:
++    test=sp.run([str(r.BUILD/'research/Release/research_equivalence.exe')],cwd=r.ROOT,stdout=log,stderr=sp.STDOUT)
++record['focused_exit_code']=test.returncode
++# A failed targeted test is still followed by the fixed dataset to quantify the
++# failure. No failed candidate can be selected merely because aggregate FP/FN pass.
++cmd=[sys.executable,str(r.ROOT/'research/research.py'),'run','--id',f'{identifier}-subset',
++     '--kind','candidate','--expected',str(r.OUT/'runs/ref-subset'),'--hypothesis',a.hypothesis,
++     '--repeats',str(a.repeats)]
++record['command']=cmd;r.save(record_path,record)
++proc=sp.run(cmd,cwd=r.ROOT)
++result=json.loads((r.OUT/'runs'/f'{identifier}-subset'/'results.json').read_text())
++if not result['runs']:
++    record.update(effective_experiment=False,valid=False,status='execution blocked before dataset evaluation',
++                  execution_error=result.get('execution_error'),subset_exit_code=proc.returncode)
++    r.save(record_path,record);sys.exit(proc.returncode or 1)
++record.update(effective_experiment=True,subset_exit_code=proc.returncode,
++    valid=proc.returncode==0 and test.returncode==0,
++    subset_seconds=result.get('median_ccd_seconds',result['runs'][0]['ccd_seconds']),
++    bitwise_mismatches=sum(g['bitwise_mismatches'] for run in result['runs'] for g in run['groups']),
++    groups=result['runs'][0]['groups'],status='screened; selection pending')
++if not record['valid']:record.update(status='rejected',failure_reason='Focused or dataset equality/correctness check failed')
++r.save(record_path,record)
++print(json.dumps({k:record[k] for k in ('id','valid','subset_seconds','bitwise_mismatches')},indent=2),flush=True)
+diff --git a/research/research.py b/research/research.py
+new file mode 100644
+index 0000000..a7b3bc3
+--- /dev/null
++++ b/research/research.py
+@@ -0,0 +1,225 @@
++"""Audited, single-thread CCD research. Run from any directory; no baseline writes."""
++import argparse
++import concurrent.futures as cf
++import ctypes
++import datetime as dt
++import hashlib
++import json
++import os
++from pathlib import Path
++import platform
++import shutil
++import statistics
++import subprocess as sp
++import time
++
++ROOT = Path(__file__).resolve().parents[1]
++OUT = ROOT / 'research-results'
++DATA = ROOT.parent / 'Tight-Inclusion/external/baseline/Full-CCD-2020'
++BUILD = ROOT / 'build-autoresearch-sample'
++GROUPS = ['simulation/vertex-face','simulation/edge-edge','handcrafted/vertex-face','handcrafted/edge-edge']
++PARAMS = dict(precision='double', tolerance=1e-6, max_iterations=1000000,
++              minimum_separation=0, t_max=1, no_zero_toi=False,
++              numerical_error=[-1,-1,-1], method='BREADTH_FIRST_SEARCH')
++
++def sha(p):
++    with Path(p).open('rb') as f: return hashlib.file_digest(f,'sha256').hexdigest()
++
++def save(p, data):
++    Path(p).write_text(json.dumps(data,indent=2),encoding='utf-8')
++
++def git(*args):
++    return sp.check_output(['git',*args],cwd=ROOT,text=True,encoding='utf-8').strip()
++
++def pin():
++    os.environ.update(OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1')
++    k=ctypes.WinDLL('kernel32',use_last_error=True)
++    k.GetCurrentProcess.restype=ctypes.c_void_p
++    k.SetProcessAffinityMask.argtypes=[ctypes.c_void_p,ctypes.c_size_t]
++    if not k.SetProcessAffinityMask(k.GetCurrentProcess(),1): raise ctypes.WinError(ctypes.get_last_error())
++
++def init():
++    ref=ROOT/'research/reference'
++    ref.mkdir(parents=True,exist_ok=True)
++    for f in git('ls-tree','-r','--name-only','v1.0.6','src').splitlines():
++        p=ref/f
++        if p.exists():
++            if p.read_bytes()!=sp.check_output(['git','show',f'v1.0.6:{f}'],cwd=ROOT): raise RuntimeError(f'changed reference {f}')
++        else:
++            p.parent.mkdir(parents=True,exist_ok=True)
++            p.write_bytes(sp.check_output(['git','show',f'v1.0.6:{f}'],cwd=ROOT))
++    OUT.mkdir(exist_ok=True)
++    environment_path=OUT/'environment.json'
++    if environment_path.exists():
++        environment_path=OUT/f"environment-init-{dt.datetime.now().strftime('%Y%m%d-%H%M%S-%f')}.json"
++    save(environment_path,dict(time=dt.datetime.now().astimezone().isoformat(),
++        platform=platform.platform(),python=platform.python_version(),
++        upstream=git('rev-parse','v1.0.6'),start_revision=git('rev-parse','HEAD'),
++        baseline_status=git('-C',str(ROOT.parent/'Tight-Inclusion'),'status','--porcelain'),
++        baseline_core_diff=git('-C',str(ROOT.parent/'Tight-Inclusion'),'diff','v1.0.6','--','src','app','CMakeLists.txt','cmake'),
++        parameters=PARAMS,cpu=0,threads=1))
++
++def prepare(workers):
++    out=OUT/'cache'
++    out.mkdir(exist_ok=True)
++    manifest=json.loads((DATA/'dataset-manifest.json').read_text())
++    entries=[(g,f) for g,key in enumerate(GROUPS) for f in sorted(manifest[key]['files'],key=lambda x:x['path'])]
++    assert sum(f['queries'] for _,f in entries)==59387883
++    if (out/'ready.json').exists(): raise FileExistsError('cache already prepared')
++    shutil.copy2(DATA/'dataset-manifest.json',out/'source-manifest.json')
++    shutil.copy2(DATA/'provenance.json',out/'source-provenance.json')
++    def worker(w):
++        chunk=entries[w::workers]
++        path=out/f'pack-{w}.txt'
++        path.write_text(''.join(f"{g} {f['queries']} {f['path']}\n" for g,f in chunk))
++        for _,f in chunk:
++            p=DATA/f['path']
++            if p.stat().st_size!=f['bytes'] or sha(p)!=f['sha256']: raise RuntimeError(f'CSV integrity {p}')
++        print(f'worker {w}: source SHA256 verified; packing {len(chunk)} files',flush=True)
++        with (out/f'pack-{w}.log').open('wb') as log:
++            sp.run([str(BUILD/'research/Release/research_reference.exe'),'pack',str(path),str(DATA),str(out)],cwd=ROOT,stdout=log,stderr=sp.STDOUT,check=True)
++        print(f'worker {w}: packed',flush=True)
++    with cf.ThreadPoolExecutor(workers) as pool: list(pool.map(worker,range(workers)))
++    inventories={}
++    for kind in ('full','subset'):
++        inv=[]
++        for g,f in entries:
++            rel=f['path']+'.bin'; p=out/kind/rel
++            assert p.stat().st_size%200==0
++            count=p.stat().st_size//200
++            if kind=='full': assert count==f['queries']
++            inv.append(dict(group=g,path=rel,queries=count,sha256=sha(p)))
++        (out/f'{kind}.txt').write_text(''.join(f"{f['group']} {f['queries']} {f['path']}\n" for f in inv))
++        save(out/f'{kind}-manifest.json',inv)
++        inventories[kind]=dict(queries=sum(f['queries'] for f in inv),manifest_sha256=sha(out/f'{kind}-manifest.json'))
++    save(out/'ready.json',dict(inventories=inventories,source_manifest_sha256=sha(DATA/'dataset-manifest.json'),
++         conversion='Unchanged pinned CCD-Query-IO GMP reader; native little-endian 24 doubles + uint64 truth; every CSV SHA256 revalidated',
++         subset='All handcrafted + every 128th simulation query per CSV (index 0,128,...) + all simulation ground-truth positives; sorted relative CSV paths',
++         preparation_workers=workers,preparation_excluded_from_timing=True))
++    print(json.dumps(inventories),flush=True)
++
++def run(args):
++    pin()
++    out=OUT/'runs'/args.id
++    out.mkdir(parents=True,exist_ok=False)
++    cache=OUT/'cache'
++    ready=json.loads((cache/'ready.json').read_text())
++    snapshot=(ROOT/args.snapshot).resolve() if getattr(args,'snapshot',None) else None
++    frozen=json.loads((snapshot/'results.json').read_text()) if snapshot else None
++    exe=(snapshot/f'research_{args.kind}.exe') if snapshot else BUILD/f'research/Release/research_{args.kind}.exe'
++    if frozen and (frozen['kind']!=args.kind or sha(exe)!=frozen['executable_sha256']):
++        raise RuntimeError('Snapshot kind or executable SHA256 mismatch')
++    shutil.copy2(exe,out/exe.name); shutil.copy2(exe.parent/'gmp.dll',out/'gmp.dll')
++    source = snapshot/'src' if snapshot else (ROOT/'src' if args.kind=='candidate' else ROOT/'research/reference/src')
++    shutil.copytree(source,out/'src')
++    runner=snapshot/'runner.cpp' if snapshot else ROOT/'research/runner.cpp'
++    build_cache=snapshot/'CMakeCache.txt' if snapshot else BUILD/'CMakeCache.txt'
++    shutil.copy2(runner,out/'runner.cpp')
++    shutil.copy2(build_cache,out/'CMakeCache.txt')
++    if snapshot: shutil.copy2(snapshot/'source.patch',out/'source.patch')
++    else: (out/'source.patch').write_text(git('diff','v1.0.6','--','src','app','CMakeLists.txt','research'),encoding='utf-8')
++    expected=Path(args.expected).resolve() if args.expected else None
++    reference=json.loads((expected/'results.json').read_text()) if expected else None
++    report=dict(id=args.id,kind=args.kind,dataset=args.dataset,hypothesis=args.hypothesis,
++        created_utc=dt.datetime.now(dt.timezone.utc).isoformat(),revision=frozen['revision'] if frozen else git('rev-parse','HEAD'),
++        snapshot=str(snapshot) if snapshot else None,
++        core_source={str(p.relative_to(source)):sha(p) for p in sorted(source.rglob('*')) if p.is_file()},
++        build_settings=[l for l in build_cache.read_text().splitlines() if l.startswith(('CMAKE_CXX_FLAGS','TIGHT_INCLUSION_','CMAKE_GENERATOR','Eigen3_DIR','GMP_'))],
++        executable_sha256=sha(exe),runner_sha256=sha(runner),
++        parameters=PARAMS,logical_cpu=0,threads=1,cache=ready,
++        timing='Unchanged upstream per-query Timer; includes API argument conversion and CCD call; excludes cache/CSV I/O, result comparison, hashing and writes',
++        expected=str(expected) if expected else None,runs=[])
++    save(out/'results.json',report)
++    for i in range(1,args.repeats+1):
++        cmd=[str(exe if snapshot else out/exe.name),'run',str(cache/f'{args.dataset}.txt'),str(cache/args.dataset),str(out/f'answers-{i}.bin')]
++        if expected: cmd.append(str(expected/'answers-1.bin'))
++        print(f'{args.id} run {i} starting',flush=True)
++        t=time.perf_counter()
++        try:
++            with (out/f'run-{i}.log').open('wb') as log:
++                proc=sp.run(cmd,cwd=ROOT,stdout=log,stderr=sp.STDOUT)
++        except OSError as error:
++            report.update(valid=False,execution_error=dict(type=type(error).__name__,winerror=getattr(error,'winerror',None),message=str(error),command=cmd),status='execution did not start')
++            save(out/'results.json',report)
++            (out/f'run-{i}.log').write_text(str(error),encoding='utf-8')
++            raise
++        item=dict(command=cmd,exit_code=proc.returncode,wall_seconds=time.perf_counter()-t,groups=[])
++        report['runs'].append(item)
++        for line in (out/f'run-{i}.log').read_text(encoding='utf-8',errors='replace').splitlines():
++            if line.startswith('RESULT '):
++                _,g,n,gt,fp,fn,sec,mm,h=line.split()
++                item['groups'].append(dict(group=GROUPS[int(g)],queries=int(n),positives=int(gt),fp=int(fp),fn=int(fn),ccd_seconds=float(sec),bitwise_mismatches=int(mm),output_hash=h))
++        item['ccd_seconds']=sum(g['ccd_seconds'] for g in item['groups'])
++        valid=proc.returncode==0 and len(item['groups'])==4
++        if valid:
++            valid &= sum(g['queries'] for g in item['groups'])==ready['inventories'][args.dataset]['queries']
++            for g,cap in zip(item['groups'],[2,17,90,203]):
++                valid &= g['fn']==0 and g['fp']<=cap and g['bitwise_mismatches']==0
++            if reference:
++                valid &= args.dataset==reference['dataset']
++                valid &= all(g['fp']<=ref['fp'] for g,ref in zip(item['groups'],reference['runs'][0]['groups']))
++        item['valid']=bool(valid)
++        save(out/'results.json',report)
++        print(f"{args.id} run {i}: CCD={item['ccd_seconds']:.9f}s valid={valid}",flush=True)
++        if not valid: raise RuntimeError(f'validation failed: {out}')
++    report['median_ccd_seconds']=statistics.median(r['ccd_seconds'] for r in report['runs'])
++    report['valid']=all(r['valid'] for r in report['runs'])
++    save(out/'results.json',report)
++
++def summarize(prefix, target_reduction=.80):
++    """Only declare the speed target on three validated full runs per side."""
++    reports={k:[json.loads((OUT/'runs'/f'{prefix}-{k}-{i}'/'results.json').read_text())
++                for i in range(1,4)] for k in ('reference','candidate')}
++    for kind,items in reports.items():
++        assert len({x['executable_sha256'] for x in items})==1
++        assert len({x['runner_sha256'] for x in items})==1
++        for x in items:
++            assert x['valid'] and x['dataset']=='full' and x['kind']==kind
++            assert x['logical_cpu']==0 and x['threads']==1 and x['parameters']==PARAMS
++            assert len(x['runs'])==1 and sum(g['queries'] for g in x['runs'][0]['groups'])==59387883
++            for g,n,cap in zip(x['runs'][0]['groups'],[17959962,41372584,21208,34129],[2,17,90,203]):
++                assert g['queries']==n and g['fn']==0 and g['fp']<=cap and g['bitwise_mismatches']==0
++    ordered=[reports[k][i]['created_utc'] for i in range(3) for k in ('reference','candidate')]
++    assert ordered==sorted(ordered)
++    assert len({x['runner_sha256'] for items in reports.values() for x in items})==1
++    assert len({x['cache']['inventories']['full']['manifest_sha256'] for items in reports.values() for x in items})==1
++    medians={k:statistics.median(x['median_ccd_seconds'] for x in v) for k,v in reports.items()}
++    reduction=1-medians['candidate']/medians['reference']
++    result=dict(prefix=prefix,queries_per_run=59387883,parameters=PARAMS,medians=medians,
++        time_reduction=reduction,speedup=medians['reference']/medians['candidate'],
++        target_reduction=target_reduction,target_passed=reduction>=target_reduction,all_correct=True,
++        runs={k:[dict(id=x['id'],ccd_seconds=x['median_ccd_seconds'],groups=x['runs'][0]['groups']) for x in v] for k,v in reports.items()})
++    save(OUT/f'{prefix}-summary.json',result)
++    print(json.dumps(result,indent=2),flush=True)
++
++def paired(prefix, target_reduction=.80, candidate_snapshot=None):
++    expected=str(OUT/'runs'/f'{prefix}-reference-1')
++    for i in range(1,4):
++        for kind in ('reference','candidate'):
++            run(argparse.Namespace(id=f'{prefix}-{kind}-{i}',kind=kind,dataset='full',repeats=1,
++                snapshot=candidate_snapshot if kind=='candidate' else None,
++                expected=None if i==1 and kind=='reference' else expected,
++                hypothesis=f'Final alternating comparison, round {i}, {kind}'))
++    summarize(prefix, target_reduction)
++
++def main():
++    p=argparse.ArgumentParser(description=__doc__); subs=p.add_subparsers(dest='cmd',required=True)
++    subs.add_parser('init')
++    prep=subs.add_parser('prepare');prep.add_argument('--workers',type=int,default=8)
++    pair=subs.add_parser('paired');pair.add_argument('--prefix',required=True)
++    pair.add_argument('--candidate-snapshot')
++    summary=subs.add_parser('summarize');summary.add_argument('--prefix',required=True)
++    for cmd in (pair,summary):cmd.add_argument('--target-reduction',type=float,default=.80)
++    r=subs.add_parser('run');r.add_argument('--id',required=True)
++    r.add_argument('--kind',choices=['reference','profile','candidate'],required=True)
++    r.add_argument('--dataset',choices=['subset','full'],default='subset')
++    r.add_argument('--repeats',type=int,default=1);r.add_argument('--expected')
++    r.add_argument('--snapshot',help='Use an immutable earlier run executable and matching source snapshot')
++    r.add_argument('--hypothesis',required=True)
++    args=p.parse_args()
++    if args.cmd=='init': init()
++    elif args.cmd=='prepare': prepare(args.workers)
++    elif args.cmd=='paired': paired(args.prefix,args.target_reduction,args.candidate_snapshot)
++    elif args.cmd=='summarize': summarize(args.prefix,args.target_reduction)
++    else: run(args)
++if __name__=='__main__': main()
+diff --git a/research/runner.cpp b/research/runner.cpp
+new file mode 100644
+index 0000000..404080d
+--- /dev/null
++++ b/research/runner.cpp
+@@ -0,0 +1,105 @@
++// Identical evaluator for reference/candidate; only the linked CCD library differs.
++#include <tight_inclusion/ccd.hpp>
++#include <tight_inclusion/interval_root_finder.hpp>
++#include <tight_inclusion/timer.hpp>
++#include <tight_inclusion/logger.hpp>
++#include <ccd_io/read_ccd_queries.hpp>
++#include <filesystem>
++#include <fstream>
++#include <iostream>
++#include <iomanip>
++#include <cstring>
++#include <vector>
++#include <chrono>
++#include <stdexcept>
++namespace fs = std::filesystem;
++using namespace ticcd;
++// No padding or uninitialized bytes in portable on-this-machine cache/output.
++struct Record { double v[24]; uint64_t truth; };
++struct Answer { double toi, tolerance; uint64_t hit; };
++static_assert(sizeof(Record)==200 && sizeof(Answer)==24 && sizeof(Scalar)==8);
++struct Entry { int group; uint64_t count; std::string path; };
++std::vector<Entry> read_list(const fs::path& path) {
++    std::ifstream f(path); if (!f) throw std::runtime_error("missing list");
++    std::vector<Entry> entries; Entry e;
++    while(f >> e.group >> e.count >> e.path) entries.push_back(e);
++    if (entries.empty()) throw std::runtime_error("empty list");
++    return entries;
++}
++uint64_t hash_bytes(uint64_t h, const void* p, size_t n) {
++    auto b=static_cast<const unsigned char*>(p);
++    for(size_t i=0;i<n;++i) h=(h^b[i])*1099511628211ULL;
++    return h;
++}
++int main(int argc,char** argv) try {
++    if(argc<5) throw std::runtime_error("pack LIST CSV_ROOT CACHE_ROOT | run LIST CACHE_ROOT ANSWERS_OUT [EXPECTED]");
++    logger().set_level(spdlog::level::trace);
++    auto entries=read_list(argv[2]);
++    if(std::string(argv[1])=="pack") {
++        for(const auto& e:entries) {
++            auto queries=ccd_io::read_ccd_queries((fs::path(argv[3])/e.path).string());
++            if(queries.size()!=e.count) throw std::runtime_error("CSV count mismatch");
++            fs::path full=fs::path(argv[4])/"full"/(e.path+".bin");
++            fs::path sample=fs::path(argv[4])/"subset"/(e.path+".bin");
++            if(fs::exists(full)||fs::exists(sample)) throw std::runtime_error("refusing cache overwrite");
++            fs::create_directories(full.parent_path()); fs::create_directories(sample.parent_path());
++            std::ofstream a(full,std::ios::binary),b(sample,std::ios::binary);
++            uint64_t selected=0;
++            for(size_t i=0;i<queries.size();++i) {
++                Record r; std::memcpy(r.v,&queries[i].vertices[0][0],192); r.truth=queries[i].ground_truth;
++                a.write(reinterpret_cast<const char*>(&r),sizeof(r));
++                // Fixed before any candidate: every 128th query per CSV,
++                // every true collision, and all handcrafted queries.
++                if(e.group>=2 || i%128==0 || r.truth) {b.write(reinterpret_cast<const char*>(&r),sizeof(r)); ++selected;}
++            }
++            if(!a||!b) throw std::runtime_error("cache write failed");
++            std::cout<<"PACK "<<e.group<<" "<<e.path<<" "<<e.count<<" "<<selected<<std::endl;
++        }
++        return 0;
++    }
++    if(std::string(argv[1])!="run") throw std::runtime_error("unknown mode");
++    std::ofstream answers(argv[4],std::ios::binary);
++    std::ifstream expected;
++    if(argc>5) expected.open(argv[5],std::ios::binary);
++    if(!answers || (argc>5 && !expected)) throw std::runtime_error("answer file unavailable");
++    uint64_t n[4]={},gt[4]={},fp[4]={},fn[4]={},mismatch[4]={},hash[4];
++    for(auto& h:hash) h=14695981039346656037ULL;
++    double us[4]={}; Timer timer;
++    for(const auto& e:entries) {
++        std::vector<Record> records(e.count);
++        std::ifstream f(fs::path(argv[3])/e.path,std::ios::binary);
++        f.read(reinterpret_cast<char*>(records.data()),e.count*sizeof(Record));
++        if(!f || f.peek()!=EOF) throw std::runtime_error("cache size/read mismatch");
++        std::vector<Answer> result(e.count),ref(argc>5?e.count:0);
++        if(argc>5) {expected.read(reinterpret_cast<char*>(ref.data()),e.count*sizeof(Answer)); if(!expected) throw std::runtime_error("short expected file");}
++        for(size_t i=0;i<records.size();++i) {
++            const auto& r=records[i];
++            using Matrix8x3=Eigen::Matrix<double,8,3,Eigen::RowMajor>;
++            Eigen::Map<const Matrix8x3> V(r.v);
++            const Array3 err(-1,-1,-1);
++            double toi=std::numeric_limits<double>::infinity(),tol=1e-6;
++            bool hit;
++            timer.start();
++            if(e.group%2) {
++                hit=edgeEdgeCCD(V.row(0),V.row(1),V.row(2),V.row(3),V.row(4),V.row(5),V.row(6),V.row(7),err,0.,toi,1e-6,1.,1000000,tol,false,CCDRootFindingMethod::BREADTH_FIRST_SEARCH);
++            } else {
++                hit=vertexFaceCCD(V.row(0),V.row(1),V.row(2),V.row(3),V.row(4),V.row(5),V.row(6),V.row(7),err,0.,toi,1e-6,1.,1000000,tol,false,CCDRootFindingMethod::BREADTH_FIRST_SEARCH);
++            }
++            timer.stop(); us[e.group]+=timer.getElapsedTimeInMicroSec();
++            result[i]={toi,tol,uint64_t(hit)};
++            ++n[e.group]; gt[e.group]+=r.truth;
++            fp[e.group]+=hit&&!r.truth; fn[e.group]+=!hit&&r.truth;
++            if(argc>5 && std::memcmp(&result[i],&ref[i],sizeof(Answer))) ++mismatch[e.group];
++        }
++        hash[e.group]=hash_bytes(hash[e.group],result.data(),result.size()*sizeof(Answer));
++        answers.write(reinterpret_cast<const char*>(result.data()),result.size()*sizeof(Answer));
++        if(!answers) throw std::runtime_error("answer write failed");
++    }
++    if(argc>5 && expected.peek()!=EOF) throw std::runtime_error("long expected file");
++    for(int g=0;g<4;++g)
++        std::cout<<std::setprecision(17)<<"RESULT "<<g<<" "<<n[g]<<" "<<gt[g]<<" "<<fp[g]<<" "<<fn[g]<<" "<<us[g]/1e6<<" "<<mismatch[g]<<" "<<hash[g]<<std::endl;
++#ifdef RESEARCH_PROFILE
++    print_times();
++#endif
++    return 0;
++} catch(const std::exception& e) {std::cerr<<"ERROR "<<e.what()<<std::endl;return 1;}
+diff --git a/src/tight_inclusion/ccd.cpp b/src/tight_inclusion/ccd.cpp
+index a431d19..50dd1e3 100644
+--- a/src/tight_inclusion/ccd.cpp
++++ b/src/tight_inclusion/ccd.cpp
+@@ -171,15 +171,6 @@ namespace ticcd {
+         Scalar tolerance = tolerance_in;
+         Scalar ms = ms_in;
+ 
+-        Array3 tol;
+-        if constexpr (is_vertex_face) {
+-            tol = compute_vertex_face_tolerances(
+-                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
+-        } else {
+-            tol = compute_edge_edge_tolerances(
+-                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
+-        }
+-
+         //////////////////////////////////////////////////////////
+         // this should be the error of the whole mesh
+         Array3 err;
+@@ -194,6 +185,27 @@ namespace ticcd {
+         }
+         //////////////////////////////////////////////////////////
+ 
++        if (ccd_method == CCDRootFindingMethod::BREADTH_FIRST_SEARCH) {
++            assert(t_max >= 0 && t_max <= 1);
++            // Exactly the original first BFS predicate on [0,1]^3.
++            // If it rejects, no subdivision/tolerance/queue work is needed.
++            if (!initial_root_box_overlaps<is_vertex_face>(
++                    a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, err, ms)) {
++                toi = std::numeric_limits<Scalar>::infinity();
++                output_tolerance = tolerance;
++                return false;
++            }
++        }
++
++        Array3 tol;
++        if constexpr (is_vertex_face) {
++            tol = compute_vertex_face_tolerances(
++                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
++        } else {
++            tol = compute_edge_edge_tolerances(
++                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
++        }
++
+         do {
+             switch (ccd_method) {
+             case CCDRootFindingMethod::DEPTH_FIRST_SEARCH:
+diff --git a/src/tight_inclusion/corner_evaluation.hpp b/src/tight_inclusion/corner_evaluation.hpp
+new file mode 100644
+index 0000000..f0df053
+--- /dev/null
++++ b/src/tight_inclusion/corner_evaluation.hpp
+@@ -0,0 +1,57 @@
++#pragma once
++
++#include <tight_inclusion/types.hpp>
++#include <array>
++
++namespace ticcd::detail {
++    // Internal specialization for the exact layout from convert_tuv_to_array:
++    // t = 00001111, u = 00110011, v = 01010101.
++    // Cache repeated temporal interpolation WITHOUT changing any individual
++    // subtract/multiply/divide/add operation or its rounding order. The public
++    // function_ee/function_vf accepting arbitrary arrays remain unchanged.
++    template <bool is_vertex_face>
++    std::array<Scalar, 8> evaluate_corners_tuv(
++        const Scalar a0, const Scalar b0, const Scalar c0, const Scalar d0,
++        const Scalar a1, const Scalar b1, const Scalar c1, const Scalar d1,
++        const std::array<Scalar, 8>& t_up,
++        const std::array<Scalar, 8>& t_dw,
++        const std::array<Scalar, 8>& u_up,
++        const std::array<Scalar, 8>& u_dw,
++        const std::array<Scalar, 8>& v_up,
++        const std::array<Scalar, 8>& v_dw)
++    {
++        std::array<Scalar, 8> result;
++        // Denominators produced by NumCCD are exact powers of two. Their
++        // reciprocals are exact normal doubles, so correctly-rounded x/d
++        // and x*(1/d) have identical results, including gradual underflow.
++        const Scalar ui[2] = {Scalar(1) / u_dw[0], Scalar(1) / u_dw[2]};
++        const Scalar vi[2] = {Scalar(1) / v_dw[0], Scalar(1) / v_dw[1]};
++        for (int k = 0; k < 8; k += 4) {
++            const Scalar ti = Scalar(1) / t_dw[k];
++            const Scalar a = (a1 - a0) * t_up[k] * ti + a0;
++            const Scalar b = (b1 - b0) * t_up[k] * ti + b0;
++            const Scalar c = (c1 - c0) * t_up[k] * ti + c0;
++            const Scalar d = (d1 - d0) * t_up[k] * ti + d0;
++            if constexpr (is_vertex_face) {
++                const Scalar x0 = (c - b) * u_up[k] * ui[0];
++                const Scalar x1 = (c - b) * u_up[k + 2] * ui[1];
++                const Scalar y0 = (d - b) * v_up[k] * vi[0];
++                const Scalar y1 = (d - b) * v_up[k + 1] * vi[1];
++                result[k] = a - (x0 + y0 + b);
++                result[k + 1] = a - (x0 + y1 + b);
++                result[k + 2] = a - (x1 + y0 + b);
++                result[k + 3] = a - (x1 + y1 + b);
++            } else {
++                const Scalar x0 = (b - a) * u_up[k] * ui[0] + a;
++                const Scalar x1 = (b - a) * u_up[k + 2] * ui[1] + a;
++                const Scalar y0 = (d - c) * v_up[k] * vi[0] + c;
++                const Scalar y1 = (d - c) * v_up[k + 1] * vi[1] + c;
++                result[k] = x0 - y0;
++                result[k + 1] = x0 - y1;
++                result[k + 2] = x1 - y0;
++                result[k + 3] = x1 - y1;
++            }
++        }
++        return result;
++    }
++} // namespace ticcd::detail
+diff --git a/src/tight_inclusion/interval.cpp b/src/tight_inclusion/interval.cpp
+index 61d2418..7d5a640 100644
+--- a/src/tight_inclusion/interval.cpp
++++ b/src/tight_inclusion/interval.cpp
+@@ -7,15 +7,6 @@ namespace ticcd {
+ 
+     static constexpr uint8_t MAX_DENOM_POWER = 8 * sizeof(uint64_t) - 1;
+ 
+-    // calculate a*(2^b)
+-    uint64_t power(const uint64_t a, const uint8_t b)
+-    {
+-        // The fast bit shifting power trick only works if b is not too larger.
+-        assert(b < MAX_DENOM_POWER);
+-        // WARNING: Technically this can still fail with `b < MAX_DENOM_POWER` if `a > 1`.
+-        return a << b;
+-    }
+-
+     // return power t. n=result*2^t
+     uint8_t reduction(const uint64_t n, uint64_t &result)
+     {
+@@ -83,21 +74,6 @@ namespace ticcd {
+         return result;
+     }
+ 
+-    bool NumCCD::operator<(const NumCCD &other) const
+-    {
+-        const uint64_t &k1 = numerator, &k2 = other.numerator;
+-        const uint8_t &n1 = denom_power, &n2 = other.denom_power;
+-
+-        uint64_t tmp_k1 = k1, tmp_k2 = k2;
+-        if (n1 < n2) {
+-            tmp_k1 = pow2(n2 - n1) * k1;
+-        } else if (n1 > n2) {
+-            tmp_k2 = pow2(n1 - n2) * k2;
+-        }
+-        assert((value() < other.value()) == (tmp_k1 < tmp_k2));
+-        return tmp_k1 < tmp_k2;
+-    }
+-
+     bool NumCCD::is_sum_leq_1(const NumCCD &num1, const NumCCD &num2)
+     {
+         if (num1.denom_power == num2.denom_power) {
+diff --git a/src/tight_inclusion/interval.hpp b/src/tight_inclusion/interval.hpp
+index 145ac3e..00f709a 100755
+--- a/src/tight_inclusion/interval.hpp
++++ b/src/tight_inclusion/interval.hpp
+@@ -2,6 +2,7 @@
+ #pragma once
+ 
+ #include <array>
++#include <cassert>
+ 
+ #include <Eigen/Core>
+ 
+@@ -11,7 +12,11 @@
+ namespace ticcd {
+ 
+     // calculate a*(2^b)
+-    uint64_t power(const uint64_t a, const uint8_t b);
++    inline uint64_t power(const uint64_t a, const uint8_t b)
++    {
++        assert(b < 8 * sizeof(uint64_t) - 1);
++        return a << b;
++    }
+ 
+     // calculate 2^exponent
+     inline uint64_t pow2(const uint8_t exponent) { return power(1l, exponent); }
+@@ -50,7 +55,17 @@ namespace ticcd {
+                    && denom_power == other.denom_power;
+         }
+         bool operator!=(const NumCCD &other) const { return !(*this == other); }
+-        bool operator<(const NumCCD &other) const;
++        bool operator<(const NumCCD &other) const
++        {
++            uint64_t k1 = numerator, k2 = other.numerator;
++            if (denom_power < other.denom_power) {
++                k1 = pow2(other.denom_power - denom_power) * k1;
++            } else if (denom_power > other.denom_power) {
++                k2 = pow2(denom_power - other.denom_power) * k2;
++            }
++            assert((value() < other.value()) == (k1 < k2));
++            return k1 < k2;
++        }
+         bool operator<=(const NumCCD &other) const
+         {
+             return (*this == other) || (*this < other);
+diff --git a/src/tight_inclusion/interval_root_finder.cpp b/src/tight_inclusion/interval_root_finder.cpp
+index 98501a2..c82a607 100644
+--- a/src/tight_inclusion/interval_root_finder.cpp
++++ b/src/tight_inclusion/interval_root_finder.cpp
+@@ -2,7 +2,8 @@
+ #include "interval_root_finder.hpp"
+ 
+ #include <tight_inclusion/timer.hpp>
+-#include <tight_inclusion/avx.hpp>
++#include <tight_inclusion/avx.hpp>
++#include <tight_inclusion/corner_evaluation.hpp>
+ #include <tight_inclusion/logger.hpp>
+ 
+ #include <queue>
+@@ -59,12 +60,12 @@ namespace ticcd {
+ 
+         std::array<Scalar, 8> vs;
+         if constexpr (is_vertex_face) {
+-            vs = function_vf(
++            vs = detail::evaluate_corners_tuv<true>(
+                 a_t0[dim], b_t0[dim], c_t0[dim], d_t0[dim], a_t1[dim],
+                 b_t1[dim], c_t1[dim], d_t1[dim], t_up, t_dw, u_up, u_dw, v_up,
+                 v_dw);
+         } else {
+-            vs = function_ee(
++            vs = detail::evaluate_corners_tuv<false>(
+                 a_t0[dim], b_t0[dim], c_t0[dim], d_t0[dim], a_t1[dim],
+                 b_t1[dim], c_t1[dim], d_t1[dim], t_up, t_dw, u_up, u_dw, v_up,
+                 v_dw);
+@@ -138,7 +139,38 @@ namespace ticcd {
+         return true;
+     }
+ 
+-    // find the largest width/tol dimension that is greater than its tolerance
++    template <bool is_vertex_face>
++    bool initial_root_box_overlaps(
++        const Vector3 &a_t0, const Vector3 &b_t0,
++        const Vector3 &c_t0, const Vector3 &d_t0,
++        const Vector3 &a_t1, const Vector3 &b_t1,
++        const Vector3 &c_t1, const Vector3 &d_t1,
++        const Array3 &err, const Scalar ms)
++    {
++        // Exact arrays returned by convert_tuv_to_array for [0,1]^3.
++        std::array<Scalar, 8> t = {{0,0,0,0,1,1,1,1}};
++        std::array<Scalar, 8> u = {{0,0,1,1,0,0,1,1}};
++        std::array<Scalar, 8> v = {{0,1,0,1,0,1,0,1}};
++        std::array<Scalar, 8> den = {{1,1,1,1,1,1,1,1}};
++        bool box_in;
++        for (int dim=0;dim<3;++dim) {
++            if (!evaluate_bbox_one_dimension_vector<is_vertex_face>(
++                    t,den,u,den,v,den,a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1,
++                    dim,err[dim],box_in,ms)) return false;
++        }
++        return true;
++    }
++
++    template bool initial_root_box_overlaps<false>(
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Array3&, Scalar);
++    template bool initial_root_box_overlaps<true>(
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Array3&, Scalar);
++
++    // find the largest width/tol dimension that is greater than its tolerance
+     int find_next_split(const Array3 &widths, const Array3 &tols)
+     {
+         // assert((widths > tols).any());
+diff --git a/src/tight_inclusion/interval_root_finder.hpp b/src/tight_inclusion/interval_root_finder.hpp
+index 8e39552..335f40e 100755
+--- a/src/tight_inclusion/interval_root_finder.hpp
++++ b/src/tight_inclusion/interval_root_finder.hpp
+@@ -8,6 +8,16 @@
+ #include <vector>
+ 
+ namespace ticcd {
++    // Evaluate the same conservative initial [0,1]^3 box as BFS, before
++    // allocating the search queue or computing subdivision tolerances.
++    template <bool is_vertex_face>
++    bool initial_root_box_overlaps(
++        const Vector3 &a_t0, const Vector3 &b_t0,
++        const Vector3 &c_t0, const Vector3 &d_t0,
++        const Vector3 &a_t1, const Vector3 &b_t1,
++        const Vector3 &c_t1, const Vector3 &d_t1,
++        const Array3 &err, Scalar ms);
++
+     // this version cannot give the impact time at t=1, although this collision can
+     // be detected at t=0 of the next time step, but still may cause problems in
+     // line-search based physical simulation

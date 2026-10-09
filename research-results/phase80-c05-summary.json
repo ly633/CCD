@@ -1,0 +1,309 @@
+{
+  "prefix": "phase80-c05",
+  "queries_per_run": 59387883,
+  "parameters": {
+    "precision": "double",
+    "tolerance": 1e-06,
+    "max_iterations": 1000000,
+    "minimum_separation": 0,
+    "t_max": 1,
+    "no_zero_toi": false,
+    "numerical_error": [
+      -1,
+      -1,
+      -1
+    ],
+    "method": "BREADTH_FIRST_SEARCH"
+  },
+  "medians": {
+    "reference": 72.10786089672851,
+    "candidate": 45.378287772216794
+  },
+  "time_reduction": 0.3706887542093822,
+  "speedup": 1.5890388209155195,
+  "target_reduction": 0.8,
+  "target_passed": false,
+  "all_correct": true,
+  "runs": {
+    "reference": [
+      {
+        "id": "phase80-c05-reference-1",
+        "ccd_seconds": 72.10320298120118,
+        "groups": [
+          {
+            "group": "simulation/vertex-face",
+            "queries": 17959962,
+            "positives": 18711,
+            "fp": 2,
+            "fn": 0,
+            "ccd_seconds": 11.880655629882812,
+            "bitwise_mismatches": 0,
+            "output_hash": "2582929271375930863"
+          },
+          {
+            "group": "simulation/edge-edge",
+            "queries": 41372584,
+            "positives": 7325,
+            "fp": 17,
+            "fn": 0,
+            "ccd_seconds": 27.817483951660158,
+            "bitwise_mismatches": 0,
+            "output_hash": "1337375763354161953"
+          },
+          {
+            "group": "handcrafted/vertex-face",
+            "queries": 21208,
+            "positives": 544,
+            "fp": 90,
+            "fn": 0,
+            "ccd_seconds": 7.965984805908203,
+            "bitwise_mismatches": 0,
+            "output_hash": "15626249075451830123"
+          },
+          {
+            "group": "handcrafted/edge-edge",
+            "queries": 34129,
+            "positives": 402,
+            "fp": 203,
+            "fn": 0,
+            "ccd_seconds": 24.43907859375,
+            "bitwise_mismatches": 0,
+            "output_hash": "15937733726205787145"
+          }
+        ]
+      },
+      {
+        "id": "phase80-c05-reference-2",
+        "ccd_seconds": 72.46576450439453,
+        "groups": [
+          {
+            "group": "simulation/vertex-face",
+            "queries": 17959962,
+            "positives": 18711,
+            "fp": 2,
+            "fn": 0,
+            "ccd_seconds": 12.018009976074218,
+            "bitwise_mismatches": 0,
+            "output_hash": "2582929271375930863"
+          },
+          {
+            "group": "simulation/edge-edge",
+            "queries": 41372584,
+            "positives": 7325,
+            "fp": 17,
+            "fn": 0,
+            "ccd_seconds": 28.074053236328126,
+            "bitwise_mismatches": 0,
+            "output_hash": "1337375763354161953"
+          },
+          {
+            "group": "handcrafted/vertex-face",
+            "queries": 21208,
+            "positives": 544,
+            "fp": 90,
+            "fn": 0,
+            "ccd_seconds": 7.958501594238281,
+            "bitwise_mismatches": 0,
+            "output_hash": "15626249075451830123"
+          },
+          {
+            "group": "handcrafted/edge-edge",
+            "queries": 34129,
+            "positives": 402,
+            "fp": 203,
+            "fn": 0,
+            "ccd_seconds": 24.415199697753906,
+            "bitwise_mismatches": 0,
+            "output_hash": "15937733726205787145"
+          }
+        ]
+      },
+      {
+        "id": "phase80-c05-reference-3",
+        "ccd_seconds": 72.10786089672851,
+        "groups": [
+          {
+            "group": "simulation/vertex-face",
+            "queries": 17959962,
+            "positives": 18711,
+            "fp": 2,
+            "fn": 0,
+            "ccd_seconds": 11.862858395996094,
+            "bitwise_mismatches": 0,
+            "output_hash": "2582929271375930863"
+          },
+          {
+            "group": "simulation/edge-edge",
+            "queries": 41372584,
+            "positives": 7325,
+            "fp": 17,
+            "fn": 0,
+            "ccd_seconds": 27.783491283203126,
+            "bitwise_mismatches": 0,
+            "output_hash": "1337375763354161953"
+          },
+          {
+            "group": "handcrafted/vertex-face",
+            "queries": 21208,
+            "positives": 544,
+            "fp": 90,
+            "fn": 0,
+            "ccd_seconds": 7.989415706787109,
+            "bitwise_mismatches": 0,
+            "output_hash": "15626249075451830123"
+          },
+          {
+            "group": "handcrafted/edge-edge",
+            "queries": 34129,
+            "positives": 402,
+            "fp": 203,
+            "fn": 0,
+            "ccd_seconds": 24.472095510742186,
+            "bitwise_mismatches": 0,
+            "output_hash": "15937733726205787145"
+          }
+        ]
+      }
+    ],
+    "candidate": [
+      {
+        "id": "phase80-c05-candidate-1",
+        "ccd_seconds": 45.33701155004883,
+        "groups": [
+          {
+            "group": "simulation/vertex-face",
+            "queries": 17959962,
+            "positives": 18711,
+            "fp": 2,
+            "fn": 0,
+            "ccd_seconds": 6.085813971191406,
+            "bitwise_mismatches": 0,
+            "output_hash": "2582929271375930863"
+          },
+          {
+            "group": "simulation/edge-edge",
+            "queries": 41372584,
+            "positives": 7325,
+            "fp": 17,
+            "fn": 0,
+            "ccd_seconds": 14.72179247314453,
+            "bitwise_mismatches": 0,
+            "output_hash": "1337375763354161953"
+          },
+          {
+            "group": "handcrafted/vertex-face",
+            "queries": 21208,
+            "positives": 544,
+            "fp": 90,
+            "fn": 0,
+            "ccd_seconds": 6.003273212402344,
+            "bitwise_mismatches": 0,
+            "output_hash": "15626249075451830123"
+          },
+          {
+            "group": "handcrafted/edge-edge",
+            "queries": 34129,
+            "positives": 402,
+            "fp": 203,
+            "fn": 0,
+            "ccd_seconds": 18.52613189331055,
+            "bitwise_mismatches": 0,
+            "output_hash": "15937733726205787145"
+          }
+        ]
+      },
+      {
+        "id": "phase80-c05-candidate-2",
+        "ccd_seconds": 45.43401291308594,
+        "groups": [
+          {
+            "group": "simulation/vertex-face",
+            "queries": 17959962,
+            "positives": 18711,
+            "fp": 2,
+            "fn": 0,
+            "ccd_seconds": 6.106331037841797,
+            "bitwise_mismatches": 0,
+            "output_hash": "2582929271375930863"
+          },
+          {
+            "group": "simulation/edge-edge",
+            "queries": 41372584,
+            "positives": 7325,
+            "fp": 17,
+            "fn": 0,
+            "ccd_seconds": 14.755040987548828,
+            "bitwise_mismatches": 0,
+            "output_hash": "1337375763354161953"
+          },
+          {
+            "group": "handcrafted/vertex-face",
+            "queries": 21208,
+            "positives": 544,
+            "fp": 90,
+            "fn": 0,
+            "ccd_seconds": 6.012910703125,
+            "bitwise_mismatches": 0,
+            "output_hash": "15626249075451830123"
+          },
+          {
+            "group": "handcrafted/edge-edge",
+            "queries": 34129,
+            "positives": 402,
+            "fp": 203,
+            "fn": 0,
+            "ccd_seconds": 18.559730184570313,
+            "bitwise_mismatches": 0,
+            "output_hash": "15937733726205787145"
+          }
+        ]
+      },
+      {
+        "id": "phase80-c05-candidate-3",
+        "ccd_seconds": 45.378287772216794,
+        "groups": [
+          {
+            "group": "simulation/vertex-face",
+            "queries": 17959962,
+            "positives": 18711,
+            "fp": 2,
+            "fn": 0,
+            "ccd_seconds": 6.0980048659667965,
+            "bitwise_mismatches": 0,
+            "output_hash": "2582929271375930863"
+          },
+          {
+            "group": "simulation/edge-edge",
+            "queries": 41372584,
+            "positives": 7325,
+            "fp": 17,
+            "fn": 0,
+            "ccd_seconds": 14.695785904785156,
+            "bitwise_mismatches": 0,
+            "output_hash": "1337375763354161953"
+          },
+          {
+            "group": "handcrafted/vertex-face",
+            "queries": 21208,
+            "positives": 544,
+            "fp": 90,
+            "fn": 0,
+            "ccd_seconds": 6.0266512023925785,
+            "bitwise_mismatches": 0,
+            "output_hash": "15626249075451830123"
+          },
+          {
+            "group": "handcrafted/edge-edge",
+            "queries": 34129,
+            "positives": 402,
+            "fp": 203,
+            "fn": 0,
+            "ccd_seconds": 18.557845799072265,
+            "bitwise_mismatches": 0,
+            "output_hash": "15937733726205787145"
+          }
+        ]
+      }
+    ]
+  }
+}

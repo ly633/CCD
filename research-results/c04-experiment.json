@@ -1,0 +1,75 @@
+{
+  "id": "C04",
+  "parent": "C03",
+  "hypothesis": "Cache repeated u and v interpolation results within each time plane",
+  "revision": "45b9e2d0040083e69574ffdb4717a42e7c6d344d",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "retained as parent of next candidate; superseded by fully validated C07",
+  "build_log": "c04-build.log",
+  "focused_test": "c04-equivalence.log",
+  "build_exit_code": 0,
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c04-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Cache repeated u and v interpolation results within each time plane",
+    "--repeats",
+    "1"
+  ],
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 25.35277783691406,
+  "bitwise_mismatches": 0,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.5644760732421875,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699"
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.65421525390625,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770"
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 90,
+      "fn": 0,
+      "ccd_seconds": 5.868077593261718,
+      "bitwise_mismatches": 0,
+      "output_hash": "15626249075451830123"
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 203,
+      "fn": 0,
+      "ccd_seconds": 18.266008916503907,
+      "bitwise_mismatches": 0,
+      "output_hash": "15937733726205787145"
+    }
+  ],
+  "selection_reason": "Focused equivalence and fixed-subset correctness passed; exploratory timing supported keeping this component. Small single-run timing differences are not significance claims."
+}

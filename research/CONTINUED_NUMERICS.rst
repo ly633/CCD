@@ -107,6 +107,9 @@ by a small constant times 1e270, far below double overflow. No fast-math or
 FMA contraction is introduced. It is enabled only for double, BFS, ms=0,
 after the original initial-box test has accepted. Strict signs exclude zero;
 uncertain or zero-containing bounds fall through to the original algorithm.
-All surviving collision times are computed by the unchanged solver. Known
-interior/endpoint contacts across 1000 binary scales are tested separately,
-in addition to the full fixed-subset FN/FP and retained-output comparison.
+All surviving collision times would be computed by the unchanged solver.
+Tests for known interior/endpoint contacts across 1000 binary scales were
+added, alongside the existing corner-equivalence checks. These C08 tests
+and its fixed-subset evaluation have NOT executed: Windows rejected process
+creation with WinError 4551. The argument above is an implementation rationale,
+not a claim that C08 has passed empirical validation or is the delivered best.

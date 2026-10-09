@@ -1,0 +1,335 @@
+diff --git a/src/tight_inclusion/ccd.cpp b/src/tight_inclusion/ccd.cpp
+index a431d19..6d8ef20 100644
+--- a/src/tight_inclusion/ccd.cpp
++++ b/src/tight_inclusion/ccd.cpp
+@@ -8,6 +8,31 @@
+ 
+ namespace ticcd {
+ 
++    // A linearly moving simplex stays inside the coordinate-wise hull of
++    // its endpoint vertices. Strictly separated closed hulls cannot collide.
++    template <bool is_vertex_face>
++    bool swept_boxes_disjoint(
++        const Vector3& a0, const Vector3& b0, const Vector3& c0, const Vector3& d0,
++        const Vector3& a1, const Vector3& b1, const Vector3& c1, const Vector3& d1)
++    {
++        for (int axis=0;axis<3;++axis) {
++            Scalar lo_a, hi_a, lo_b, hi_b;
++            if constexpr (is_vertex_face) {
++                lo_a=std::min(a0[axis],a1[axis]);
++                hi_a=std::max(a0[axis],a1[axis]);
++                lo_b=std::min({b0[axis],c0[axis],d0[axis],b1[axis],c1[axis],d1[axis]});
++                hi_b=std::max({b0[axis],c0[axis],d0[axis],b1[axis],c1[axis],d1[axis]});
++            } else {
++                lo_a=std::min({a0[axis],b0[axis],a1[axis],b1[axis]});
++                hi_a=std::max({a0[axis],b0[axis],a1[axis],b1[axis]});
++                lo_b=std::min({c0[axis],d0[axis],c1[axis],d1[axis]});
++                hi_b=std::max({c0[axis],d0[axis],c1[axis],d1[axis]});
++            }
++            if (hi_a<lo_b || hi_b<lo_a) return true;
++        }
++        return false;
++    }
++
+ #ifdef TIGHT_INCLUSION_USE_MAX_ABS_TOL
+     static constexpr Scalar CCD_MAX_TIME_TOL = 1e-3;
+     static constexpr Scalar CCD_MAX_COORD_TOL = 1e-2;
+@@ -161,6 +186,15 @@ namespace ticcd {
+         const CCDRootFindingMethod ccd_method)
+     {
+         constexpr int MAX_NO_ZERO_TOI_ITER = std::numeric_limits<int>::max();
++        if (ccd_method == CCDRootFindingMethod::BREADTH_FIRST_SEARCH && ms_in == 0) {
++            assert(t_max_in >= 0 && t_max_in <= 1);
++            if (swept_boxes_disjoint<is_vertex_face>(
++                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1)) {
++                toi=std::numeric_limits<Scalar>::infinity();
++                output_tolerance=tolerance_in;
++                return false;
++            }
++        }
+         // unsigned so can be larger than MAX_NO_ZERO_TOI_ITER
+         unsigned int no_zero_toi_iter = 0;
+ 
+@@ -171,15 +205,6 @@ namespace ticcd {
+         Scalar tolerance = tolerance_in;
+         Scalar ms = ms_in;
+ 
+-        Array3 tol;
+-        if constexpr (is_vertex_face) {
+-            tol = compute_vertex_face_tolerances(
+-                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
+-        } else {
+-            tol = compute_edge_edge_tolerances(
+-                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
+-        }
+-
+         //////////////////////////////////////////////////////////
+         // this should be the error of the whole mesh
+         Array3 err;
+@@ -194,6 +219,27 @@ namespace ticcd {
+         }
+         //////////////////////////////////////////////////////////
+ 
++        if (ccd_method == CCDRootFindingMethod::BREADTH_FIRST_SEARCH) {
++            assert(t_max >= 0 && t_max <= 1);
++            // Exactly the original first BFS predicate on [0,1]^3.
++            // If it rejects, no subdivision/tolerance/queue work is needed.
++            if (!initial_root_box_overlaps<is_vertex_face>(
++                    a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, err, ms)) {
++                toi = std::numeric_limits<Scalar>::infinity();
++                output_tolerance = tolerance;
++                return false;
++            }
++        }
++
++        Array3 tol;
++        if constexpr (is_vertex_face) {
++            tol = compute_vertex_face_tolerances(
++                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
++        } else {
++            tol = compute_edge_edge_tolerances(
++                a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1, tolerance_in);
++        }
++
+         do {
+             switch (ccd_method) {
+             case CCDRootFindingMethod::DEPTH_FIRST_SEARCH:
+diff --git a/src/tight_inclusion/corner_evaluation.hpp b/src/tight_inclusion/corner_evaluation.hpp
+new file mode 100644
+index 0000000..f0df053
+--- /dev/null
++++ b/src/tight_inclusion/corner_evaluation.hpp
+@@ -0,0 +1,57 @@
++#pragma once
++
++#include <tight_inclusion/types.hpp>
++#include <array>
++
++namespace ticcd::detail {
++    // Internal specialization for the exact layout from convert_tuv_to_array:
++    // t = 00001111, u = 00110011, v = 01010101.
++    // Cache repeated temporal interpolation WITHOUT changing any individual
++    // subtract/multiply/divide/add operation or its rounding order. The public
++    // function_ee/function_vf accepting arbitrary arrays remain unchanged.
++    template <bool is_vertex_face>
++    std::array<Scalar, 8> evaluate_corners_tuv(
++        const Scalar a0, const Scalar b0, const Scalar c0, const Scalar d0,
++        const Scalar a1, const Scalar b1, const Scalar c1, const Scalar d1,
++        const std::array<Scalar, 8>& t_up,
++        const std::array<Scalar, 8>& t_dw,
++        const std::array<Scalar, 8>& u_up,
++        const std::array<Scalar, 8>& u_dw,
++        const std::array<Scalar, 8>& v_up,
++        const std::array<Scalar, 8>& v_dw)
++    {
++        std::array<Scalar, 8> result;
++        // Denominators produced by NumCCD are exact powers of two. Their
++        // reciprocals are exact normal doubles, so correctly-rounded x/d
++        // and x*(1/d) have identical results, including gradual underflow.
++        const Scalar ui[2] = {Scalar(1) / u_dw[0], Scalar(1) / u_dw[2]};
++        const Scalar vi[2] = {Scalar(1) / v_dw[0], Scalar(1) / v_dw[1]};
++        for (int k = 0; k < 8; k += 4) {
++            const Scalar ti = Scalar(1) / t_dw[k];
++            const Scalar a = (a1 - a0) * t_up[k] * ti + a0;
++            const Scalar b = (b1 - b0) * t_up[k] * ti + b0;
++            const Scalar c = (c1 - c0) * t_up[k] * ti + c0;
++            const Scalar d = (d1 - d0) * t_up[k] * ti + d0;
++            if constexpr (is_vertex_face) {
++                const Scalar x0 = (c - b) * u_up[k] * ui[0];
++                const Scalar x1 = (c - b) * u_up[k + 2] * ui[1];
++                const Scalar y0 = (d - b) * v_up[k] * vi[0];
++                const Scalar y1 = (d - b) * v_up[k + 1] * vi[1];
++                result[k] = a - (x0 + y0 + b);
++                result[k + 1] = a - (x0 + y1 + b);
++                result[k + 2] = a - (x1 + y0 + b);
++                result[k + 3] = a - (x1 + y1 + b);
++            } else {
++                const Scalar x0 = (b - a) * u_up[k] * ui[0] + a;
++                const Scalar x1 = (b - a) * u_up[k + 2] * ui[1] + a;
++                const Scalar y0 = (d - c) * v_up[k] * vi[0] + c;
++                const Scalar y1 = (d - c) * v_up[k + 1] * vi[1] + c;
++                result[k] = x0 - y0;
++                result[k + 1] = x0 - y1;
++                result[k + 2] = x1 - y0;
++                result[k + 3] = x1 - y1;
++            }
++        }
++        return result;
++    }
++} // namespace ticcd::detail
+diff --git a/src/tight_inclusion/interval.cpp b/src/tight_inclusion/interval.cpp
+index 61d2418..7d5a640 100644
+--- a/src/tight_inclusion/interval.cpp
++++ b/src/tight_inclusion/interval.cpp
+@@ -7,15 +7,6 @@ namespace ticcd {
+ 
+     static constexpr uint8_t MAX_DENOM_POWER = 8 * sizeof(uint64_t) - 1;
+ 
+-    // calculate a*(2^b)
+-    uint64_t power(const uint64_t a, const uint8_t b)
+-    {
+-        // The fast bit shifting power trick only works if b is not too larger.
+-        assert(b < MAX_DENOM_POWER);
+-        // WARNING: Technically this can still fail with `b < MAX_DENOM_POWER` if `a > 1`.
+-        return a << b;
+-    }
+-
+     // return power t. n=result*2^t
+     uint8_t reduction(const uint64_t n, uint64_t &result)
+     {
+@@ -83,21 +74,6 @@ namespace ticcd {
+         return result;
+     }
+ 
+-    bool NumCCD::operator<(const NumCCD &other) const
+-    {
+-        const uint64_t &k1 = numerator, &k2 = other.numerator;
+-        const uint8_t &n1 = denom_power, &n2 = other.denom_power;
+-
+-        uint64_t tmp_k1 = k1, tmp_k2 = k2;
+-        if (n1 < n2) {
+-            tmp_k1 = pow2(n2 - n1) * k1;
+-        } else if (n1 > n2) {
+-            tmp_k2 = pow2(n1 - n2) * k2;
+-        }
+-        assert((value() < other.value()) == (tmp_k1 < tmp_k2));
+-        return tmp_k1 < tmp_k2;
+-    }
+-
+     bool NumCCD::is_sum_leq_1(const NumCCD &num1, const NumCCD &num2)
+     {
+         if (num1.denom_power == num2.denom_power) {
+diff --git a/src/tight_inclusion/interval.hpp b/src/tight_inclusion/interval.hpp
+index 145ac3e..00f709a 100755
+--- a/src/tight_inclusion/interval.hpp
++++ b/src/tight_inclusion/interval.hpp
+@@ -2,6 +2,7 @@
+ #pragma once
+ 
+ #include <array>
++#include <cassert>
+ 
+ #include <Eigen/Core>
+ 
+@@ -11,7 +12,11 @@
+ namespace ticcd {
+ 
+     // calculate a*(2^b)
+-    uint64_t power(const uint64_t a, const uint8_t b);
++    inline uint64_t power(const uint64_t a, const uint8_t b)
++    {
++        assert(b < 8 * sizeof(uint64_t) - 1);
++        return a << b;
++    }
+ 
+     // calculate 2^exponent
+     inline uint64_t pow2(const uint8_t exponent) { return power(1l, exponent); }
+@@ -50,7 +55,17 @@ namespace ticcd {
+                    && denom_power == other.denom_power;
+         }
+         bool operator!=(const NumCCD &other) const { return !(*this == other); }
+-        bool operator<(const NumCCD &other) const;
++        bool operator<(const NumCCD &other) const
++        {
++            uint64_t k1 = numerator, k2 = other.numerator;
++            if (denom_power < other.denom_power) {
++                k1 = pow2(other.denom_power - denom_power) * k1;
++            } else if (denom_power > other.denom_power) {
++                k2 = pow2(denom_power - other.denom_power) * k2;
++            }
++            assert((value() < other.value()) == (k1 < k2));
++            return k1 < k2;
++        }
+         bool operator<=(const NumCCD &other) const
+         {
+             return (*this == other) || (*this < other);
+diff --git a/src/tight_inclusion/interval_root_finder.cpp b/src/tight_inclusion/interval_root_finder.cpp
+index 98501a2..c82a607 100644
+--- a/src/tight_inclusion/interval_root_finder.cpp
++++ b/src/tight_inclusion/interval_root_finder.cpp
+@@ -2,7 +2,8 @@
+ #include "interval_root_finder.hpp"
+ 
+ #include <tight_inclusion/timer.hpp>
+-#include <tight_inclusion/avx.hpp>
++#include <tight_inclusion/avx.hpp>
++#include <tight_inclusion/corner_evaluation.hpp>
+ #include <tight_inclusion/logger.hpp>
+ 
+ #include <queue>
+@@ -59,12 +60,12 @@ namespace ticcd {
+ 
+         std::array<Scalar, 8> vs;
+         if constexpr (is_vertex_face) {
+-            vs = function_vf(
++            vs = detail::evaluate_corners_tuv<true>(
+                 a_t0[dim], b_t0[dim], c_t0[dim], d_t0[dim], a_t1[dim],
+                 b_t1[dim], c_t1[dim], d_t1[dim], t_up, t_dw, u_up, u_dw, v_up,
+                 v_dw);
+         } else {
+-            vs = function_ee(
++            vs = detail::evaluate_corners_tuv<false>(
+                 a_t0[dim], b_t0[dim], c_t0[dim], d_t0[dim], a_t1[dim],
+                 b_t1[dim], c_t1[dim], d_t1[dim], t_up, t_dw, u_up, u_dw, v_up,
+                 v_dw);
+@@ -138,7 +139,38 @@ namespace ticcd {
+         return true;
+     }
+ 
+-    // find the largest width/tol dimension that is greater than its tolerance
++    template <bool is_vertex_face>
++    bool initial_root_box_overlaps(
++        const Vector3 &a_t0, const Vector3 &b_t0,
++        const Vector3 &c_t0, const Vector3 &d_t0,
++        const Vector3 &a_t1, const Vector3 &b_t1,
++        const Vector3 &c_t1, const Vector3 &d_t1,
++        const Array3 &err, const Scalar ms)
++    {
++        // Exact arrays returned by convert_tuv_to_array for [0,1]^3.
++        std::array<Scalar, 8> t = {{0,0,0,0,1,1,1,1}};
++        std::array<Scalar, 8> u = {{0,0,1,1,0,0,1,1}};
++        std::array<Scalar, 8> v = {{0,1,0,1,0,1,0,1}};
++        std::array<Scalar, 8> den = {{1,1,1,1,1,1,1,1}};
++        bool box_in;
++        for (int dim=0;dim<3;++dim) {
++            if (!evaluate_bbox_one_dimension_vector<is_vertex_face>(
++                    t,den,u,den,v,den,a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1,
++                    dim,err[dim],box_in,ms)) return false;
++        }
++        return true;
++    }
++
++    template bool initial_root_box_overlaps<false>(
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Array3&, Scalar);
++    template bool initial_root_box_overlaps<true>(
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Vector3&, const Vector3&, const Vector3&, const Vector3&,
++        const Array3&, Scalar);
++
++    // find the largest width/tol dimension that is greater than its tolerance
+     int find_next_split(const Array3 &widths, const Array3 &tols)
+     {
+         // assert((widths > tols).any());
+diff --git a/src/tight_inclusion/interval_root_finder.hpp b/src/tight_inclusion/interval_root_finder.hpp
+index 8e39552..335f40e 100755
+--- a/src/tight_inclusion/interval_root_finder.hpp
++++ b/src/tight_inclusion/interval_root_finder.hpp
+@@ -8,6 +8,16 @@
+ #include <vector>
+ 
+ namespace ticcd {
++    // Evaluate the same conservative initial [0,1]^3 box as BFS, before
++    // allocating the search queue or computing subdivision tolerances.
++    template <bool is_vertex_face>
++    bool initial_root_box_overlaps(
++        const Vector3 &a_t0, const Vector3 &b_t0,
++        const Vector3 &c_t0, const Vector3 &d_t0,
++        const Vector3 &a_t1, const Vector3 &b_t1,
++        const Vector3 &c_t1, const Vector3 &d_t1,
++        const Array3 &err, Scalar ms);
++
+     // this version cannot give the impact time at t=1, although this collision can
+     // be detected at t=0 of the next time step, but still may cause problems in
+     // line-search based physical simulation

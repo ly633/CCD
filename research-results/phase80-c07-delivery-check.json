@@ -1,0 +1,10 @@
+{
+  "executable_sha256": {
+    "reference": "dfa57741e962310f2be44ebb4fcf170ddc1c0303b770eb6719c846f6dbecfe64",
+    "candidate": "372609ea15766ef34956ba096b699f99d9e36814946d88c4296629cc89b97734"
+  },
+  "baseline_status": "",
+  "best_source_revision": "0752bc0127b3c2d6e0ed9aa598f01f2102f88a1b",
+  "core_zip_sha256": "e86089d4b73b796d377aaef43c3b3f390308e9b4fbc791bfb376ca0e80e2181c",
+  "c08_not_evaluated": true
+}

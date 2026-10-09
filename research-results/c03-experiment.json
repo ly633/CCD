@@ -1,0 +1,75 @@
+{
+  "id": "C03",
+  "parent": "C02",
+  "hypothesis": "Replace division by dyadic denominators with exact reciprocal multiplication; retain intermediate rounding",
+  "revision": "a01babc77fbc19fc38c87959c4e2f44c88ec7b2d",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "retained as parent of next candidate; superseded by fully validated C07",
+  "build_log": "c03-build.log",
+  "focused_test": "c03-equivalence.log",
+  "build_exit_code": 0,
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c03-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Replace division by dyadic denominators with exact reciprocal multiplication; retain intermediate rounding",
+    "--repeats",
+    "1"
+  ],
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 25.792707561279297,
+  "bitwise_mismatches": 0,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.5807181948242187,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699"
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.6684162531738281,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770"
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 90,
+      "fn": 0,
+      "ccd_seconds": 6.004479611328125,
+      "bitwise_mismatches": 0,
+      "output_hash": "15626249075451830123"
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 203,
+      "fn": 0,
+      "ccd_seconds": 18.539093501953126,
+      "bitwise_mismatches": 0,
+      "output_hash": "15937733726205787145"
+    }
+  ],
+  "selection_reason": "Focused equivalence and fixed-subset correctness passed; exploratory timing supported keeping this component. Small single-run timing differences are not significance claims."
+}

@@ -1,0 +1,36 @@
+{
+  "id": "C08",
+  "parent": "C07",
+  "hypothesis": "Certify a constant nonzero coplanarity determinant sign using rigorous interval Bernstein coefficients",
+  "revision": "285bd4095dcdd1b0b5b0b21c292758320b62b280",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "focused test process creation blocked",
+  "build_log": "c08-build.log",
+  "focused_test": "c08-equivalence.log",
+  "build_exit_code": 0,
+  "effective_experiment": false,
+  "valid": false,
+  "focused_attempts": [
+    {
+      "log": "c08-equivalence.log",
+      "winerror": 4551,
+      "started": false
+    },
+    {
+      "log": "c08-equivalence-attempt-2.log",
+      "winerror": 4551,
+      "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
+      "started": false
+    },
+    {
+      "log": "c08-equivalence-attempt-3.log",
+      "winerror": 4551,
+      "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
+      "started": false
+    }
+  ],
+  "built_hashes": {
+    "research_candidate": "c4bbac47f4666c4623d0159d6fb4fbb8a7b199c126c8c11b69f2a0c6af86f02d",
+    "research_equivalence": "1ec40d0e112578db94d923cb70ed43fc3befe6713e7549927493e2c758ecd20e"
+  }
+}

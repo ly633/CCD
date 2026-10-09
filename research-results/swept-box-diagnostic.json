@@ -1,0 +1,38 @@
+{
+  "candidate_experiment": false,
+  "timing_claim": false,
+  "groups": [
+    {
+      "group": 0,
+      "queries": 159370,
+      "separated": 120330,
+      "ground_truth_positives_rejected": 0,
+      "original_false_positives_rejected": 0,
+      "original_positives_rejected": 0
+    },
+    {
+      "group": 1,
+      "queries": 331630,
+      "separated": 218617,
+      "ground_truth_positives_rejected": 0,
+      "original_false_positives_rejected": 0,
+      "original_positives_rejected": 0
+    },
+    {
+      "group": 2,
+      "queries": 21208,
+      "separated": 15637,
+      "ground_truth_positives_rejected": 0,
+      "original_false_positives_rejected": 23,
+      "original_positives_rejected": 23
+    },
+    {
+      "group": 3,
+      "queries": 34129,
+      "separated": 15669,
+      "ground_truth_positives_rejected": 0,
+      "original_false_positives_rejected": 42,
+      "original_positives_rejected": 42
+    }
+  ]
+}

@@ -12,6 +12,14 @@ research/NUMERICS.rst，全部新实验记录见 research-results/。
 72.602181521 秒降低至 52.472144881 秒，降低 27.72649%；完整报告与
 复现命令见 research/RESULTS.rst。共评测两个候选，所有正确性约束通过。
 
+80% 阶段最新结果：已完成七个有效候选，最佳 C07（0752bc0）在
+三组交替全量对照中从 72.726807293 秒降至 42.484861801 秒，
+耗时降低 41.58294%，四组漏检为 0，误报为 2/17/67/161。
+完整报告与复现命令见 research/RESULTS80.rst；C08 尚未运行，
+其定向测试进程被 Windows Smart App Control 拒绝（WinError 4551）。
+当前源码是待评测 C08；最佳已验证 C07 的源码与补丁单独保留在
+research-results/best-c07-source.zip 和 best-c07-core.patch。
+
 准备状态
 --------
 

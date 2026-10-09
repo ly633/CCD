@@ -37,9 +37,13 @@ Experiment controls
   CSV/cache I/O, correctness checks, hashes and output writing are outside
   timing. Wall time is recorded separately and is not an optimization result.
 * Every answer stores bool, TOI, and output_tolerance, including infinity
-  for no-hit. Candidates must currently match reference answers bit for bit;
-  this is stronger than Boolean regression but does not prove correctness.
-  Each numerical change also needs an analytical conservativeness argument.
+  for no-hit. By default candidates must match reference answers bit for bit.
+  Starting with C07, an explicit --allow-fp-removal gate permits ONLY an old
+  ground-truth-negative hit to become no-hit with infinity and input tolerance.
+  Every other mismatch is rejected, including changed TOI of retained hits.
+  A new geometric filter also requires an analytical conservativeness proof;
+  the dataset's zero-FN result alone is insufficient. This exception implements
+  the user's permission to reduce FP, without relaxing retained TOI accuracy.
 
 Screening and final comparison
 ------------------------------
