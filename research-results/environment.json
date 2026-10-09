@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-09T21:50:36.653132+08:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.9",
+  "upstream": "7377d78162f9fdb5fe44b54b6f9c01bc6ce0885a",
+  "start_revision": "5b7763c41c136c31285567cf067683b5cccc5897",
+  "baseline_status": "",
+  "baseline_core_diff": "",
+  "parameters": {
+    "precision": "double",
+    "tolerance": 1e-06,
+    "max_iterations": 1000000,
+    "minimum_separation": 0,
+    "t_max": 1,
+    "no_zero_toi": false,
+    "numerical_error": [
+      -1,
+      -1,
+      -1
+    ],
+    "method": "BREADTH_FIRST_SEARCH"
+  },
+  "cpu": 0,
+  "threads": 1
+}

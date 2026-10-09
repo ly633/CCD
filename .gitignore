@@ -249,3 +249,12 @@ app/config.hpp
 !baseline-results/full-2020-*/pipeline-*.log
 !baseline-results/full-2020-*/download.log
 !baseline-results/autoresearch-worktree-setup/*.log
+
+# Audited research: retain logs/JSON/patches, regenerate caches and binaries.
+research/reference/
+research-results/cache/full/
+research-results/cache/subset/
+!research-results/**/*.log
+research-results/runs/**/src/
+research-results/runs/**/runner.cpp
+research-results/**/*.bin

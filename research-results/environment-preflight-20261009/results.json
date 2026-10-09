@@ -1,0 +1,169 @@
+{
+  "created_utc": "2026-10-09T13:46:30.381569+00:00",
+  "upstream_tag": "v1.0.6",
+  "upstream_commit": "7377d78162f9fdb5fe44b54b6f9c01bc6ce0885a",
+  "checkout_commit": "5b7763c41c136c31285567cf067683b5cccc5897",
+  "branch": "research/ccd-autoresearch",
+  "core_source_diff": "",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.9",
+  "dataset": "sample",
+  "data_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion\\external\\baseline\\Sample-Queries-4d6cce3",
+  "dataset_manifest_sha256": "bba485847ae92299d24332ea73ba974365bd42b1889e9f017a1a73c43850f8f7",
+  "dataset_integrity_check": "SHA-256 and query counts at run start",
+  "logical_cpu_affinity": 0,
+  "benchmark_threads": 1,
+  "executable": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\build-autoresearch-sample\\app\\Release\\Tight_Inclusion_bin.exe",
+  "executable_sha256": "c0c5b2477fb22e810710f82213e2462c3c7687931ee83375cb5a93c556bf3ea7",
+  "gmp_runtime_sha256": "8fe88335fa3dab1b6b969a721c04dc1a8ab6130869cd82650620905fb5ce7fb6",
+  "build_settings": [
+    "CCD_IO_SAMPLE_QUERIES_DIR:PATH=D:/ly/DGP-Autoreasearch/Tight-Inclusion/external/baseline/Sample-Queries-4d6cce3",
+    "CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc /utf-8",
+    "CMAKE_CXX_FLAGS_DEBUG:STRING=/Zi /Ob0 /Od /RTC1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=/O1 /Ob1 /DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELEASE:STRING=/O2 /Ob2 /DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=/Zi /O2 /Ob1 /DNDEBUG",
+    "Eigen3_DIR:UNINITIALIZED=C:/Users/ustc/anaconda3/envs/gdl_3dgs/Library/share/eigen3/cmake",
+    "GMP_INCLUDES:PATH=C:/Users/ustc/anaconda3/Library/include",
+    "GMP_LIBRARIES:FILEPATH=C:/Users/ustc/anaconda3/Library/lib/gmp.lib",
+    "GMP_RUNTIME_LIB:FILEPATH=C:/Users/ustc/anaconda3/Library/bin/gmp.dll",
+    "TIGHT_INCLUSION_FLOAT_WITH_DOUBLE_INPUT:BOOL=OFF",
+    "TIGHT_INCLUSION_LIMIT_QUEUE_SIZE:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_CCACHE:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_DOUBLE_PRECISION:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_RATIONAL:BOOL=OFF",
+    "TIGHT_INCLUSION_WITH_SAMPLE_QUERIES:BOOL=ON",
+    "TIGHT_INCLUSION_WITH_TIMER:BOOL=OFF",
+    "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1",
+    "CMAKE_GENERATOR:INTERNAL=Visual Studio 17 2022",
+    "CMAKE_GENERATOR_PLATFORM:INTERNAL=x64",
+    "GMP_INCLUDES-ADVANCED:INTERNAL=1",
+    "GMP_LIBRARIES-ADVANCED:INTERNAL=1"
+  ],
+  "dependencies": {
+    "spdlog": "ad0e89cbfb4d0c1ce4d097e134eb7be67baebb36",
+    "CCD-Query-IO": "efca80cda21d95d74a1477ed22d42db8aabb5835",
+    "pbar": "226b9ad291d72c6859456d5188f33c932e2e730b",
+    "CLI11": "291c58789c031208f08f4f261a858b5b7083e8e2",
+    "Sample-Queries": "4d6cce33477d8d5c666c31c8ea23e1aea97be371"
+  },
+  "parameters": {
+    "precision": "double",
+    "method": "BREADTH_FIRST_SEARCH",
+    "tolerance": 1e-06,
+    "minimum_separation": 0.0,
+    "max_iterations": 1000000,
+    "t_max": 1.0,
+    "numerical_error": [
+      -1,
+      -1,
+      -1
+    ],
+    "no_zero_toi": false
+  },
+  "timing_scope": "Upstream per-query timers; excludes file loading; wall time recorded separately",
+  "warmups": [],
+  "runs": [
+    {
+      "log": "run-1.log",
+      "wall_seconds": 24.222706200089306,
+      "groups": [
+        {
+          "group": "simulation/vertex-face",
+          "queries": 100000,
+          "ground_truth_positives": 169,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0767625,
+          "average_microseconds": 0.767625
+        },
+        {
+          "group": "simulation/edge-edge",
+          "queries": 100000,
+          "ground_truth_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "ccd_seconds": 0.0805781,
+          "average_microseconds": 0.805781
+        },
+        {
+          "group": "handcrafted/vertex-face",
+          "queries": 3085,
+          "ground_truth_positives": 248,
+          "false_positives": 85,
+          "false_negatives": 0,
+          "ccd_seconds": 4.60799,
+          "average_microseconds": 1493.68
+        },
+        {
+          "group": "handcrafted/edge-edge",
+          "queries": 4194,
+          "ground_truth_positives": 187,
+          "false_positives": 137,
+          "false_negatives": 0,
+          "ccd_seconds": 15.6401,
+          "average_microseconds": 3729.16
+        }
+      ],
+      "ccd_seconds": 20.4054306
+    }
+  ],
+  "limitations": [
+    "Official sample subset, not the full 60-million-query dataset",
+    "Boolean ground truth only; no exact TOI error measurement",
+    "Passing this dataset is not a proof of conservativeness"
+  ],
+  "summary": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 100000,
+      "ground_truth_positives": 169,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "median_ccd_seconds": 0.0767625,
+      "min_ccd_seconds": 0.0767625,
+      "max_ccd_seconds": 0.0767625,
+      "median_microseconds_per_query": 0.767625
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 100000,
+      "ground_truth_positives": 3,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "median_ccd_seconds": 0.0805781,
+      "min_ccd_seconds": 0.0805781,
+      "max_ccd_seconds": 0.0805781,
+      "median_microseconds_per_query": 0.8057810000000001
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 3085,
+      "ground_truth_positives": 248,
+      "false_positives": 85,
+      "false_negatives": 0,
+      "median_ccd_seconds": 4.60799,
+      "min_ccd_seconds": 4.60799,
+      "max_ccd_seconds": 4.60799,
+      "median_microseconds_per_query": 1493.67585089141
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 4194,
+      "ground_truth_positives": 187,
+      "false_positives": 137,
+      "false_negatives": 0,
+      "median_ccd_seconds": 15.6401,
+      "min_ccd_seconds": 15.6401,
+      "max_ccd_seconds": 15.6401,
+      "median_microseconds_per_query": 3729.1607057701476
+    }
+  ],
+  "total_queries_per_run": 207279,
+  "median_total_ccd_seconds": 20.4054306,
+  "correctness_passed": true
+}

@@ -1,0 +1,27 @@
+# Reference files are extracted verbatim from v1.0.6 by research.py init.
+set(REF "${CMAKE_CURRENT_SOURCE_DIR}/reference/src")
+configure_file("${REF}/tight_inclusion/config.hpp.in" "${REF}/tight_inclusion/config.hpp")
+foreach(kind IN ITEMS reference profile)
+    add_library(ccd_${kind} STATIC
+        ${REF}/tight_inclusion/avx.cpp ${REF}/tight_inclusion/ccd.cpp
+        ${REF}/tight_inclusion/interval.cpp ${REF}/tight_inclusion/interval_root_finder.cpp
+        ${REF}/tight_inclusion/logger.cpp)
+    target_include_directories(ccd_${kind} PUBLIC ${REF})
+    target_link_libraries(ccd_${kind} PUBLIC Eigen3::Eigen spdlog::spdlog PRIVATE tight_inclusion::warnings)
+    target_compile_definitions(ccd_${kind} PUBLIC NOMINMAX)
+    target_compile_options(ccd_${kind} PRIVATE ${SIMD_FLAGS})
+    target_compile_features(ccd_${kind} PUBLIC cxx_std_17)
+endforeach()
+target_compile_definitions(ccd_profile PRIVATE TIGHT_INCLUSION_WITH_TIMER)
+foreach(kind IN ITEMS reference profile candidate)
+    add_executable(research_${kind} runner.cpp)
+    if(kind STREQUAL "candidate")
+        target_link_libraries(research_${kind} PRIVATE tight_inclusion ccd_io::ccd_io)
+    else()
+        target_link_libraries(research_${kind} PRIVATE ccd_${kind} ccd_io::ccd_io)
+    endif()
+    if(kind STREQUAL "profile")
+        target_compile_definitions(research_${kind} PRIVATE RESEARCH_PROFILE)
+    endif()
+    add_custom_command(TARGET research_${kind} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${GMP_RUNTIME_LIB}" "$<TARGET_FILE_DIR:research_${kind}>/gmp.dll")
+endforeach()

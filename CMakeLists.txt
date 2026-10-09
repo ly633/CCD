@@ -159,3 +159,8 @@ target_compile_features(tight_inclusion PUBLIC cxx_std_17)
 if(TIGHT_INCLUSION_TOPLEVEL_PROJECT)
     add_subdirectory(app)
 endif()
+
+option(TIGHT_INCLUSION_RESEARCH "Build audited research tools" OFF)
+if(TIGHT_INCLUSION_RESEARCH)
+    add_subdirectory(research)
+endif()
