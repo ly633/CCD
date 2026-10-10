@@ -1,0 +1,92 @@
+{
+  "id": "C12",
+  "parent": "C11",
+  "hypothesis": "Execute identical per-corner arithmetic in four AVX2 lanes without FMA or reassociation",
+  "revision": "16c29c1561d5eeb9063273e4553e24d7d2271b86",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "rejected for subset regression",
+  "build_log": "c12-build.log",
+  "focused_test": "c12-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "074aafa68129e5790f46e8794ae3abdd8d2dcfcf09d7e6ce686b81c8d6743734",
+    "research_equivalence": "6e87ccf433ffda38fdcc7b3c29642648a43a5a865df10504b142f03a0abf1af1"
+  },
+  "focused_attempts": [
+    {
+      "log": "c12-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c12-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Execute identical per-corner arithmetic in four AVX2 lanes without FMA or reassociation",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c12-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 19.638912622314454,
+  "bitwise_mismatches": 87,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.5779869755859375,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.6663843466796875,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 62,
+      "fn": 0,
+      "ccd_seconds": 5.217053208496094,
+      "bitwise_mismatches": 28,
+      "output_hash": "15055501444637901349",
+      "removed_false_positives": 28
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 144,
+      "fn": 0,
+      "ccd_seconds": 13.177488091552734,
+      "bitwise_mismatches": 59,
+      "output_hash": "14508957986133318465",
+      "removed_false_positives": 59
+    }
+  ],
+  "failure_reason": "All four screening groups were slower than C11; revert explicit AVX2 and continue from C11. Single-run screening only."
+}

@@ -168,3 +168,16 @@ rounding. The scalar path remains for other builds. Thus the original
 per-corner error bound applies unchanged under the fixed IEEE environment.
 The 3.2 million bitwise corner comparisons explicitly exercise this path,
 in addition to the fixed dataset and retained-TOI gate.
+
+C13: compact exact dyadic storage from C11
+-----------------------------------------
+
+Revert C12's explicit SIMD after its slower screening result. Pack NumCCD
+with one-byte member alignment, retaining the full uint64 numerator and
+uint8 denominator exponent. No bit is discarded and every operation is
+unchanged. NumCCD shrinks from 16 to 9 bytes, Interval3 from 96 to 54 bytes,
+and the BFS node from 104 to 60 bytes on the target compiler. Only memory
+layout/copy cost changes; there is no numerical approximation. This changes
+the public struct ABI and requires recompiling consumers, as done for all
+research executables. Unaligned integer loads are supported by the target
+x64 machine; performance is measured instead of assumed.

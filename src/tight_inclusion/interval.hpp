@@ -25,6 +25,7 @@ namespace ticcd {
     uint8_t reduction(const uint64_t n, uint64_t &result);
 
     //<k,n> pair present a number k/pow(2,n)
+    #pragma pack(push, 1)
     struct NumCCD {
         uint64_t numerator;
         uint8_t denom_power;
@@ -79,6 +80,9 @@ namespace ticcd {
 
         static bool is_sum_leq_1(const NumCCD &num1, const NumCCD &num2);
     };
+
+    #pragma pack(pop)
+    static_assert(sizeof(NumCCD) == 9, "compact exact dyadic storage");
 
     // an interval represented by two double numbers
     struct Interval {
