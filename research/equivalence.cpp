@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cmath>
 using namespace ticcd;
+namespace ticcd { int find_next_split(const Array3&,const Array3&); }
 int main() {
     const Vector3 b(0,0,0),c(1,0,0),d(0,1,0);
     for(int k=0;k<1000;++k) {
@@ -18,22 +19,14 @@ int main() {
            detail::bernstein_separated(a0,b,c,d,touch,b,c,d)) {
             std::cerr<<"Bernstein rejected a known contact, exponent "<<k<<"\n";return 1;
         }
-        if(detail::swept_hulls_separated<true>(a0,b,c,d,a1,b,c,d,true) ||
-           detail::swept_hulls_separated<true>(touch,b,c,d,a0,b,c,d,true) ||
-           detail::swept_hulls_separated<true>(a0,b,c,d,a1,b,c,d) ||
+        if(detail::swept_hulls_separated<true>(a0,b,c,d,a1,b,c,d) ||
            detail::swept_hulls_separated<true>(touch,b,c,d,a0,b,c,d) ||
-           detail::swept_hulls_separated<false>(b,c,Vector3(.5,-h,0),Vector3(.5,h,0),
-                                                        b,c,Vector3(.5,-h,0),Vector3(.5,h,0),true) ||
            detail::swept_hulls_separated<false>(b,c,Vector3(.5,-h,0),Vector3(.5,h,0),
                                                         b,c,Vector3(.5,-h,0),Vector3(.5,h,0))) {
             std::cerr<<"Projection rejected a known contact, exponent "<<k<<"\n";return 1;
         }
     }
     const Vector3 separated(.25,.25,.5);
-    const Vector3 moving0(1.5,.25,0), shift(2,0,0),moving1=moving0+shift;
-    if(!detail::swept_hulls_separated<true>(moving0,b,c,d,moving1,b+shift,c+shift,d+shift,true)) {
-        std::cerr<<"Time-partition failed separated translating certificate\n";return 1;
-    }
     const Vector3 outside(.75,.75,0);
     if(!detail::swept_hulls_separated<true>(outside,b,c,d,outside,b,c,d)) {
         std::cerr<<"Projection failed coplanar separated certificate\n";return 1;
@@ -42,6 +35,16 @@ int main() {
         std::cerr<<"Bernstein failed simple separated certificate\n";return 1;
     }
     std::mt19937_64 rng(0xCCD20261009ULL);
+    for(int n=0;n<100000;++n) {
+        Array3 widths,tols;
+        for(int i=0;i<3;++i) {
+            widths[i]=std::ldexp(1.,-int(rng()%63));
+            tols[i]=n%11==0 ? 0. : (n%13==0 ? std::numeric_limits<double>::infinity() : std::ldexp(1.,-int(rng()%63)));
+        }
+        const Array3 ratios=(widths>tols).select(widths/tols,-std::numeric_limits<double>::infinity());
+        int expected;ratios.maxCoeff(&expected);
+        if(find_next_split(widths,tols)!=expected) {std::cerr<<"Split dimension mismatch\n";return 1;}
+    }
     uint64_t checks=0;
     for(int n=0;n<200000;++n) {
         Interval3 itv;

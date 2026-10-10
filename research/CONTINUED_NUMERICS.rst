@@ -242,3 +242,16 @@ The benchmark now explicitly records MXCSR and rejects FTZ, DAZ or non-nearest
 rounding before timing, documenting the IEEE environment required by all
 outward interval and arithmetic-equivalence arguments. This harness change
 applies equally to reference and candidate in subsequent paired runs.
+
+C18: evaluate only eligible split ratios, preserving first-maximum ties
+----------------------------------------------------------------------
+
+Return to C16 geometry after rejecting C17's additional interval cost; keep
+the benchmark IEEE-state validation. Replace the three-wide Eigen select and
+maximum with an ordered loop. For eligible dimensions (width>tolerance), the
+same double division computes the ratio. Ineligible entries are exactly the
+old negative infinity and cannot win over an eligible positive ratio. Strict
+greater-than updates preserve the first maximum index, including positive
+infinity ties; all-ineligible returns index zero as before. Zero tolerances
+and infinite tolerances are included in the focused comparison against the
+original Eigen expression. No division is approximated and no bound changes.

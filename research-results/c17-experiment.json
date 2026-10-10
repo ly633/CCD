@@ -1,0 +1,92 @@
+{
+  "id": "C17",
+  "parent": "C16",
+  "hypothesis": "Reject only when eight closed time intervals each have a certified separating projection, triggered on hard queries",
+  "revision": "1146695faa13603c8a266ce3f035212ed89d3e5b",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "rejected for subset regression",
+  "build_log": "c17-build.log",
+  "focused_test": "c17-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "c1dc47d1ec6aa0536c6bd8ed677a98e24ebde21d6fb90ce6ab9068588b09cad1",
+    "research_equivalence": "c9198ab73c6c2120005562847cf8cd27d225b4962099b4ca93e471361a5c95a6"
+  },
+  "focused_attempts": [
+    {
+      "log": "c17-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c17-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Reject only when eight closed time intervals each have a certified separating projection, triggered on hard queries",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c17-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 19.578737665771484,
+  "bitwise_mismatches": 121,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.9927669057617188,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 1.2184350446777343,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 53,
+      "fn": 0,
+      "ccd_seconds": 4.913598311523438,
+      "bitwise_mismatches": 37,
+      "output_hash": "17155212445494385067",
+      "removed_false_positives": 37
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 119,
+      "fn": 0,
+      "ccd_seconds": 12.453937403808593,
+      "bitwise_mismatches": 84,
+      "output_hash": "10706169522431146330",
+      "removed_false_positives": 84
+    }
+  ],
+  "failure_reason": "Time partition removed extra false positives but increased subset cost to 19.578737666 s versus C16 17.938873532 s"
+}

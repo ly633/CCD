@@ -175,14 +175,15 @@ namespace ticcd {
     // find the largest width/tol dimension that is greater than its tolerance
     int find_next_split(const Array3 &widths, const Array3 &tols)
     {
-        // assert((widths > tols).any());
-        Array3 tmp =
-            (widths > tols)
-                .select(
-                    widths / tols, -std::numeric_limits<Scalar>::infinity());
-        int max_index;
-        tmp.maxCoeff(&max_index);
-        return max_index;
+        int best=0;
+        Scalar maximum=-std::numeric_limits<Scalar>::infinity();
+        for(int i=0;i<3;++i) {
+            if(widths[i]>tols[i]) {
+                const Scalar ratio=widths[i]/tols[i];
+                if(ratio>maximum) { maximum=ratio; best=i; }
+            }
+        }
+        return best;
     }
 
     template <typename Push>
@@ -459,12 +460,6 @@ namespace ticcd {
                     a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1) ||
                     detail::swept_hulls_separated<is_vertex_face>(
                     a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1))) {
-                toi = std::numeric_limits<Scalar>::infinity();
-                output_tolerance = co_domain_tolerance;
-                return false;
-            }
-            if (refine == 256 && ms == 0 && detail::swept_hulls_separated<is_vertex_face>(
-                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1,true)) {
                 toi = std::numeric_limits<Scalar>::infinity();
                 output_tolerance = co_domain_tolerance;
                 return false;
