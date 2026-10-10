@@ -255,3 +255,21 @@ greater-than updates preserve the first maximum index, including positive
 infinity ties; all-ineligible returns index zero as before. Zero tolerances
 and infinite tolerances are included in the focused comparison against the
 original Eigen expression. No division is approximated and no bound changes.
+
+C19: upward enclosure of the existing cubic error formula, from C16
+-----------------------------------------------------------------
+
+Restore C16 split selection after C18 did not improve screening time. For
+double precision replace generic pow(delta,3) by three upward-rounded
+products: s=up(fl(delta*delta)), c=up(fl(s*delta)), e=up(fl(filter*c)).
+Here up is nextafter toward positive infinity, delta is the original
+nonnegative max-absolute coordinate clamped to one, and filter is the same
+positive stored coefficient. Each product is enclosed above its exact real
+value under the benchmark's nearest/gradual-underflow environment. Since all
+factors are nonnegative, induction gives e >= filter*delta^3, preserving the
+original mathematical error formula conservatively. Every intermediate is
+bounded by approximately one (final result about 1e-14), so overflow is
+impossible. Subnormal products are covered by the outward adjacent value.
+The formula, inputs and coefficient are unchanged; only evaluation changes.
+Unlike prior reuse candidates this is not asserted bitwise equivalent to
+generic pow. The retained-TOI and per-group FP gate must still pass.

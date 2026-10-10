@@ -1,0 +1,92 @@
+{
+  "id": "C18",
+  "parent": "C16",
+  "hypothesis": "Compute only eligible split ratios in dimension order with exact division and identical first-maximum tie behavior",
+  "revision": "a22fef89c9b1a0ff6e171c1150dabb189547b4cd",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "not selected; no demonstrated screening improvement",
+  "build_log": "c18-build.log",
+  "focused_test": "c18-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "a6b0af37cca78783e903ac11cdb851ac452babf74ba8f78eb292c8837eb4b042",
+    "research_equivalence": "17fce3b781403aa4f46d321f8dc3cdb36cd3299e57f0414ae4302d247a8f4eb6"
+  },
+  "focused_attempts": [
+    {
+      "log": "c18-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c18-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Compute only eligible split ratios in dimension order with exact division and identical first-maximum tie behavior",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c18-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 18.03584688964844,
+  "bitwise_mismatches": 110,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.756743259765625,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.7413131213378906,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 53,
+      "fn": 0,
+      "ccd_seconds": 4.611964004882813,
+      "bitwise_mismatches": 37,
+      "output_hash": "17155212445494385067",
+      "removed_false_positives": 37
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 130,
+      "fn": 0,
+      "ccd_seconds": 11.92582650366211,
+      "bitwise_mismatches": 73,
+      "output_hash": "16461901978379542721",
+      "removed_false_positives": 73
+    }
+  ],
+  "failure_reason": "18.035846890 s versus C16 17.938873532 s; difference small and no gain demonstrated, restore original Eigen selection"
+}
