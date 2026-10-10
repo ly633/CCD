@@ -186,7 +186,7 @@ namespace ticcd {
         const CCDRootFindingMethod ccd_method)
     {
         constexpr int MAX_NO_ZERO_TOI_ITER = std::numeric_limits<int>::max();
-        if (ccd_method == CCDRootFindingMethod::BREADTH_FIRST_SEARCH && ms_in == 0) {
+        if (is_vertex_face && ccd_method == CCDRootFindingMethod::BREADTH_FIRST_SEARCH && ms_in == 0) {
             assert(t_max_in >= 0 && t_max_in <= 1);
             if (swept_boxes_disjoint<is_vertex_face>(
                     a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1)) {
@@ -228,6 +228,14 @@ namespace ticcd {
                 toi = std::numeric_limits<Scalar>::infinity();
                 output_tolerance = tolerance;
                 return false;
+            }
+            if constexpr (!is_vertex_face) {
+                if (ms == 0 && swept_boxes_disjoint<false>(
+                        a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1)) {
+                    toi=std::numeric_limits<Scalar>::infinity();
+                    output_tolerance=tolerance;
+                    return false;
+                }
             }
         }
 

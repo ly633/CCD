@@ -215,3 +215,12 @@ Both accessors supply exactly the same coordinates in the same order;
 cwiseAbs, cwiseMax reduction order, clamping, pow and filter multiplication
 are unchanged. Input lifetimes cover the entire CCD call and no vertex is
 mutated. This is a storage/access optimization with zero numerical change.
+
+C16: reorder the exact swept-box rejection for edge-edge queries
+---------------------------------------------------------------
+
+Keep early swept-AABB rejection for VF, but place the same EE test after
+the unchanged original initial-box rejection. Both return the same no-hit
+sentinels, and all survivors follow identical arithmetic and solver flow.
+This changes the order of two independent sound rejection predicates, not
+their accepted geometric domain. The swept hull proof from C07 still applies.

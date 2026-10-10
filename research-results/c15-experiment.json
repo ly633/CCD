@@ -1,0 +1,91 @@
+{
+  "id": "C15",
+  "parent": "C14",
+  "hypothesis": "Compute identical numerical error bounds through a stack array of vertex pointers instead of a heap vector",
+  "revision": "632ff38ddf8feafd52120b10df972c2ba49a6390",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "screened; selection pending",
+  "build_log": "c15-build.log",
+  "focused_test": "c15-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "1811200e5ab7336bc692353f46db63ed39d3af55ed337d9cab96d4c8e589bbb3",
+    "research_equivalence": "922547979f89c61436c3ec992ff98f34f5907f4f23e07baf62f7b4a402b86ac0"
+  },
+  "focused_attempts": [
+    {
+      "log": "c15-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c15-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Compute identical numerical error bounds through a stack array of vertex pointers instead of a heap vector",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c15-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 17.83001879614258,
+  "bitwise_mismatches": 110,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.7540761953125,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.7398897844238281,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 53,
+      "fn": 0,
+      "ccd_seconds": 4.519237904541016,
+      "bitwise_mismatches": 37,
+      "output_hash": "17155212445494385067",
+      "removed_false_positives": 37
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 130,
+      "fn": 0,
+      "ccd_seconds": 11.816814911865235,
+      "bitwise_mismatches": 73,
+      "output_hash": "16461901978379542721",
+      "removed_false_positives": 73
+    }
+  ]
+}
