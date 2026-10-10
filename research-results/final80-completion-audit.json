@@ -1,0 +1,284 @@
+{
+  "checked_utc": "2026-10-10T04:05:23.575246+00:00",
+  "effective_candidates": 20,
+  "candidate_ledger": [
+    {
+      "id": "C01",
+      "revision": "31d8312b38fbf09c35c741912b7cd131acbd1fc8",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Reuse temporal interpolation across four equal-time corners, retaining scalar operation order",
+      "subset_seconds": 28.513259764404296,
+      "completed_subset_reports": [
+        "research-results\\runs\\c01-subset\\results.json"
+      ],
+      "status": "valid but insufficient speed; retain as C02 parent",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C02",
+      "revision": "aa821e07e003a435885f12d929b947a5d0dcdf51",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Move identical initial BFS rejection before computing unused tolerances and allocating search queue",
+      "subset_seconds": 28.24976801635742,
+      "completed_subset_reports": [
+        "research-results\\runs\\c02-subset\\results.json"
+      ],
+      "status": "selected: final full-data validation passed",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C03",
+      "revision": "a01babc77fbc19fc38c87959c4e2f44c88ec7b2d",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Replace division by dyadic denominators with exact reciprocal multiplication; retain intermediate rounding",
+      "subset_seconds": 25.792707561279297,
+      "completed_subset_reports": [
+        "research-results\\runs\\c03-subset\\results.json"
+      ],
+      "status": "retained as parent of next candidate; superseded by fully validated C07",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C04",
+      "revision": "45b9e2d0040083e69574ffdb4717a42e7c6d344d",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Cache repeated u and v interpolation results within each time plane",
+      "subset_seconds": 25.35277783691406,
+      "completed_subset_reports": [
+        "research-results\\runs\\c04-subset\\results.json"
+      ],
+      "status": "retained as parent of next candidate; superseded by fully validated C07",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C05",
+      "revision": "c6d315dbfef40ef34ce77aec8b8ac83954951a7c",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Avoid initial dyadic interval conversion by supplying the identical zero-one arrays directly",
+      "subset_seconds": 24.737209020507812,
+      "completed_subset_reports": [
+        "research-results\\runs\\c05-subset\\results.json"
+      ],
+      "status": "retained as parent of next candidate; superseded by fully validated C07",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C06",
+      "revision": "fac3198a209a11e9993cab2d904be69abe267e5f",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Inline dyadic powers and comparisons used in queue ordering and interval conversion",
+      "subset_seconds": 24.41593668408203,
+      "completed_subset_reports": [
+        "research-results\\runs\\c06-subset-retry\\results.json"
+      ],
+      "status": "retained as parent of next candidate; superseded by fully validated C07",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C07",
+      "revision": "0752bc0127b3c2d6e0ed9aa598f01f2102f88a1b",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Reject strictly disjoint endpoint swept AABBs at ms zero; geometric proof allows removing original false positives",
+      "subset_seconds": 22.109647755371096,
+      "completed_subset_reports": [
+        "research-results\\runs\\c07-subset\\results.json"
+      ],
+      "status": "best fully validated version; below 80 percent target",
+      "final_selection": "保留，EE 顺序由 C16 调整"
+    },
+    {
+      "id": "C08",
+      "revision": "285bd4095dcdd1b0b5b0b21c292758320b62b280",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Certify a constant nonzero coplanarity determinant sign using rigorous interval Bernstein coefficients",
+      "subset_seconds": 19.989028022216797,
+      "completed_subset_reports": [
+        "research-results\\runs\\c08-subset\\results.json"
+      ],
+      "status": "rejected for whole-dataset performance; retained as C09 parent",
+      "final_selection": "证书保留，立即执行策略淘汰"
+    },
+    {
+      "id": "C09",
+      "revision": "d96ad149867ff7a50981ebf055a13512693692b6",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Delay whole-trajectory Bernstein certificate until BFS refinement 32 to amortize interval arithmetic on hard queries",
+      "subset_seconds": 19.467959544677733,
+      "completed_subset_reports": [
+        "research-results\\runs\\c09-subset\\results.json"
+      ],
+      "status": "screened; selection pending",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C10",
+      "revision": "bb4def9925f3431e3732776200d73520d22dcc4f",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Template the subdivision push callback to eliminate std::function type erasure while preserving queue insertion order",
+      "subset_seconds": 20.45562234863281,
+      "completed_subset_reports": [
+        "research-results\\runs\\c10-subset\\results.json"
+      ],
+      "status": "single-run regression versus C09; retained only as part of C11 combination",
+      "final_selection": "单独回归；在 C11 组合中保留"
+    },
+    {
+      "id": "C11",
+      "revision": "2230fd2678dd2ddd78950f42cd40b67b4ff27e62",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Inline unchanged dyadic addition bisection width and overlap operations to remove cross-translation-unit overhead",
+      "subset_seconds": 19.31279803125,
+      "completed_subset_reports": [
+        "research-results\\runs\\c11-subset\\results.json"
+      ],
+      "status": "retained for C12",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C12",
+      "revision": "16c29c1561d5eeb9063273e4553e24d7d2271b86",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Execute identical per-corner arithmetic in four AVX2 lanes without FMA or reassociation",
+      "subset_seconds": 19.638912622314454,
+      "completed_subset_reports": [
+        "research-results\\runs\\c12-subset\\results.json"
+      ],
+      "status": "rejected for subset regression",
+      "final_selection": "淘汰：四组筛选均变慢"
+    },
+    {
+      "id": "C13",
+      "revision": "6976799378dd9e525343f4ac7191af5a6099a5db",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Pack exact NumCCD storage without losing bits to reduce priority queue node traffic",
+      "subset_seconds": 18.77400006201172,
+      "completed_subset_reports": [
+        "research-results\\runs\\c13-subset\\results.json"
+      ],
+      "status": "screened; selection pending",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C14",
+      "revision": "78c095ccde4895eef492c2e733a526441bafbfac",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Use outward interval projections on endpoint geometric axes to reject coplanar separated swept hulls after 32 refinements",
+      "subset_seconds": 17.896041229003906,
+      "completed_subset_reports": [
+        "research-results\\runs\\c14-subset\\results.json"
+      ],
+      "status": "best full-screen candidate; needs final contemporaneous paired validation",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C15",
+      "revision": "632ff38ddf8feafd52120b10df972c2ba49a6390",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Compute identical numerical error bounds through a stack array of vertex pointers instead of a heap vector",
+      "subset_seconds": 17.83001879614258,
+      "completed_subset_reports": [
+        "research-results\\runs\\c15-subset\\results.json"
+      ],
+      "status": "screened; selection pending",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C16",
+      "revision": "dd283e8c7aea8e1a89b1962f8e6f230693aee560",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Move EE swept AABB after the original initial box test while retaining early VF rejection",
+      "subset_seconds": 17.9388735324707,
+      "completed_subset_reports": [
+        "research-results\\runs\\c16-subset\\results.json"
+      ],
+      "status": "best full-screen candidate; awaiting final paired validation",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C17",
+      "revision": "1146695faa13603c8a266ce3f035212ed89d3e5b",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Reject only when eight closed time intervals each have a certified separating projection, triggered on hard queries",
+      "subset_seconds": 19.578737665771484,
+      "completed_subset_reports": [
+        "research-results\\runs\\c17-subset\\results.json"
+      ],
+      "status": "rejected for subset regression",
+      "final_selection": "淘汰：额外区间计算得不偿失"
+    },
+    {
+      "id": "C18",
+      "revision": "a22fef89c9b1a0ff6e171c1150dabb189547b4cd",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Compute only eligible split ratios in dimension order with exact division and identical first-maximum tie behavior",
+      "subset_seconds": 18.03584688964844,
+      "completed_subset_reports": [
+        "research-results\\runs\\c18-subset\\results.json"
+      ],
+      "status": "not selected; no demonstrated screening improvement",
+      "final_selection": "淘汰：未证明筛选收益"
+    },
+    {
+      "id": "C19",
+      "revision": "2f714ac9311c0df17916183375927de4add4da6c",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Replace generic cubic pow with upward-rounded products enclosing the same mathematical CCD error bound",
+      "subset_seconds": 17.740680369384766,
+      "completed_subset_reports": [
+        "research-results\\runs\\c19-subset\\results.json"
+      ],
+      "status": "best full-screen candidate; final C20 comparison pending",
+      "final_selection": "保留"
+    },
+    {
+      "id": "C20",
+      "revision": "0c1f229b4e10a3ad95033956f6604f5740c64c8d",
+      "valid": true,
+      "effective_experiment": true,
+      "hypothesis": "Reuse empty BFS queue vector capacity per thread and query type with a 65536-node retention cap",
+      "subset_seconds": 17.64621246606445,
+      "completed_subset_reports": [
+        "research-results\\runs\\c20-subset\\results.json"
+      ],
+      "status": "selected for final paired validation",
+      "final_selection": "最终最佳"
+    }
+  ],
+  "performance_target_met": false,
+  "stopping_condition": "20 effective candidate experiments completed; final full comparison and delivery verified",
+  "all_full_runs_correct": true,
+  "reference_source_files_verified": 19,
+  "baseline_worktree_clean": true,
+  "baseline_guard_unchanged": true,
+  "guard_comparison": "Identical normalized text to baseline; no Git change since research setup. Checkout line endings differ.",
+  "cache_files_rehashed": 10406,
+  "cache_bytes_rehashed": 11986844000,
+  "executable_sha256": {
+    "reference": "5d328a27e4ff31f344fe5b951bc3f20d86116ba2318d6c08543b8548587feb51",
+    "candidate": "07651dc663222dad94ffe17c08c2fe397dd479fa1c6a8f06e6b0a3791e64be63"
+  },
+  "best_source_revision": "0c1f229b4e10a3ad95033956f6604f5740c64c8d",
+  "working_source_matches_tested_best": true,
+  "core_zip_sha256": "e8b7510e83703abf6c673c6c05069b31baeb76f5e968a314810f5601f5f42f8a",
+  "rigorous_error_bound_checks": 16384,
+  "final_summary": "final80-c20-summary.json"
+}

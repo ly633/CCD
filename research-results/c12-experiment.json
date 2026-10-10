@@ -88,5 +88,6 @@
       "removed_false_positives": 59
     }
   ],
-  "failure_reason": "All four screening groups were slower than C11; revert explicit AVX2 and continue from C11. Single-run screening only."
+  "failure_reason": "All four screening groups were slower than C11; revert explicit AVX2 and continue from C11. Single-run screening only.",
+  "final_selection": "淘汰：四组筛选均变慢"
 }

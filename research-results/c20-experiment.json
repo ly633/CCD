@@ -1,0 +1,101 @@
+{
+  "id": "C20",
+  "parent": "C19",
+  "hypothesis": "Reuse empty BFS queue vector capacity per thread and query type with a 65536-node retention cap",
+  "revision": "0c1f229b4e10a3ad95033956f6604f5740c64c8d",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "selected; final alternating full validation passed",
+  "build_log": "c20-build.log",
+  "focused_test": "c20-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "07651dc663222dad94ffe17c08c2fe397dd479fa1c6a8f06e6b0a3791e64be63",
+    "research_equivalence": "45b7485948ea725cfcfe2bc89e46ab94629369e7da7ed0b8455ce149b737803d"
+  },
+  "focused_attempts": [
+    {
+      "log": "c20-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c20-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Reuse empty BFS queue vector capacity per thread and query type with a 65536-node retention cap",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c20-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 17.64621246606445,
+  "bitwise_mismatches": 110,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.735099986328125,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.7008028764648437,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 53,
+      "fn": 0,
+      "ccd_seconds": 4.483945904052734,
+      "bitwise_mismatches": 37,
+      "output_hash": "17155212445494385067",
+      "removed_false_positives": 37
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 130,
+      "fn": 0,
+      "ccd_seconds": 11.72636369921875,
+      "bitwise_mismatches": 73,
+      "output_hash": "16461901978379542721",
+      "removed_false_positives": 73
+    }
+  ],
+  "full_screen_seconds": 32.79735090600586,
+  "full_screen_valid": true,
+  "selection_reason": "Lowest observed full-screen core time, 32.797350906 s versus C19 33.456838665 s; final paired median still required",
+  "final_selection": "最终最佳",
+  "final_summary": "final80-c20-summary.json",
+  "final_reference_median_seconds": 72.74591958032227,
+  "final_candidate_median_seconds": 32.99208249243164,
+  "final_time_reduction": 0.5464751468843074,
+  "final_speedup": 2.204950827126785,
+  "performance_target_met": false
+}

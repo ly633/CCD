@@ -16,5 +16,7 @@
   "full_reduction": 0.13795349264889445,
   "full_queries": 59387883,
   "full_bitwise_mismatches": 0,
-  "failure_reason": "Full one-pair reduction 13.7953%, below 20%; subset overpredicted total benefit"
+  "failure_reason": "Full one-pair reduction 13.7953%, below 20%; subset overpredicted total benefit",
+  "effective_experiment": true,
+  "final_selection": "保留"
 }

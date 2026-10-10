@@ -1,0 +1,8 @@
+{
+  "checks": 16384,
+  "passed": true,
+  "reference": "Python exact Fraction of supplied binary64 coordinates and coefficients",
+  "source_revision": "0c1f229b4e10a3ad95033956f6604f5740c64c8d",
+  "executable_sha256": "e668a9b72bee6d2086f99ad0e938ac358199cb49d5d76129f60410962ea2c5ab",
+  "samples_sha256": "9e40cc30d947000f8ca361a5970065d40eac21b46d17626efe627b8029eb372a"
+}

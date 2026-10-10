@@ -42,5 +42,6 @@
   "bitwise_mismatches": 0,
   "retry_result": "research-results/runs/c06-subset-retry/results.json",
   "retry_note": "Exact same executable SHA256 and original path; Smart App Control still enabled (registry state 1); no policy change by agent",
-  "selection_reason": "Focused equivalence and fixed-subset correctness passed; exploratory timing supported keeping this component. Small single-run timing differences are not significance claims."
+  "selection_reason": "Focused equivalence and fixed-subset correctness passed; exploratory timing supported keeping this component. Small single-run timing differences are not significance claims.",
+  "final_selection": "保留"
 }

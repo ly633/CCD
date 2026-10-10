@@ -75,5 +75,6 @@
   "full_reference_median_seconds": 72.10786089672851,
   "full_candidate_median_seconds": 45.378287772216794,
   "full_time_reduction": 0.3706887542093822,
-  "selection_reason": "Focused equivalence and fixed-subset correctness passed; exploratory timing supported keeping this component. Small single-run timing differences are not significance claims."
+  "selection_reason": "Focused equivalence and fixed-subset correctness passed; exploratory timing supported keeping this component. Small single-run timing differences are not significance claims.",
+  "final_selection": "保留"
 }

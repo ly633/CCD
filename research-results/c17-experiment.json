@@ -88,5 +88,6 @@
       "removed_false_positives": 84
     }
   ],
-  "failure_reason": "Time partition removed extra false positives but increased subset cost to 19.578737666 s versus C16 17.938873532 s"
+  "failure_reason": "Time partition removed extra false positives but increased subset cost to 19.578737666 s versus C16 17.938873532 s",
+  "final_selection": "淘汰：额外区间计算得不偿失"
 }

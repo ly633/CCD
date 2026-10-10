@@ -19,25 +19,25 @@
     {
       "log": "c08-equivalence-attempt-2.log",
       "winerror": 4551,
-      "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
+      "message": "[WinError 4551] 应用程序控制策略已阻止此文件。",
       "started": false
     },
     {
       "log": "c08-equivalence-attempt-3.log",
       "winerror": 4551,
-      "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
+      "message": "[WinError 4551] 应用程序控制策略已阻止此文件。",
       "started": false
     },
     {
       "log": "c08-equivalence-attempt-4.log",
       "winerror": 4551,
-      "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
+      "message": "[WinError 4551] 应用程序控制策略已阻止此文件。",
       "started": false
     },
     {
       "log": "c08-equivalence-attempt-5.log",
       "winerror": 4551,
-      "message": "[WinError 4551] \u5e94\u7528\u7a0b\u5e8f\u63a7\u5236\u7b56\u7565\u5df2\u963b\u6b62\u6b64\u6587\u4ef6\u3002",
+      "message": "[WinError 4551] 应用程序控制策略已阻止此文件。",
       "started": false
     },
     {
@@ -119,5 +119,6 @@
   ],
   "failure_reason": "Eager interval Bernstein setup regresses full core time despite subset improvement",
   "full_screen_seconds": 67.50212406616211,
-  "full_screen_valid": true
+  "full_screen_valid": true,
+  "final_selection": "证书保留，立即执行策略淘汰"
 }

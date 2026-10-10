@@ -1,24 +1,19 @@
 CCD Autoresearch 工作树
 ======================
 
-工作树：D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch
-分支：research/ccd-autoresearch
-起点：497baaab37b9a080d8d0db5b84ea13f50fc507e0（完整 baseline 已验证）
-研究目标：2026-10-09 用户已启动自动优化研究；目标为同期全量 CCD
-核心耗时中位数降低至少 80%，或完成 20 个有效候选实验后如实交付。
-当前实验协议见 research/PROTOCOL.rst，数值保守性论证见
-research/NUMERICS.rst，全部新实验记录见 research-results/。
-前阶段 20% 目标已完成，当前 80% 目标尚未达到。C02 曾在三组交替全量对照中，将 CCD 核心耗时中位数从
-72.602181521 秒降低至 52.472144881 秒，降低 27.72649%；完整报告与
-复现命令见 research/RESULTS.rst。共评测两个候选，所有正确性约束通过。
+2026-10-10 最终结果：已完成 20 个有效候选实验，按用户指定上限停止。
+80% 耗时降低目标未达到。最佳 C20（0c1f229）三轮交替全量对照的
+中位数从 72.745919580 秒降至 32.992082492 秒，降低 54.64751%，
+加速 2.204951 倍。四组漏检均为 0，误报为 2/6/53/130。
+当前 src/ 保留最终实测 C20，原 baseline 工作树、数据与结果未修改。
 
-80% 阶段最新结果：已完成七个有效候选，最佳 C07（0752bc0）在
-三组交替全量对照中从 72.726807293 秒降至 42.484861801 秒，
-耗时降低 41.58294%，四组漏检为 0，误报为 2/17/67/161。
-完整报告与复现命令见 research/RESULTS80.rst；C08 尚未运行，
-其定向测试进程被 Windows Smart App Control 拒绝（WinError 4551）。
-当前源码是待评测 C08；最佳已验证 C07 的源码与补丁单独保留在
-research-results/best-c07-source.zip 和 best-c07-core.patch。
+最终报告及复现命令：research/FINAL_RESULTS80.rst。
+最佳源码：research-results/best-c20-source.zip。
+核心补丁：research-results/best-c20-core.patch。
+完整审计：research-results/final80-completion-audit.json。
+分支：research/ccd-autoresearch。
+
+以下准备记录为历史，当前没有等待执行的候选或系统执行阻塞。
 
 准备状态
 --------

@@ -22,5 +22,7 @@
   "final_candidate_median_seconds": 52.47214488061523,
   "final_time_reduction": 0.2772649005672011,
   "final_speedup": 1.383632814823575,
-  "failure_reason": null
+  "failure_reason": null,
+  "effective_experiment": true,
+  "final_selection": "保留"
 }

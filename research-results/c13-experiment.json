@@ -87,5 +87,6 @@
       "output_hash": "14508957986133318465",
       "removed_false_positives": 59
     }
-  ]
+  ],
+  "final_selection": "保留"
 }

@@ -88,5 +88,6 @@
       "removed_false_positives": 59
     }
   ],
-  "provenance_note": "Source commit 2230fd2 retains C10 callback; initial parent label C09 corrected to the actual code dependency."
+  "provenance_note": "Source commit 2230fd2 retains C10 callback; initial parent label C09 corrected to the actual code dependency.",
+  "final_selection": "保留"
 }

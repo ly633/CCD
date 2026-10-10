@@ -1,6 +1,6 @@
 {
   "target_reduction": 0.8,
-  "effective_candidates_total": 8,
+  "effective_candidates_total": 20,
   "effective_candidates": [
     "C01",
     "C02",
@@ -9,13 +9,31 @@
     "C05",
     "C06",
     "C07",
-    "C08"
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C20"
   ],
-  "pending_candidate": "C09",
-  "pending_reason": "Delayed certificate implementation ready for evaluation",
-  "best_full_validated": "C07",
-  "best_source_commit": "0752bc0",
-  "best_summary": "phase80-c07-summary.json",
-  "status": "active; execution recovered after user resumed goal",
-  "execution_attempts_total": 5
+  "pending_candidate": null,
+  "pending_reason": null,
+  "best_full_validated": "C20",
+  "best_source_commit": "0c1f229b4e10a3ad95033956f6604f5740c64c8d",
+  "best_summary": "final80-c20-summary.json",
+  "status": "study stopped at 20 effective candidates; final validation passed; 80 percent target not reached",
+  "execution_attempts_total": 5,
+  "best_full_screen": "C20",
+  "selected_source_commit": "0c1f229b4e10a3ad95033956f6604f5740c64c8d",
+  "final_report": "research/FINAL_RESULTS80.rst",
+  "performance_target_met": false,
+  "time_reduction": 0.5464751468843074,
+  "speedup": 2.204950827126785
 }

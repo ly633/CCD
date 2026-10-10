@@ -10,6 +10,7 @@
   "running_benchmark_processes_found": false,
   "baseline_git_status": "clean",
   "effective_candidates": 7,
-  "goal_status": "blocked; confirmed by update_goal",
-  "safe_next_action": "Resume unchanged C08 binaries after the system permits legitimate execution; do not rebuild or relocate to evade the restriction"
+  "goal_status": "Research finished 20 candidates; see final80-completion-audit.json",
+  "safe_next_action": "Resume unchanged C08 binaries after the system permits legitimate execution; do not rebuild or relocate to evade the restriction",
+  "resolution": "Resolved after user resumed goal; observed policy state 0, same original C08 binary passed. No current execution blocker."
 }

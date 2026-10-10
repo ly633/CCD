@@ -88,5 +88,6 @@
       "removed_false_positives": 73
     }
   ],
-  "failure_reason": "18.035846890 s versus C16 17.938873532 s; difference small and no gain demonstrated, restore original Eigen selection"
+  "failure_reason": "18.035846890 s versus C16 17.938873532 s; difference small and no gain demonstrated, restore original Eigen selection",
+  "final_selection": "淘汰：未证明筛选收益"
 }

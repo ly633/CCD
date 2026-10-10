@@ -81,5 +81,6 @@
   "full_summary": "phase80-c07-summary.json",
   "full_reference_median_seconds": 72.72680729321289,
   "full_candidate_median_seconds": 42.484861800781246,
-  "full_time_reduction": 0.41582941171204035
+  "full_time_reduction": 0.41582941171204035,
+  "final_selection": "保留，EE 顺序由 C16 调整"
 }
