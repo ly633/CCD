@@ -86,6 +86,14 @@ int main(int argc,char** argv) try {
                 hit=vertexFaceCCD(V.row(0),V.row(1),V.row(2),V.row(3),V.row(4),V.row(5),V.row(6),V.row(7),err,0.,toi,1e-6,1.,1000000,tol,false,CCDRootFindingMethod::BREADTH_FIRST_SEARCH);
             }
             timer.stop(); us[e.group]+=timer.getElapsedTimeInMicroSec();
+#ifdef RESEARCH_DIAGNOSTIC
+            // Diagnostic-only executable: output is outside the measured call.
+            // Its timings are never used as optimization results.
+            if (timer.getElapsedTimeInMicroSec() > 1000)
+                std::cout << std::setprecision(17) << "SLOW " << e.group << " "
+                          << e.path << " " << i << " " << r.truth << " " << hit
+                          << " " << toi << " " << timer.getElapsedTimeInMicroSec()/1e6 << "\n";
+#endif
             result[i]={toi,tol,uint64_t(hit)};
             ++n[e.group]; gt[e.group]+=r.truth;
             fp[e.group]+=hit&&!r.truth; fn[e.group]+=!hit&&r.truth;

@@ -113,3 +113,20 @@ added, alongside the existing corner-equivalence checks. These C08 tests
 and its fixed-subset evaluation have NOT executed: Windows rejected process
 creation with WinError 4551. The argument above is an implementation rationale,
 not a claim that C08 has passed empirical validation or is the delivered best.
+
+Recovery and C09: delay the same certificate until BFS refinement 32
+-------------------------------------------------------------------
+
+On the resumed run, system policy state was 0 and the identical C08 files
+executed successfully: focused tests and fixed-subset validation passed.
+The earlier blocked-test paragraphs above describe the historical state.
+C09 moves the same whole-[0,1] geometric certificate into BFS at refinement
+32. Queries that return earlier keep the original solver outputs. On the
+triggered queries the certificate still proves absence of collision over
+the entire original time domain, irrespective of the current subinterval;
+it cannot remove a true contact or perturb a surviving contact time.
+The filter is called at most once per BFS invocation, only when ms=0.
+An inconclusive result changes no queue, tolerance, or floating computation
+in the original solver. Delaying a sound rejection can retain some original
+false positives that C08 removed, but cannot create a new false positive
+relative to the unmodified solver. The normal full output gate still applies.

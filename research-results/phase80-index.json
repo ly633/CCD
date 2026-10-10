@@ -1,6 +1,6 @@
 {
   "target_reduction": 0.8,
-  "effective_candidates_total": 7,
+  "effective_candidates_total": 8,
   "effective_candidates": [
     "C01",
     "C02",
@@ -8,13 +8,14 @@
     "C04",
     "C05",
     "C06",
-    "C07"
+    "C07",
+    "C08"
   ],
-  "pending_candidate": "C08",
-  "pending_reason": "Focused test WinError 4551 persists on unchanged binaries",
+  "pending_candidate": "C09",
+  "pending_reason": "Delayed certificate implementation ready for evaluation",
   "best_full_validated": "C07",
   "best_source_commit": "0752bc0",
   "best_summary": "phase80-c07-summary.json",
-  "status": "blocked; Windows Code Integrity restriction verified in three consecutive goal turns",
+  "status": "active; execution recovered after user resumed goal",
   "execution_attempts_total": 5
 }
