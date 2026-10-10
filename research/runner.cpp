@@ -12,6 +12,8 @@
 #include <vector>
 #include <chrono>
 #include <stdexcept>
+#include <cfenv>
+#include <xmmintrin.h>
 namespace fs = std::filesystem;
 using namespace ticcd;
 // No padding or uninitialized bytes in portable on-this-machine cache/output.
@@ -58,6 +60,10 @@ int main(int argc,char** argv) try {
         return 0;
     }
     if(std::string(argv[1])!="run") throw std::runtime_error("unknown mode");
+    const auto mxcsr=_mm_getcsr();
+    if((mxcsr & 0xE040) != 0 || std::fegetround()!=FE_TONEAREST)
+        throw std::runtime_error("benchmark requires nearest rounding and gradual underflow");
+    std::cout << "FP_ENV MXCSR=" << mxcsr << " ROUND=FE_TONEAREST FTZ=0 DAZ=0\n";
     std::ofstream answers(argv[4],std::ios::binary);
     std::ifstream expected;
     if(argc>5) expected.open(argv[5],std::ios::binary);

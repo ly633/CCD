@@ -463,6 +463,12 @@ namespace ticcd {
                 output_tolerance = co_domain_tolerance;
                 return false;
             }
+            if (refine == 256 && ms == 0 && detail::swept_hulls_separated<is_vertex_face>(
+                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1,true)) {
+                toi = std::numeric_limits<Scalar>::infinity();
+                output_tolerance = co_domain_tolerance;
+                return false;
+            }
             bool zero_in, box_in;
             Array3 true_tol;
             {

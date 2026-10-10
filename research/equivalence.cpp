@@ -18,14 +18,22 @@ int main() {
            detail::bernstein_separated(a0,b,c,d,touch,b,c,d)) {
             std::cerr<<"Bernstein rejected a known contact, exponent "<<k<<"\n";return 1;
         }
-        if(detail::swept_hulls_separated<true>(a0,b,c,d,a1,b,c,d) ||
+        if(detail::swept_hulls_separated<true>(a0,b,c,d,a1,b,c,d,true) ||
+           detail::swept_hulls_separated<true>(touch,b,c,d,a0,b,c,d,true) ||
+           detail::swept_hulls_separated<true>(a0,b,c,d,a1,b,c,d) ||
            detail::swept_hulls_separated<true>(touch,b,c,d,a0,b,c,d) ||
+           detail::swept_hulls_separated<false>(b,c,Vector3(.5,-h,0),Vector3(.5,h,0),
+                                                        b,c,Vector3(.5,-h,0),Vector3(.5,h,0),true) ||
            detail::swept_hulls_separated<false>(b,c,Vector3(.5,-h,0),Vector3(.5,h,0),
                                                         b,c,Vector3(.5,-h,0),Vector3(.5,h,0))) {
             std::cerr<<"Projection rejected a known contact, exponent "<<k<<"\n";return 1;
         }
     }
     const Vector3 separated(.25,.25,.5);
+    const Vector3 moving0(1.5,.25,0), shift(2,0,0),moving1=moving0+shift;
+    if(!detail::swept_hulls_separated<true>(moving0,b,c,d,moving1,b+shift,c+shift,d+shift,true)) {
+        std::cerr<<"Time-partition failed separated translating certificate\n";return 1;
+    }
     const Vector3 outside(.75,.75,0);
     if(!detail::swept_hulls_separated<true>(outside,b,c,d,outside,b,c,d)) {
         std::cerr<<"Projection failed coplanar separated certificate\n";return 1;

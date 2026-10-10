@@ -224,3 +224,21 @@ the unchanged original initial-box rejection. Both return the same no-hit
 sentinels, and all survivors follow identical arithmetic and solver flow.
 This changes the order of two independent sound rejection predicates, not
 their accepted geometric domain. The swept hull proof from C07 still applies.
+
+C17: cover time with eight independently certified projection intervals
+----------------------------------------------------------------------
+
+After 256 BFS refinements, try the same axes on the eight closed time ranges
+[k/8,(k+1)/8]. Their endpoints and weights are exactly representable dyadics.
+Project original endpoint coordinates with outward enclosures, then enclose
+each projected trajectory at the time-range endpoints by outward interval
+(1-t)*p0+t*p1. Convexity bounds the whole moving simplex within that range.
+A range is marked covered only by strict projection separation. Reject the
+query only if all eight closed ranges are covered; different ranges may use
+different finite axes. Their union is [0,1], so no contact (including bin
+boundaries) can be rejected. Uncovered bins fall back to the unchanged BFS.
+
+The benchmark now explicitly records MXCSR and rejects FTZ, DAZ or non-nearest
+rounding before timing, documenting the IEEE environment required by all
+outward interval and arithmetic-equivalence arguments. This harness change
+applies equally to reference and candidate in subsequent paired runs.
