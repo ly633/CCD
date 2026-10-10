@@ -184,10 +184,11 @@ namespace ticcd {
         return max_index;
     }
 
+    template <typename Push>
     bool split_and_push(
         const Interval3 &tuv,
         int split_i,
-        std::function<void(const Interval3 &)> push,
+        Push&& push,
         bool is_vertex_face,
         Scalar t_upper_bound = 1)
     {

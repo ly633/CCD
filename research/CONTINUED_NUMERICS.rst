@@ -130,3 +130,14 @@ An inconclusive result changes no queue, tolerance, or floating computation
 in the original solver. Delaying a sound rejection can retain some original
 false positives that C08 removed, but cannot create a new false positive
 relative to the unmodified solver. The normal full output gate still applies.
+
+C10: specialize the subdivision callback
+---------------------------------------
+
+Replace the local split_and_push std::function parameter with a deduced
+callable template. The same captured references are invoked with the same
+intervals in the same order. Interval bisection, integer arithmetic, all
+floating operations, the queue comparator and tie order are unchanged.
+This removes type erasure and indirect calls; the numerical error added
+relative to C09 is zero. Both DFS and BFS call sites instantiate the same
+unchanged function body with their existing lambdas.

@@ -1,0 +1,2315 @@
+{
+  "revision": "d96ad149867ff7a50981ebf055a13512693692b6",
+  "executable_sha256": "2080a8de95fdce764ef55dedea748eb0780d194bc0155082c7e9768e0cac0359",
+  "diagnostic_only": true,
+  "slow_queries": 256,
+  "slow_seconds": 19.15087069873047,
+  "slow_true_seconds": 6.9838263005371095,
+  "slow_false_seconds": 12.16704439819336,
+  "queries": [
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 116,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.4024172001953125
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 117,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2800995
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 93,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.2441253662109375",
+      "seconds": 0.2760629001464844
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 40,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.273391
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 66,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.2441253662109375",
+      "seconds": 0.27210589990234374
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 101,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.2441253662109375",
+      "seconds": 0.2694797998046875
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 67,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.26692739990234376
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 114,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.012725830078125",
+      "seconds": 0.2662480998535156
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 13,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0",
+      "seconds": 0.265854
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 53,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.012725830078125",
+      "seconds": 0.264796
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 70,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.01274871826171875",
+      "seconds": 0.26472189990234374
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 13,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.82548141479492188",
+      "seconds": 0.2634582998046875
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 9,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2588396999511719
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 62,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.25673480004882815
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 50,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.25639669995117187
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 88,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2562873999023437
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 97,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.25628189990234373
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 18,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.2441253662109375",
+      "seconds": 0.25600419995117185
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 11,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.7458648681640625",
+      "seconds": 0.2557987998046875
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 61,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.2441253662109375",
+      "seconds": 0.25493930004882814
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 43,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2525985
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 54,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.244110107421875",
+      "seconds": 0.25249
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 12,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0",
+      "seconds": 0.252374
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0002.csv.bin",
+      "index": 50,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.2522557001953125
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 14,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.536529541015625",
+      "seconds": 0.2519980998535156
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 77,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0126953125",
+      "seconds": 0.2515814001464844
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 11,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.59336471557617188",
+      "seconds": 0.2514011999511719
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0004.csv.bin",
+      "index": 4,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.250997
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 10,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.73015594482421875",
+      "seconds": 0.2506615
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0002.csv.bin",
+      "index": 52,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0126953125",
+      "seconds": 0.24852189990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 55,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.2441253662109375",
+      "seconds": 0.24831839990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 106,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.244110107421875",
+      "seconds": 0.24828239990234374
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 121,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.244110107421875",
+      "seconds": 0.24711159985351563
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 123,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2468732998046875
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 10,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0",
+      "seconds": 0.24589490014648438
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 98,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.245871
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 122,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2453146999511719
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 107,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.24346189990234374
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 60,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0126953125",
+      "seconds": 0.24306959985351562
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 12,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.5456695556640625",
+      "seconds": 0.2426935
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 0,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2426195
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 100,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.24413299560546875",
+      "seconds": 0.240888
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 115,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.24413299560546875",
+      "seconds": 0.240459
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 56,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.24020389990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 119,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.24010789990234374
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 69,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.244110107421875",
+      "seconds": 0.23977230004882813
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 15,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.24413299560546875",
+      "seconds": 0.23932280004882814
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 55,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.2441253662109375",
+      "seconds": 0.23932210009765625
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 65,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.24413299560546875",
+      "seconds": 0.23902910009765624
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0002.csv.bin",
+      "index": 61,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.012725830078125",
+      "seconds": 0.23811869995117188
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0002.csv.bin",
+      "index": 59,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0127410888671875",
+      "seconds": 0.2380692998046875
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 94,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2373855
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 98,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.23721869995117187
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 58,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.24413299560546875",
+      "seconds": 0.23604269995117189
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 78,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.235642
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0002.csv.bin",
+      "index": 2,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.235318
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-cliff-edges/vertex-face/vertex-face-0002.csv.bin",
+      "index": 5,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.2352965
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 91,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.24413299560546875",
+      "seconds": 0.2347043000488281
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 14,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.4518280029296875",
+      "seconds": 0.22994919995117188
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0001.csv.bin",
+      "index": 0,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.87801742553710938",
+      "seconds": 0.20747430004882814
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0001.csv.bin",
+      "index": 13,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.87801742553710938",
+      "seconds": 0.2055768000488281
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 2,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.2370452880859375",
+      "seconds": 0.2043569001464844
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 8,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.29931640625",
+      "seconds": 0.19707580004882813
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0001.csv.bin",
+      "index": 45,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.223541259765625",
+      "seconds": 0.19146789990234375
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 2,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.24867630004882812",
+      "seconds": 0.19048739990234376
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0001.csv.bin",
+      "index": 40,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.223541259765625",
+      "seconds": 0.180039
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0001.csv.bin",
+      "index": 26,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.590087890625",
+      "seconds": 0.1763527001953125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0001.csv.bin",
+      "index": 20,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.590087890625",
+      "seconds": 0.17573019995117187
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 71,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0126953125",
+      "seconds": 0.16133630004882812
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 93,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0126953125",
+      "seconds": 0.15426640014648438
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0003.csv.bin",
+      "index": 46,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0126953125",
+      "seconds": 0.15189880004882814
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 106,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.1477527001953125
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 96,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.24407958984375",
+      "seconds": 0.1467117998046875
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 74,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.145996
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 119,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.24407958984375",
+      "seconds": 0.14539960009765626
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0002.csv.bin",
+      "index": 62,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0606689453125",
+      "seconds": 0.1436546999511719
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0001.csv.bin",
+      "index": 64,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.24407958984375",
+      "seconds": 0.14288609985351564
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-internal-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 47,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.97250843048095703",
+      "seconds": 0.06431769995117187
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0003.csv.bin",
+      "index": 64,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.43588829040527344",
+      "seconds": 0.056906
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0003.csv.bin",
+      "index": 66,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.43588829040527344",
+      "seconds": 0.0566062998046875
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-internal-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 122,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.5859222412109375",
+      "seconds": 0.05334109985351562
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-internal-edges/vertex-face/vertex-face-0002.csv.bin",
+      "index": 37,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.220550537109375",
+      "seconds": 0.0519037998046875
+    },
+    {
+      "group": 2,
+      "path": "erleben-cube-internal-edges/vertex-face/vertex-face-0001.csv.bin",
+      "index": 85,
+      "truth": 0,
+      "hit": 1,
+      "toi": "0.87615966796875",
+      "seconds": 0.04736189990234375
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-crack/vertex-face/vertex-face-0004.csv.bin",
+      "index": 19,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.624267578125",
+      "seconds": 0.037896
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-crack/vertex-face/vertex-face-0004.csv.bin",
+      "index": 15,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.624267578125",
+      "seconds": 0.03753430004882812
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0005.csv.bin",
+      "index": 33,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.47785186767578125",
+      "seconds": 0.03286310009765625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0005.csv.bin",
+      "index": 21,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.47785186767578125",
+      "seconds": 0.0326865
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 83,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.031010099853515626
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 1,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19952559471130371",
+      "seconds": 0.02449039990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0006.csv.bin",
+      "index": 18,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19457244873046875",
+      "seconds": 0.02329889990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0006.csv.bin",
+      "index": 41,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19457244873046875",
+      "seconds": 0.0232725
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 100,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.01676310009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 92,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.4027862548828125",
+      "seconds": 0.0148005
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 104,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.4027862548828125",
+      "seconds": 0.014434
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 9,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.66639518737792969",
+      "seconds": 0.01316660009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 109,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.178497314453125",
+      "seconds": 0.012121800048828126
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 116,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.178497314453125",
+      "seconds": 0.012065
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedge-crack/edge-edge/edge-edge-0015.csv.bin",
+      "index": 116,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.21734619140625",
+      "seconds": 0.01115760009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 68,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.12972259521484375",
+      "seconds": 0.009616300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 60,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.12972259521484375",
+      "seconds": 0.009270599853515625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 105,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.696014404296875",
+      "seconds": 0.009220300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 93,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.696014404296875",
+      "seconds": 0.00884589990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 51,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.28006362915039062",
+      "seconds": 0.008616800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 45,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.28006362915039062",
+      "seconds": 0.008460199951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-wedges/vertex-face/vertex-face-0007.csv.bin",
+      "index": 71,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.38875484466552734",
+      "seconds": 0.0071675
+    },
+    {
+      "group": 2,
+      "path": "erleben-wedges/vertex-face/vertex-face-0007.csv.bin",
+      "index": 81,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.38875484466552734",
+      "seconds": 0.00713389990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 27,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.140838623046875",
+      "seconds": 0.00700639990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 15,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.140838623046875",
+      "seconds": 0.007006199951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0007.csv.bin",
+      "index": 61,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.3177490234375",
+      "seconds": 0.006976300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0007.csv.bin",
+      "index": 84,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.3177490234375",
+      "seconds": 0.00689460009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 32,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.10626220703125",
+      "seconds": 0.006634400146484375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0009.csv.bin",
+      "index": 0,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.66079330444335938",
+      "seconds": 0.006560800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 44,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.35499191284179688",
+      "seconds": 0.006488900146484375
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 3,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.71735000610351562",
+      "seconds": 0.0064757998046875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0009.csv.bin",
+      "index": 16,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.66079330444335938",
+      "seconds": 0.006454199951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 53,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.35499191284179688",
+      "seconds": 0.006452699951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 12,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0922393798828125",
+      "seconds": 0.006325800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 21,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0922393798828125",
+      "seconds": 0.006278400146484375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 34,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.0057373046875",
+      "seconds": 0.00592760009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 99,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.06929779052734375",
+      "seconds": 0.005682300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 89,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.06929779052734375",
+      "seconds": 0.005633099853515625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 81,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.00550189990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0006.csv.bin",
+      "index": 39,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19801902770996094",
+      "seconds": 0.00541739990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0006.csv.bin",
+      "index": 13,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19801902770996094",
+      "seconds": 0.005323300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 71,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.28643035888671875",
+      "seconds": 0.0053135
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 61,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.28643035888671875",
+      "seconds": 0.005271
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 36,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0",
+      "seconds": 0.004956699951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedges/edge-edge/edge-edge-0011.csv.bin",
+      "index": 9,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.0049135
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0007.csv.bin",
+      "index": 108,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.91591262817382812",
+      "seconds": 0.004904099853515625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 122,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.1921234130859375",
+      "seconds": 0.004895599853515625
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedges/edge-edge/edge-edge-0011.csv.bin",
+      "index": 17,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.0048745
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 6,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.1921234130859375",
+      "seconds": 0.00487260009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0007.csv.bin",
+      "index": 89,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.73580169677734375",
+      "seconds": 0.004738199951171875
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 8,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.29939746856689453",
+      "seconds": 0.0047222001953125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0007.csv.bin",
+      "index": 109,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.73580169677734375",
+      "seconds": 0.004705699951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0003.csv.bin",
+      "index": 68,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.004655099853515625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 117,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.7136993408203125",
+      "seconds": 0.00458389990234375
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0005.csv.bin",
+      "index": 82,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0",
+      "seconds": 0.004547800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 108,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.7136993408203125",
+      "seconds": 0.00452810009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 13,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.15460586547851562",
+      "seconds": 0.004383800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 23,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.15460586547851562",
+      "seconds": 0.004288
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedge-crack/edge-edge/edge-edge-0002.csv.bin",
+      "index": 52,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.004212
+    },
+    {
+      "group": 2,
+      "path": "erleben-wedge-crack/vertex-face/vertex-face-0005.csv.bin",
+      "index": 12,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.986846923828125",
+      "seconds": 0.004095
+    },
+    {
+      "group": 2,
+      "path": "erleben-wedge-crack/vertex-face/vertex-face-0005.csv.bin",
+      "index": 1,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.986846923828125",
+      "seconds": 0.004089599853515625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0005.csv.bin",
+      "index": 81,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.112548828125",
+      "seconds": 0.003918900146484375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0003.csv.bin",
+      "index": 9,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.21798324584960938",
+      "seconds": 0.003863300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 121,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.21798324584960938",
+      "seconds": 0.00384910009765625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 43,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.04582977294921875",
+      "seconds": 0.003803900146484375
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 37,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.04582977294921875",
+      "seconds": 0.00376360009765625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 120,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.061065673828125",
+      "seconds": 0.003763199951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0003.csv.bin",
+      "index": 51,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.2603759765625",
+      "seconds": 0.00370639990234375
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 114,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.061065673828125",
+      "seconds": 0.003698199951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0003.csv.bin",
+      "index": 59,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.2603759765625",
+      "seconds": 0.0036937001953125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 90,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.12595748901367188",
+      "seconds": 0.00366410009765625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0002.csv.bin",
+      "index": 22,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.30329513549804688",
+      "seconds": 0.003653699951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0002.csv.bin",
+      "index": 14,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.30329513549804688",
+      "seconds": 0.003639599853515625
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0555.csv.bin",
+      "index": 39,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.13720703125",
+      "seconds": 0.003558
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 0,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.51422405242919922",
+      "seconds": 0.003528599853515625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0004.csv.bin",
+      "index": 74,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.17504310607910156",
+      "seconds": 0.003513800048828125
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0004.csv.bin",
+      "index": 63,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.17504310607910156",
+      "seconds": 0.003510199951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 101,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.12595748901367188",
+      "seconds": 0.003458400146484375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 38,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.051403045654296875",
+      "seconds": 0.00344889990234375
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0556.csv.bin",
+      "index": 71,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.309326171875",
+      "seconds": 0.003439300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 26,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.051403045654296875",
+      "seconds": 0.003387099853515625
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 3,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.71735239028930664",
+      "seconds": 0.003345699951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0005.csv.bin",
+      "index": 79,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.1575927734375",
+      "seconds": 0.00328360009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedge-crack/edge-edge/edge-edge-0016.csv.bin",
+      "index": 33,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.0032802998046875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0005.csv.bin",
+      "index": 80,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.143310546875",
+      "seconds": 0.003270199951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedge-crack/edge-edge/edge-edge-0016.csv.bin",
+      "index": 20,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.00325410009765625
+    },
+    {
+      "group": 2,
+      "path": "erleben-wedge-crack/vertex-face/vertex-face-0004.csv.bin",
+      "index": 55,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.98944091796875",
+      "seconds": 0.003251699951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-wedge-crack/vertex-face/vertex-face-0004.csv.bin",
+      "index": 42,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.98944091796875",
+      "seconds": 0.0032255
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 1,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.1995391845703125",
+      "seconds": 0.00320760009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 85,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.11645889282226562",
+      "seconds": 0.003044
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 73,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.11645889282226562",
+      "seconds": 0.003032099853515625
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0029.csv.bin",
+      "index": 81,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.961669921875",
+      "seconds": 0.002888199951171875
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 5,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.46429204940795898",
+      "seconds": 0.002871199951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0002.csv.bin",
+      "index": 24,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.8640899658203125",
+      "seconds": 0.002527800048828125
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0002.csv.bin",
+      "index": 90,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.056840896606445312",
+      "seconds": 0.002462
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0002.csv.bin",
+      "index": 98,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.056840896606445312",
+      "seconds": 0.002412900146484375
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0255.csv.bin",
+      "index": 22,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.88671875",
+      "seconds": 0.002387699951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 16,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.6227569580078125",
+      "seconds": 0.00227360009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0002.csv.bin",
+      "index": 15,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.8640899658203125",
+      "seconds": 0.002264099853515625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 86,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.13657569885253906",
+      "seconds": 0.002260699951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 28,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.6227569580078125",
+      "seconds": 0.002258
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 74,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.13657569885253906",
+      "seconds": 0.002232
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0285.csv.bin",
+      "index": 78,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.46630859375",
+      "seconds": 0.002197300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0004.csv.bin",
+      "index": 37,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0",
+      "seconds": 0.002131599853515625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0001.csv.bin",
+      "index": 123,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.36576080322265625",
+      "seconds": 0.002011900146484375
+    },
+    {
+      "group": 2,
+      "path": "erleben-spike-wedge/vertex-face/vertex-face-0002.csv.bin",
+      "index": 2,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.36576080322265625",
+      "seconds": 0.001996400146484375
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0005.csv.bin",
+      "index": 66,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.11480712890625",
+      "seconds": 0.00198810009765625
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0288.csv.bin",
+      "index": 3,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.322509765625",
+      "seconds": 0.0019555
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0005.csv.bin",
+      "index": 72,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.11480712890625",
+      "seconds": 0.001955
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0029.csv.bin",
+      "index": 31,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.98828125",
+      "seconds": 0.0019465
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 7,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.39140653610229492",
+      "seconds": 0.0019425
+    },
+    {
+      "group": 2,
+      "path": "unit-tests/vertex-face/vertex-face-0006.csv.bin",
+      "index": 4,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.16699075698852539",
+      "seconds": 0.00187860009765625
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0003.csv.bin",
+      "index": 89,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.35009765625",
+      "seconds": 0.001816300048828125
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0003.csv.bin",
+      "index": 81,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.35009765625",
+      "seconds": 0.001814400146484375
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0450.csv.bin",
+      "index": 105,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.044891357421875",
+      "seconds": 0.00170339990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0001.csv.bin",
+      "index": 50,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.31467056274414062",
+      "seconds": 0.00168610009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0001.csv.bin",
+      "index": 64,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.31467056274414062",
+      "seconds": 0.001683400146484375
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedges/edge-edge/edge-edge-0007.csv.bin",
+      "index": 117,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.9544677734375",
+      "seconds": 0.00165739990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0006.csv.bin",
+      "index": 1,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.001644800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 22,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.077138900756835938",
+      "seconds": 0.0016375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0001.csv.bin",
+      "index": 52,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.32578659057617188",
+      "seconds": 0.001626800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedges/edge-edge/edge-edge-0008.csv.bin",
+      "index": 6,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.9544677734375",
+      "seconds": 0.00162610009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0001.csv.bin",
+      "index": 63,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.32578659057617188",
+      "seconds": 0.001625800048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 10,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.077138900756835938",
+      "seconds": 0.0016167001953125
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0795.csv.bin",
+      "index": 1,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.1767578125",
+      "seconds": 0.001613300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0008.csv.bin",
+      "index": 21,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.41623926162719727",
+      "seconds": 0.001552800048828125
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0721.csv.bin",
+      "index": 40,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.72955322265625",
+      "seconds": 0.0015515
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0793.csv.bin",
+      "index": 64,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.32470703125",
+      "seconds": 0.001531400146484375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0005.csv.bin",
+      "index": 81,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.001505699951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0003.csv.bin",
+      "index": 44,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19415283203125",
+      "seconds": 0.001441
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1565.csv.bin",
+      "index": 68,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.3778076171875",
+      "seconds": 0.001428800048828125
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0003.csv.bin",
+      "index": 36,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19415283203125",
+      "seconds": 0.00141589990234375
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0008.csv.bin",
+      "index": 40,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.19149875640869141",
+      "seconds": 0.0014132001953125
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1317.csv.bin",
+      "index": 45,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.69287109375",
+      "seconds": 0.00134239990234375
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0585.csv.bin",
+      "index": 4,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.7724609375",
+      "seconds": 0.00131260009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 25,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.091081619262695312",
+      "seconds": 0.001311300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0002.csv.bin",
+      "index": 36,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.091081619262695312",
+      "seconds": 0.0013057998046875
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0592.csv.bin",
+      "index": 32,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.4287109375",
+      "seconds": 0.00130260009765625
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1636.csv.bin",
+      "index": 45,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.647216796875",
+      "seconds": 0.0012765
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0002.csv.bin",
+      "index": 17,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.404296875",
+      "seconds": 0.0012675
+    },
+    {
+      "group": 3,
+      "path": "erleben-spikes/edge-edge/edge-edge-0002.csv.bin",
+      "index": 26,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.404296875",
+      "seconds": 0.001264
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1637.csv.bin",
+      "index": 48,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.12646484375",
+      "seconds": 0.0012215
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0590.csv.bin",
+      "index": 99,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.51025390625",
+      "seconds": 0.001216199951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0001.csv.bin",
+      "index": 96,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.6571044921875",
+      "seconds": 0.00121260009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-spike-wedge/edge-edge/edge-edge-0001.csv.bin",
+      "index": 84,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.6571044921875",
+      "seconds": 0.001207099853515625
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedges/edge-edge/edge-edge-0007.csv.bin",
+      "index": 69,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.66668701171875",
+      "seconds": 0.001199099853515625
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0589.csv.bin",
+      "index": 65,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.578125",
+      "seconds": 0.001186800048828125
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0724.csv.bin",
+      "index": 71,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.1597900390625",
+      "seconds": 0.00117510009765625
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedges/edge-edge/edge-edge-0007.csv.bin",
+      "index": 73,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.66668701171875",
+      "seconds": 0.0011735
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0002.csv.bin",
+      "index": 7,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.24380111694335938",
+      "seconds": 0.001170900146484375
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0588.csv.bin",
+      "index": 32,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.634765625",
+      "seconds": 0.001164900146484375
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0001.csv.bin",
+      "index": 124,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.24380111694335938",
+      "seconds": 0.001160099853515625
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0104.csv.bin",
+      "index": 74,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.47100830078125",
+      "seconds": 0.001147900146484375
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1636.csv.bin",
+      "index": 97,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.2802734375",
+      "seconds": 0.001134300048828125
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 24,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.053409576416015625",
+      "seconds": 0.0011145
+    },
+    {
+      "group": 3,
+      "path": "unit-tests/edge-edge/edge-edge-0002.csv.bin",
+      "index": 4,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.16699528694152832",
+      "seconds": 0.001112300048828125
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 30,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.053409576416015625",
+      "seconds": 0.001108
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0506.csv.bin",
+      "index": 3,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.95672607421875",
+      "seconds": 0.00110539990234375
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0587.csv.bin",
+      "index": 2,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.68505859375",
+      "seconds": 0.00108939990234375
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0116.csv.bin",
+      "index": 21,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.435791015625",
+      "seconds": 0.0010855
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-0585.csv.bin",
+      "index": 71,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.73388671875",
+      "seconds": 0.0010775
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 101,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.064929962158203125",
+      "seconds": 0.001064300048828125
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0661.csv.bin",
+      "index": 31,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.668701171875",
+      "seconds": 0.001061800048828125
+    },
+    {
+      "group": 1,
+      "path": "mat-twist/edge-edge/edge-edge-0040.csv.bin",
+      "index": 85,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.663818359375",
+      "seconds": 0.00105739990234375
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1224.csv.bin",
+      "index": 38,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.78515625",
+      "seconds": 0.001051199951171875
+    },
+    {
+      "group": 1,
+      "path": "cow-heads/edge-edge/edge-edge-0660.csv.bin",
+      "index": 11,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.668701171875",
+      "seconds": 0.001048199951171875
+    },
+    {
+      "group": 1,
+      "path": "mat-twist/edge-edge/edge-edge-0040.csv.bin",
+      "index": 56,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.663818359375",
+      "seconds": 0.001047199951171875
+    },
+    {
+      "group": 2,
+      "path": "erleben-spikes/vertex-face/vertex-face-0004.csv.bin",
+      "index": 107,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.064929962158203125",
+      "seconds": 0.0010425
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1221.csv.bin",
+      "index": 71,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.84814453125",
+      "seconds": 0.001027300048828125
+    },
+    {
+      "group": 3,
+      "path": "erleben-cube-cliff-edges/edge-edge/edge-edge-0004.csv.bin",
+      "index": 122,
+      "truth": 0,
+      "hit": 0,
+      "toi": "inf",
+      "seconds": 0.00101939990234375
+    },
+    {
+      "group": 1,
+      "path": "chain/edge-edge/edge-edge-1223.csv.bin",
+      "index": 3,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.8330078125",
+      "seconds": 0.001018900146484375
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedge-crack/edge-edge/edge-edge-0013.csv.bin",
+      "index": 1,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.2100830078125",
+      "seconds": 0.001017699951171875
+    },
+    {
+      "group": 3,
+      "path": "erleben-wedge-crack/edge-edge/edge-edge-0012.csv.bin",
+      "index": 120,
+      "truth": 1,
+      "hit": 1,
+      "toi": "0.2100830078125",
+      "seconds": 0.0010107998046875
+    }
+  ]
+}

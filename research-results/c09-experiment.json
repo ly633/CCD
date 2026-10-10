@@ -1,0 +1,91 @@
+{
+  "id": "C09",
+  "parent": "C08",
+  "hypothesis": "Delay whole-trajectory Bernstein certificate until BFS refinement 32 to amortize interval arithmetic on hard queries",
+  "revision": "d96ad149867ff7a50981ebf055a13512693692b6",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "screened; selection pending",
+  "build_log": "c09-build.log",
+  "focused_test": "c09-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "5fb91ae9d7cc1a7ab071f7e58ee1f9e1b986c903ee4afca3926861f2d9d99768",
+    "research_equivalence": "69d85e7d958aab98e31d737ddcab26dbe4046923632ad0942ba7f77d1ed68e8b"
+  },
+  "focused_attempts": [
+    {
+      "log": "c09-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c09-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Delay whole-trajectory Bernstein certificate until BFS refinement 32 to amortize interval arithmetic on hard queries",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c09-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 19.467959544677733,
+  "bitwise_mismatches": 87,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.5460284987792968,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.6422892392578124,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 62,
+      "fn": 0,
+      "ccd_seconds": 5.150856296386719,
+      "bitwise_mismatches": 28,
+      "output_hash": "15055501444637901349",
+      "removed_false_positives": 28
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 144,
+      "fn": 0,
+      "ccd_seconds": 13.128785510253905,
+      "bitwise_mismatches": 59,
+      "output_hash": "14508957986133318465",
+      "removed_false_positives": 59
+    }
+  ]
+}
