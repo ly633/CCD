@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-10-10T04:05:23.575246+00:00",
+  "checked_utc": "2026-10-10T04:08:49.837380+00:00",
   "effective_candidates": 20,
   "candidate_ledger": [
     {
@@ -13,7 +13,7 @@
         "research-results\\runs\\c01-subset\\results.json"
       ],
       "status": "valid but insufficient speed; retain as C02 parent",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C02",
@@ -26,7 +26,7 @@
         "research-results\\runs\\c02-subset\\results.json"
       ],
       "status": "selected: final full-data validation passed",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C03",
@@ -39,7 +39,7 @@
         "research-results\\runs\\c03-subset\\results.json"
       ],
       "status": "retained as parent of next candidate; superseded by fully validated C07",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C04",
@@ -52,7 +52,7 @@
         "research-results\\runs\\c04-subset\\results.json"
       ],
       "status": "retained as parent of next candidate; superseded by fully validated C07",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C05",
@@ -65,7 +65,7 @@
         "research-results\\runs\\c05-subset\\results.json"
       ],
       "status": "retained as parent of next candidate; superseded by fully validated C07",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C06",
@@ -78,7 +78,7 @@
         "research-results\\runs\\c06-subset-retry\\results.json"
       ],
       "status": "retained as parent of next candidate; superseded by fully validated C07",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C07",
@@ -91,7 +91,7 @@
         "research-results\\runs\\c07-subset\\results.json"
       ],
       "status": "best fully validated version; below 80 percent target",
-      "final_selection": "保留，EE 顺序由 C16 调整"
+      "final_selection": "\u4fdd\u7559\uff0cEE \u987a\u5e8f\u7531 C16 \u8c03\u6574"
     },
     {
       "id": "C08",
@@ -104,7 +104,7 @@
         "research-results\\runs\\c08-subset\\results.json"
       ],
       "status": "rejected for whole-dataset performance; retained as C09 parent",
-      "final_selection": "证书保留，立即执行策略淘汰"
+      "final_selection": "\u8bc1\u4e66\u4fdd\u7559\uff0c\u7acb\u5373\u6267\u884c\u7b56\u7565\u6dd8\u6c70"
     },
     {
       "id": "C09",
@@ -117,7 +117,7 @@
         "research-results\\runs\\c09-subset\\results.json"
       ],
       "status": "screened; selection pending",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C10",
@@ -130,7 +130,7 @@
         "research-results\\runs\\c10-subset\\results.json"
       ],
       "status": "single-run regression versus C09; retained only as part of C11 combination",
-      "final_selection": "单独回归；在 C11 组合中保留"
+      "final_selection": "\u5355\u72ec\u56de\u5f52\uff1b\u5728 C11 \u7ec4\u5408\u4e2d\u4fdd\u7559"
     },
     {
       "id": "C11",
@@ -143,7 +143,7 @@
         "research-results\\runs\\c11-subset\\results.json"
       ],
       "status": "retained for C12",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C12",
@@ -156,7 +156,7 @@
         "research-results\\runs\\c12-subset\\results.json"
       ],
       "status": "rejected for subset regression",
-      "final_selection": "淘汰：四组筛选均变慢"
+      "final_selection": "\u6dd8\u6c70\uff1a\u56db\u7ec4\u7b5b\u9009\u5747\u53d8\u6162"
     },
     {
       "id": "C13",
@@ -169,7 +169,7 @@
         "research-results\\runs\\c13-subset\\results.json"
       ],
       "status": "screened; selection pending",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C14",
@@ -182,7 +182,7 @@
         "research-results\\runs\\c14-subset\\results.json"
       ],
       "status": "best full-screen candidate; needs final contemporaneous paired validation",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C15",
@@ -195,7 +195,7 @@
         "research-results\\runs\\c15-subset\\results.json"
       ],
       "status": "screened; selection pending",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C16",
@@ -208,7 +208,7 @@
         "research-results\\runs\\c16-subset\\results.json"
       ],
       "status": "best full-screen candidate; awaiting final paired validation",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C17",
@@ -221,7 +221,7 @@
         "research-results\\runs\\c17-subset\\results.json"
       ],
       "status": "rejected for subset regression",
-      "final_selection": "淘汰：额外区间计算得不偿失"
+      "final_selection": "\u6dd8\u6c70\uff1a\u989d\u5916\u533a\u95f4\u8ba1\u7b97\u5f97\u4e0d\u507f\u5931"
     },
     {
       "id": "C18",
@@ -234,7 +234,7 @@
         "research-results\\runs\\c18-subset\\results.json"
       ],
       "status": "not selected; no demonstrated screening improvement",
-      "final_selection": "淘汰：未证明筛选收益"
+      "final_selection": "\u6dd8\u6c70\uff1a\u672a\u8bc1\u660e\u7b5b\u9009\u6536\u76ca"
     },
     {
       "id": "C19",
@@ -247,7 +247,7 @@
         "research-results\\runs\\c19-subset\\results.json"
       ],
       "status": "best full-screen candidate; final C20 comparison pending",
-      "final_selection": "保留"
+      "final_selection": "\u4fdd\u7559"
     },
     {
       "id": "C20",
@@ -259,8 +259,8 @@
       "completed_subset_reports": [
         "research-results\\runs\\c20-subset\\results.json"
       ],
-      "status": "selected for final paired validation",
-      "final_selection": "最终最佳"
+      "status": "selected; final alternating full validation passed",
+      "final_selection": "\u6700\u7ec8\u6700\u4f73"
     }
   ],
   "performance_target_met": false,

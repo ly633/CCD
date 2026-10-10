@@ -12,7 +12,7 @@ import numpy as np
 
 root=Path(__file__).resolve().parents[1]
 out=root/'research-results'
-manifest=json.loads((out/'cache/subset-manifest.json').read_text())
+manifest=json.loads((out/'cache/subset-manifest.json').read_text(encoding='utf-8'))
 answers=np.fromfile(out/'runs/ref-subset/answers-1.bin',dtype=[('toi','<f8'),('tol','<f8'),('hit','<u8')])
 offset=0;results=[]
 for g in range(4):

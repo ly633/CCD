@@ -62,7 +62,7 @@ def init():
 def prepare(workers):
     out=OUT/'cache'
     out.mkdir(exist_ok=True)
-    manifest=json.loads((DATA/'dataset-manifest.json').read_text())
+    manifest=json.loads((DATA/'dataset-manifest.json').read_text(encoding='utf-8'))
     entries=[(g,f) for g,key in enumerate(GROUPS) for f in sorted(manifest[key]['files'],key=lambda x:x['path'])]
     assert sum(f['queries'] for _,f in entries)==59387883
     if (out/'ready.json').exists(): raise FileExistsError('cache already prepared')
@@ -103,9 +103,9 @@ def run(args):
     out=OUT/'runs'/args.id
     out.mkdir(parents=True,exist_ok=False)
     cache=OUT/'cache'
-    ready=json.loads((cache/'ready.json').read_text())
+    ready=json.loads((cache/'ready.json').read_text(encoding='utf-8'))
     snapshot=(ROOT/args.snapshot).resolve() if getattr(args,'snapshot',None) else None
-    frozen=json.loads((snapshot/'results.json').read_text()) if snapshot else None
+    frozen=json.loads((snapshot/'results.json').read_text(encoding='utf-8')) if snapshot else None
     exe=(snapshot/f'research_{args.kind}.exe') if snapshot else BUILD/f'research/Release/research_{args.kind}.exe'
     if frozen and (frozen['kind']!=args.kind or sha(exe)!=frozen['executable_sha256']):
         raise RuntimeError('Snapshot kind or executable SHA256 mismatch')
@@ -119,13 +119,13 @@ def run(args):
     if snapshot: shutil.copy2(snapshot/'source.patch',out/'source.patch')
     else: (out/'source.patch').write_text(git('diff','v1.0.6','--','src','app','CMakeLists.txt','research'),encoding='utf-8')
     expected=Path(args.expected).resolve() if args.expected else None
-    reference=json.loads((expected/'results.json').read_text()) if expected else None
+    reference=json.loads((expected/'results.json').read_text(encoding='utf-8')) if expected else None
     report=dict(id=args.id,kind=args.kind,dataset=args.dataset,hypothesis=args.hypothesis,
         created_utc=dt.datetime.now(dt.timezone.utc).isoformat(),revision=frozen['revision'] if frozen else git('rev-parse','HEAD'),
         snapshot=str(snapshot) if snapshot else None,
         allow_fp_removal=getattr(args,'allow_fp_removal',False),
         core_source={str(p.relative_to(source)):sha(p) for p in sorted(source.rglob('*')) if p.is_file()},
-        build_settings=[l for l in build_cache.read_text().splitlines() if l.startswith(('CMAKE_CXX_FLAGS','TIGHT_INCLUSION_','CMAKE_GENERATOR','Eigen3_DIR','GMP_'))],
+        build_settings=[l for l in build_cache.read_text(encoding='utf-8').splitlines() if l.startswith(('CMAKE_CXX_FLAGS','TIGHT_INCLUSION_','CMAKE_GENERATOR','Eigen3_DIR','GMP_'))],
         executable_sha256=sha(exe),runner_sha256=sha(runner),
         parameters=PARAMS,logical_cpu=0,threads=1,cache=ready,
         timing='Unchanged upstream per-query Timer; includes API argument conversion and CCD call; excludes cache/CSV I/O, result comparison, hashing and writes',
@@ -173,7 +173,7 @@ def run(args):
 
 def summarize(prefix, target_reduction=.80):
     """Only declare the speed target on three validated full runs per side."""
-    reports={k:[json.loads((OUT/'runs'/f'{prefix}-{k}-{i}'/'results.json').read_text())
+    reports={k:[json.loads((OUT/'runs'/f'{prefix}-{k}-{i}'/'results.json').read_text(encoding='utf-8'))
                 for i in range(1,4)] for k in ('reference','candidate')}
     for kind,items in reports.items():
         assert len({x['executable_sha256'] for x in items})==1

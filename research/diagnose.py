@@ -20,7 +20,7 @@ cmd=[str(out/exe.name),'run',str(r.OUT/'cache/subset.txt'),str(r.OUT/'cache/subs
 with (out/'run.log').open('wb') as log:
     sp.run(cmd,cwd=r.ROOT,stdout=log,stderr=sp.STDOUT,check=True)
 slow=[]
-for line in (out/'run.log').read_text().splitlines():
+for line in (out/'run.log').read_text(encoding='utf-8').splitlines():
     if line.startswith('SLOW '):
         _,g,path,index,truth,hit,toi,seconds=line.split()
         slow.append(dict(group=int(g),path=path,index=int(index),truth=int(truth),hit=int(hit),toi=toi,seconds=float(seconds)))

@@ -18,7 +18,7 @@ a=p.parse_args()
 identifier=a.id.lower()
 record_path=r.OUT/f'{identifier}-experiment.json'
 if record_path.exists() and not a.resume:raise FileExistsError(record_path)
-record=json.loads(record_path.read_text()) if a.resume else dict(id=a.id,parent=a.parent,hypothesis=a.hypothesis,revision=r.git('rev-parse','HEAD'),
+record=json.loads(record_path.read_text(encoding='utf-8')) if a.resume else dict(id=a.id,parent=a.parent,hypothesis=a.hypothesis,revision=r.git('rev-parse','HEAD'),
             numerical_argument='research/CONTINUED_NUMERICS.rst',status='building',
             build_log=f'{identifier}-build.log',focused_test=f'{identifier}-equivalence.log')
 r.save(record_path,record)
@@ -59,7 +59,7 @@ if a.allow_fp_removal:cmd.append('--allow-fp-removal')
 if original_run.exists():cmd.extend(['--snapshot',str(original_run)])
 record['command']=cmd;r.save(record_path,record)
 proc=sp.run(cmd,cwd=r.ROOT)
-result=json.loads((r.OUT/'runs'/run_id/'results.json').read_text())
+result=json.loads((r.OUT/'runs'/run_id/'results.json').read_text(encoding='utf-8'))
 record['result_directory']=str(r.OUT/'runs'/run_id)
 if not result['runs']:
     record.update(effective_experiment=False,valid=False,status='execution blocked before dataset evaluation',
