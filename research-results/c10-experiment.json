@@ -4,7 +4,7 @@
   "hypothesis": "Template the subdivision push callback to eliminate std::function type erasure while preserving queue insertion order",
   "revision": "bb4def9925f3431e3732776200d73520d22dcc4f",
   "numerical_argument": "research/CONTINUED_NUMERICS.rst",
-  "status": "screened; selection pending",
+  "status": "single-run regression versus C09; retained only as part of C11 combination",
   "build_log": "c10-build.log",
   "focused_test": "c10-equivalence.log",
   "build_exit_code": 0,

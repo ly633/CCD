@@ -141,3 +141,30 @@ floating operations, the queue comparator and tie order are unchanged.
 This removes type erasure and indirect calls; the numerical error added
 relative to C09 is zero. Both DFS and BFS call sites instantiate the same
 unchanged function body with their existing lambdas.
+
+C11: inline exact interval arithmetic on top of C10
+-------------------------------------------------
+
+C11 moves the unchanged definitions of reduction, NumCCD addition,
+is_sum_leq_1, Interval::bisect, Interval::overlaps and width into the header
+as inline functions. Integer operation order, reduction loops, overflow
+behavior/assertions and every floating expression are unchanged. No new
+approximation or rounding error is introduced; the objective is to expose
+small arithmetic to the compiler across translation-unit boundaries.
+C10's callback remains in this candidate. Its single-run subset regression
+was provisional; C11 tests the combination with inlined interval arithmetic.
+The source revision and hashes are authoritative for this dependency.
+
+C12: explicit four-lane AVX2 corner arithmetic
+---------------------------------------------
+
+In double AVX2 builds pack independent vertex interpolations and spatial
+terms into four lanes. Every lane still performs subtract, multiply by
+numerator, multiply by exact reciprocal, and add in that order. VF keeps
+(x+y)+b before subtraction from a; EE keeps its separate two interpolated
+edge points before subtraction. There are no FMA intrinsics or horizontal
+floating reductions. Lane permutations and loads/stores introduce no
+rounding. The scalar path remains for other builds. Thus the original
+per-corner error bound applies unchanged under the fixed IEEE environment.
+The 3.2 million bitwise corner comparisons explicitly exercise this path,
+in addition to the fixed dataset and retained-TOI gate.

@@ -1,0 +1,92 @@
+{
+  "id": "C11",
+  "parent": "C10",
+  "hypothesis": "Inline unchanged dyadic addition bisection width and overlap operations to remove cross-translation-unit overhead",
+  "revision": "2230fd2678dd2ddd78950f42cd40b67b4ff27e62",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "retained for C12",
+  "build_log": "c11-build.log",
+  "focused_test": "c11-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "18dd5f34ffadcef085ffb3da34043857c1ef72abc67b99ec032684b1333cc61d",
+    "research_equivalence": "bc027c9d7ec8dda17c13a7d5ebff97132ff6772a56af01462d7603b526c9bda8"
+  },
+  "focused_attempts": [
+    {
+      "log": "c11-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c11-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Inline unchanged dyadic addition bisection width and overlap operations to remove cross-translation-unit overhead",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c11-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 19.31279803125,
+  "bitwise_mismatches": 87,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.5319261071777344,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.6351172189941406,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 62,
+      "fn": 0,
+      "ccd_seconds": 5.123967914794922,
+      "bitwise_mismatches": 28,
+      "output_hash": "15055501444637901349",
+      "removed_false_positives": 28
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 144,
+      "fn": 0,
+      "ccd_seconds": 13.021786790283203,
+      "bitwise_mismatches": 59,
+      "output_hash": "14508957986133318465",
+      "removed_false_positives": 59
+    }
+  ],
+  "provenance_note": "Source commit 2230fd2 retains C10 callback; initial parent label C09 corrected to the actual code dependency."
+}
