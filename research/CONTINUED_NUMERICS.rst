@@ -273,3 +273,16 @@ impossible. Subnormal products are covered by the outward adjacent value.
 The formula, inputs and coefficient are unchanged; only evaluation changes.
 Unlike prior reuse candidates this is not asserted bitwise equivalent to
 generic pow. The retained-TOI and per-group FP gate must still pass.
+
+C20: recycle bounded BFS queue storage per thread
+------------------------------------------------
+
+Wrap the same std::priority_queue and preserve its Item, comparator, push/pop
+operations and insertion order. Move an empty thread-local vector into the
+queue on entry; on every exit clear all elements and move the capacity back
+when at most 65536 nodes. The original exact integer/floating values and
+heap order are unaffected by allocation capacity. Each active invocation
+owns its vector, so nested invocations cannot alias live queue elements;
+each thread and VF/EE template instance has separate cached storage. Larger
+buffers are freed as before. At 60 bytes/node, retained buffers are bounded
+by about 3.75 MiB per thread per query type. No numerical changes are made.
