@@ -211,8 +211,8 @@ namespace ticcd {
         // if error[0] < 0, means we need to calculate error here
         if (err_in[0] < 0) {
             err = get_numerical_error(
-                std::vector<Vector3>{
-                    {a_t0, b_t0, c_t0, d_t0, a_t1, b_t1, c_t1, d_t1}},
+                std::array<const Vector3*,8>{
+                    {&a_t0, &b_t0, &c_t0, &d_t0, &a_t1, &b_t1, &c_t1, &d_t1}},
                 is_vertex_face, ms > 0);
         } else {
             err = err_in;

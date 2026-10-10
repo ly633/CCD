@@ -204,3 +204,14 @@ overflow. Zero, nonfinite or inconclusive axes decline; no exact coplanarity
 assumption is made. Only ms=0 enables this rejection. The solver queue and
 surviving TOI are unchanged. Tests include 1000 scales of true VF/EE contact
 and a coplanar separated point that coordinate AABBs cannot reject.
+
+C15: error-bound inputs without heap allocation or coordinate copies
+-------------------------------------------------------------------
+
+The per-query error-bound helper receives an eight-element stack array of
+const vertex pointers instead of allocating/copying a vector of vertices.
+The existing public vector overload delegates to the same implementation.
+Both accessors supply exactly the same coordinates in the same order;
+cwiseAbs, cwiseMax reduction order, clamping, pow and filter multiplication
+are unchanged. Input lifetimes cover the entire CCD call and no vertex is
+mutated. This is a storage/access optimization with zero numerical change.

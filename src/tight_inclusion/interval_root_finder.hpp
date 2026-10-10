@@ -260,6 +260,11 @@ namespace ticcd {
 
     void print_times();
 
+    Array3 get_numerical_error(
+        const std::array<const Vector3*,8> &vertices,
+        const bool is_vertex_face,
+        const bool using_minimum_separation);
+
     // get the filter of ccd. the inputs are the vertices of the bounding box of the simulation scene
     Array3 get_numerical_error(
         const std::vector<Vector3> &vertices,

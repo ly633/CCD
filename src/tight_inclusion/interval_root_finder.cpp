@@ -631,8 +631,9 @@ namespace ticcd {
             time_vertex_solving);
     }
 
-    Array3 get_numerical_error(
-        const std::vector<Vector3> &vertices,
+    template<typename VertexAt>
+    Array3 numerical_error_impl(
+        const size_t count, VertexAt vertex,
         const bool is_vertex_face,
         const bool using_minimum_separation)
     {
@@ -656,13 +657,31 @@ namespace ticcd {
 #endif
         }
 
-        Vector3 max = vertices[0].cwiseAbs();
-        for (int i = 1; i < vertices.size(); i++) {
-            max = max.cwiseMax(vertices[i].cwiseAbs());
+        Vector3 max = vertex(0).cwiseAbs();
+        for (int i = 1; i < count; i++) {
+            max = max.cwiseMax(vertex(i).cwiseAbs());
         }
         Vector3 delta = max.cwiseMin(1);
         Scalar filter = is_vertex_face ? vffilter : eefilter;
         return filter * delta.array().pow(3);
+    }
+
+    Array3 get_numerical_error(
+        const std::vector<Vector3>& vertices,
+        const bool is_vertex_face, const bool using_minimum_separation)
+    {
+        return numerical_error_impl(vertices.size(),
+            [&](size_t i)->const Vector3& {return vertices[i];},
+            is_vertex_face,using_minimum_separation);
+    }
+
+    Array3 get_numerical_error(
+        const std::array<const Vector3*,8>& vertices,
+        const bool is_vertex_face, const bool using_minimum_separation)
+    {
+        return numerical_error_impl(vertices.size(),
+            [&](size_t i)->const Vector3& {return *vertices[i];},
+            is_vertex_face,using_minimum_separation);
     }
 
     bool edge_edge_interval_root_finder_DFS(

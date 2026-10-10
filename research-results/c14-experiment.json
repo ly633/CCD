@@ -1,0 +1,93 @@
+{
+  "id": "C14",
+  "parent": "C13",
+  "hypothesis": "Use outward interval projections on endpoint geometric axes to reject coplanar separated swept hulls after 32 refinements",
+  "revision": "78c095ccde4895eef492c2e733a526441bafbfac",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "best full-screen candidate; needs final contemporaneous paired validation",
+  "build_log": "c14-build.log",
+  "focused_test": "c14-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "7baca98a24be5fd8de8ec5d0e61f92530efdfa8aabec60c039d40e33ab5ada25",
+    "research_equivalence": "cd135e580b677f46f7ed4c5b62e71f4f70de85fed4106b695ff01965b18d0237"
+  },
+  "focused_attempts": [
+    {
+      "log": "c14-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c14-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Use outward interval projections on endpoint geometric axes to reject coplanar separated swept hulls after 32 refinements",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c14-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 17.896041229003906,
+  "bitwise_mismatches": 110,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.7586494167480469,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.7541863244628906,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 53,
+      "fn": 0,
+      "ccd_seconds": 4.526618288574219,
+      "bitwise_mismatches": 37,
+      "output_hash": "17155212445494385067",
+      "removed_false_positives": 37
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 130,
+      "fn": 0,
+      "ccd_seconds": 11.85658719921875,
+      "bitwise_mismatches": 73,
+      "output_hash": "16461901978379542721",
+      "removed_false_positives": 73
+    }
+  ],
+  "full_screen_seconds": 38.23513427563476,
+  "full_screen_valid": true
+}
