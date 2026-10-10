@@ -1,6 +1,7 @@
 #include <tight_inclusion/avx.hpp>
 #include <tight_inclusion/corner_evaluation.hpp>
 #include <tight_inclusion/bernstein_filter.hpp>
+#include <tight_inclusion/projection_filter.hpp>
 #include <random>
 #include <cstring>
 #include <iostream>
@@ -17,8 +18,18 @@ int main() {
            detail::bernstein_separated(a0,b,c,d,touch,b,c,d)) {
             std::cerr<<"Bernstein rejected a known contact, exponent "<<k<<"\n";return 1;
         }
+        if(detail::swept_hulls_separated<true>(a0,b,c,d,a1,b,c,d) ||
+           detail::swept_hulls_separated<true>(touch,b,c,d,a0,b,c,d) ||
+           detail::swept_hulls_separated<false>(b,c,Vector3(.5,-h,0),Vector3(.5,h,0),
+                                                        b,c,Vector3(.5,-h,0),Vector3(.5,h,0))) {
+            std::cerr<<"Projection rejected a known contact, exponent "<<k<<"\n";return 1;
+        }
     }
     const Vector3 separated(.25,.25,.5);
+    const Vector3 outside(.75,.75,0);
+    if(!detail::swept_hulls_separated<true>(outside,b,c,d,outside,b,c,d)) {
+        std::cerr<<"Projection failed coplanar separated certificate\n";return 1;
+    }
     if(!detail::bernstein_separated(separated,b,c,d,separated,b,c,d)) {
         std::cerr<<"Bernstein failed simple separated certificate\n";return 1;
     }

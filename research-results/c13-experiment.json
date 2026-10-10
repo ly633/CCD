@@ -1,0 +1,91 @@
+{
+  "id": "C13",
+  "parent": "C11",
+  "hypothesis": "Pack exact NumCCD storage without losing bits to reduce priority queue node traffic",
+  "revision": "6976799378dd9e525343f4ac7191af5a6099a5db",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "screened; selection pending",
+  "build_log": "c13-build.log",
+  "focused_test": "c13-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "edc9b9a625cb9f85ca525ed78cfc9058d78c092fc65bd9c4e9b1445bfc729f79",
+    "research_equivalence": "fd8b16fc564a779c75a1eacf66250f95cc794da93008f6feda93d1ef31f0d713"
+  },
+  "focused_attempts": [
+    {
+      "log": "c13-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c13-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Pack exact NumCCD storage without losing bits to reduce priority queue node traffic",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c13-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 18.77400006201172,
+  "bitwise_mismatches": 87,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.5553833820800781,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.6516955866699219,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 62,
+      "fn": 0,
+      "ccd_seconds": 4.979445696533203,
+      "bitwise_mismatches": 28,
+      "output_hash": "15055501444637901349",
+      "removed_false_positives": 28
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 144,
+      "fn": 0,
+      "ccd_seconds": 12.587475396728516,
+      "bitwise_mismatches": 59,
+      "output_hash": "14508957986133318465",
+      "removed_false_positives": 59
+    }
+  ]
+}

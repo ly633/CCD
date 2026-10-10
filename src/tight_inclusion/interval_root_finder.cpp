@@ -5,6 +5,7 @@
 #include <tight_inclusion/avx.hpp>
 #include <tight_inclusion/corner_evaluation.hpp>
 #include <tight_inclusion/bernstein_filter.hpp>
+#include <tight_inclusion/projection_filter.hpp>
 #include <tight_inclusion/logger.hpp>
 
 #include <queue>
@@ -454,8 +455,10 @@ namespace ticcd {
             refine++;
             // Pay for the certified whole-trajectory filter only on queries
             // that survived substantial subdivision. Inconclusive => unchanged BFS.
-            if (refine == 32 && ms == 0 && detail::bernstein_separated(
-                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1)) {
+            if (refine == 32 && ms == 0 && (detail::bernstein_separated(
+                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1) ||
+                    detail::swept_hulls_separated<is_vertex_face>(
+                    a_t0,b_t0,c_t0,d_t0,a_t1,b_t1,c_t1,d_t1))) {
                 toi = std::numeric_limits<Scalar>::infinity();
                 output_tolerance = co_domain_tolerance;
                 return false;

@@ -181,3 +181,26 @@ layout/copy cost changes; there is no numerical approximation. This changes
 the public struct ABI and requires recompiling consumers, as done for all
 research executables. Unaligned integer loads are supported by the target
 x64 machine; performance is measured instead of assumed.
+
+C14: interval-certified swept-hull projection separation
+-------------------------------------------------------
+
+At refinement 32, after an inconclusive Bernstein test, try selected finite
+axes from approximate endpoint face/edge normals and in-plane perpendiculars.
+Axis normalization and construction need not be exact: ANY finite fixed
+axis that separates the convex hulls is a valid certificate. For each axis
+coefficient treat its stored double as an exact real number; enclose every
+input coordinate with its two adjacent doubles and compute outward interval
+products and sums as in C08. Each endpoint's exact projection is enclosed.
+Every point on the moving segment/triangle is a convex combination of its
+endpoint vertices, so its projection lies between the minimum lower bound
+and maximum upper bound. Strictly disjoint projected hull bounds certify
+no collision for all t in [0,1], including the rational source enclosures.
+
+Coordinates are finite and bounded by 1e90 or the filter declines. Axis
+construction has at most cubic coordinate scale (constant times 1e270),
+normalization bounds axis coefficients by one, and projection sums cannot
+overflow. Zero, nonfinite or inconclusive axes decline; no exact coplanarity
+assumption is made. Only ms=0 enables this rejection. The solver queue and
+surviving TOI are unchanged. Tests include 1000 scales of true VF/EE contact
+and a coplanar separated point that coordinate AABBs cannot reject.

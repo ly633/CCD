@@ -1,0 +1,48 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  spdlog.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\_deps\spdlog-build\Release\spdlog.lib
+  ccd_reference.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\research\Release\ccd_reference.lib
+  ccd_io_ccd_io.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\_deps\ccd-query-io-build\Release\ccd_io_ccd_io.lib
+  research_reference.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\research\Release\research_reference.exe
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  spdlog.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\_deps\spdlog-build\Release\spdlog.lib
+  ccd_io_ccd_io.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\_deps\ccd-query-io-build\Release\ccd_io_ccd_io.lib
+  avx.cpp
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(128,42): warning C4244: “初始化”: 从“const uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(128,28): warning C4244: “初始化”: 从“const uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(129,54): warning C4244: “初始化”: 从“uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(129,28): warning C4244: “初始化”: 从“uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(130,42): warning C4244: “初始化”: 从“const uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(130,28): warning C4244: “初始化”: 从“const uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(131,54): warning C4244: “初始化”: 从“uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(131,28): warning C4244: “初始化”: 从“uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(132,42): warning C4244: “初始化”: 从“const uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(132,28): warning C4244: “初始化”: 从“const uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(133,54): warning C4244: “初始化”: 从“uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(133,28): warning C4244: “初始化”: 从“uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(134,42): warning C4244: “初始化”: 从“const uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(134,28): warning C4244: “初始化”: 从“const uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(135,54): warning C4244: “初始化”: 从“uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(135,28): warning C4244: “初始化”: 从“uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(136,42): warning C4244: “初始化”: 从“const uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(136,28): warning C4244: “初始化”: 从“const uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(137,54): warning C4244: “初始化”: 从“uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(137,28): warning C4244: “初始化”: 从“uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(138,42): warning C4244: “初始化”: 从“const uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(138,28): warning C4244: “初始化”: 从“const uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(139,54): warning C4244: “初始化”: 从“uint64_t”转换到“ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\src\tight_inclusion\avx.cpp(139,28): warning C4244: “初始化”: 从“uint64_t”转换到“const ticcd::Scalar”，可能丢失数据 [D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\tight_inclusion.vcxproj]
+  ccd.cpp
+  interval.cpp
+  interval_root_finder.cpp
+  正在生成代码...
+  tight_inclusion.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\Release\tight_inclusion.lib
+  runner.cpp
+  research_candidate.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\research\Release\research_candidate.exe
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  spdlog.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\_deps\spdlog-build\Release\spdlog.lib
+  tight_inclusion.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\Release\tight_inclusion.lib
+  equivalence.cpp
+  research_equivalence.vcxproj -> D:\ly\DGP-Autoreasearch\Tight-Inclusion-autoresearch\build-autoresearch-sample\research\Release\research_equivalence.exe
