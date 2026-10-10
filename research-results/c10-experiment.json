@@ -1,0 +1,91 @@
+{
+  "id": "C10",
+  "parent": "C09",
+  "hypothesis": "Template the subdivision push callback to eliminate std::function type erasure while preserving queue insertion order",
+  "revision": "bb4def9925f3431e3732776200d73520d22dcc4f",
+  "numerical_argument": "research/CONTINUED_NUMERICS.rst",
+  "status": "screened; selection pending",
+  "build_log": "c10-build.log",
+  "focused_test": "c10-equivalence.log",
+  "build_exit_code": 0,
+  "built_hashes": {
+    "research_candidate": "c818eadb7a5923339a18d2d2c075d244c1a6c5852130b676a040ab301d230771",
+    "research_equivalence": "18153cb28c6ec413356b0324e638dd23cfd750240307ed106728cb13ce9e2558"
+  },
+  "focused_attempts": [
+    {
+      "log": "c10-equivalence.log",
+      "exit_code": 0,
+      "started": true
+    }
+  ],
+  "focused_exit_code": 0,
+  "command": [
+    "C:\\Users\\ustc\\anaconda3\\python.exe",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research\\research.py",
+    "run",
+    "--id",
+    "c10-subset",
+    "--kind",
+    "candidate",
+    "--expected",
+    "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\ref-subset",
+    "--hypothesis",
+    "Template the subdivision push callback to eliminate std::function type erasure while preserving queue insertion order",
+    "--repeats",
+    "1",
+    "--allow-fp-removal"
+  ],
+  "result_directory": "D:\\ly\\DGP-Autoreasearch\\Tight-Inclusion-autoresearch\\research-results\\runs\\c10-subset",
+  "effective_experiment": true,
+  "subset_exit_code": 0,
+  "valid": true,
+  "subset_seconds": 20.45562234863281,
+  "bitwise_mismatches": 87,
+  "groups": [
+    {
+      "group": "simulation/vertex-face",
+      "queries": 159370,
+      "positives": 18711,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.5385815971679687,
+      "bitwise_mismatches": 0,
+      "output_hash": "13127724139212903699",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "simulation/edge-edge",
+      "queries": 331630,
+      "positives": 7325,
+      "fp": 0,
+      "fn": 0,
+      "ccd_seconds": 0.6434705490722656,
+      "bitwise_mismatches": 0,
+      "output_hash": "9825092619158012770",
+      "removed_false_positives": 0
+    },
+    {
+      "group": "handcrafted/vertex-face",
+      "queries": 21208,
+      "positives": 544,
+      "fp": 62,
+      "fn": 0,
+      "ccd_seconds": 5.476638395996094,
+      "bitwise_mismatches": 28,
+      "output_hash": "15055501444637901349",
+      "removed_false_positives": 28
+    },
+    {
+      "group": "handcrafted/edge-edge",
+      "queries": 34129,
+      "positives": 402,
+      "fp": 144,
+      "fn": 0,
+      "ccd_seconds": 13.796931806396485,
+      "bitwise_mismatches": 59,
+      "output_hash": "14508957986133318465",
+      "removed_false_positives": 59
+    }
+  ]
+}
