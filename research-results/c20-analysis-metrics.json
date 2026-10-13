@@ -1,0 +1,63 @@
+{
+  "source_summary_sha256": "48116aee12bbfe9cf2bc49c186c49ef55bd18f1ee5a8b6276b1c1895c16832da",
+  "core_revision": "0c1f229b4e10a3ad95033956f6604f5740c64c8d",
+  "overall_medians": {
+    "reference": 72.74591958032227,
+    "candidate": 32.99208249243164
+  },
+  "groups": [
+    {
+      "name": "仿真点面 VF",
+      "queries": 17959962,
+      "reference_seconds": 12.037779154785156,
+      "candidate_seconds": 3.9994742204589846,
+      "reduction": 0.6677564716022268,
+      "speedup": 3.009840416824511,
+      "reference_fp": 2,
+      "fp": 2,
+      "fn": 0
+    },
+    {
+      "name": "仿真边边 EE",
+      "queries": 41372584,
+      "reference_seconds": 28.2647723359375,
+      "candidate_seconds": 12.27087059350586,
+      "reduction": 0.5658599175092611,
+      "speedup": 2.3034039940814086,
+      "reference_fp": 17,
+      "fp": 6,
+      "fn": 0
+    },
+    {
+      "name": "人工点面 VF",
+      "queries": 21208,
+      "reference_seconds": 7.969542293457032,
+      "candidate_seconds": 4.575794707763672,
+      "reduction": 0.42583971083002037,
+      "speedup": 1.7416739173056097,
+      "reference_fp": 90,
+      "fp": 53,
+      "fn": 0
+    },
+    {
+      "name": "人工边边 EE",
+      "queries": 34129,
+      "reference_seconds": 24.441171596923827,
+      "candidate_seconds": 12.075934708007813,
+      "reduction": 0.5059183370109928,
+      "speedup": 2.023956918276178,
+      "reference_fp": 203,
+      "fp": 130,
+      "fn": 0
+    }
+  ],
+  "handcrafted_query_share": 0.0009317894022253664,
+  "handcrafted_time_share_per_run": [
+    0.5073090279812142,
+    0.5065034676822829,
+    0.5008276481889866
+  ],
+  "target_seconds": 14.549183916064454,
+  "further_reduction_needed": 0.559009834574643,
+  "warning": "Group medians are independent and must not be summed as the overall median."
+}

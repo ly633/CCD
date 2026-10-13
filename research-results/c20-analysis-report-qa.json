@@ -1,0 +1,12 @@
+{
+  "report_date": "2026-10-13",
+  "experiment_date": "2026-10-10",
+  "pages": 7,
+  "all_pages_visually_reviewed": true,
+  "report_sha256": "7e523e6e976be875bc250aade98a23090ec844fa897e31fb8e4230c103a42079",
+  "source": "research/C20_CHANGE_ANALYSIS.rst",
+  "generator": "research/generate_c20_analysis_report.py",
+  "core_unchanged": true,
+  "baseline_clean": true,
+  "new_ccd_experiments_run": false
+}
