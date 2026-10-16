@@ -258,3 +258,6 @@ research-results/cache/subset/
 research-results/runs/**/src/
 research-results/runs/**/runner.cpp
 research-results/**/*.bin
+
+# Local report-rendering previews; final reports are retained under output/pdf/.
+/tmp/

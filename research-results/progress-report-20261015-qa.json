@@ -1,0 +1,17 @@
+{
+  "report_date": "2026-10-15",
+  "experiment_date": "2026-10-10",
+  "pages": 5,
+  "new_ccd_experiments_run": false,
+  "core_matches_tested_c20": true,
+  "reference_median": 72.74591958032227,
+  "candidate_median": 32.99208249243164,
+  "reduction": 0.5464751468843074,
+  "pdf_sha256": "1ab5fe41b3621cf2a5c7e0eaf2d23e4a94549128fb04c51869c51baa5f1f3055",
+  "all_pages_visually_reviewed": true,
+  "sources": [
+    "research-results/final80-c20-summary.json",
+    "research-results/final80-completion-audit.json"
+  ],
+  "raw_six_run_records_match_summary": true
+}

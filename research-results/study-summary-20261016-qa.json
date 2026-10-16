@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-16",
+  "pages": 5,
+  "external_links": [
+    "https://continuous-collision-detection.github.io/tight_inclusion/",
+    "https://continuous-collision-detection.github.io/tight_inclusion/CCD-benchmark-paper.pdf",
+    "https://github.com/Continuous-Collision-Detection/Tight-Inclusion",
+    "https://github.com/Continuous-Collision-Detection/Tight-Inclusion/tree/v1.0.6",
+    "https://archive.nyu.edu/handle/2451/61518"
+  ],
+  "equations": 6,
+  "raw_results_checked": true,
+  "new_experiments_run": false,
+  "all_pages_visually_reviewed": true,
+  "pdf_sha256": "f78dcd2fac1d7ddc1260d004d43694789c71f36053343e57b390a2041c5fe78a"
+}

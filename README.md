@@ -1,5 +1,59 @@
 # Tight-Inclusion Continuous Collision Detection
 
+## CCD research repository
+
+本仓库 [ly633/CCD](https://github.com/ly633/CCD) 保存基于
+[上游 Tight-Inclusion](https://github.com/Continuous-Collision-Detection/Tight-Inclusion)
+v1.0.6 的优化研究、源码、实验记录和报告，保留上游 Git 历史与许可证。
+
+- `main`：当前交付版本，`src/` 为最终验证的 C20 实现。
+- `baseline/tight-inclusion-v1.0.6`：研究前的基线与复现工具，提交 `497baaa`。
+- 原始上游基准提交：`7377d78`；最终 C20 核心实现提交：`0c1f229`。
+- 实验结果与复现说明：[research/FINAL_RESULTS80.rst](research/FINAL_RESULTS80.rst)。
+- 改动分析：[research/C20_CHANGE_ANALYSIS.rst](research/C20_CHANGE_ANALYSIS.rst)。
+- 最新研究总结：[research/STUDY_SUMMARY_20261016.rst](research/STUDY_SUMMARY_20261016.rst)。
+- PDF 报告：[output/pdf](output/pdf)。
+
+在记录的实验环境和参数下，C20 三轮交替全量验证的 CCD 耗时中位数由
+72.74592 秒降至 32.99208 秒，降低 54.65%，四组漏检均为 0。
+这些是已有实验结果；性能和正确性仍需在集成方的环境及应用中验证。
+
+### 获取与合并
+
+首次获取：
+
+```sh
+git clone https://github.com/ly633/CCD.git
+cd CCD
+```
+
+若接收方的项目保留了 Tight-Inclusion 的共同 Git 历史，可在其项目中添加远程，
+先创建集成分支，再合并本仓库的改动：
+
+```sh
+git remote add ccd-research https://github.com/ly633/CCD.git
+git fetch ccd-research
+git switch -c integrate-ccd-research
+git merge ccd-research/main
+```
+
+后续同步使用 `git fetch ccd-research` 和 `git merge ccd-research/main`。
+若远程名或集成分支已存在，复用已有配置即可。合并会包含实验资料及复现脚本；
+与接收方已有修改冲突时，需要按其项目要求解决并测试。
+
+若接收方只嵌入了源码、没有共同 Git 历史，可使用
+[research-results/best-c20-core.patch](research-results/best-c20-core.patch)。
+该补丁以原始基线源码为目标；在对应的 Tight-Inclusion 源码根目录中执行
+`git apply --check <补丁路径>`，确认适用后再执行 `git apply <补丁路径>`。
+不要对无共同历史的项目直接强制合并整个仓库。
+
+约 49.29 GB 的原始数据、依赖下载、构建产物和临时预览图不随 Git 上传。
+数据获取说明见 [BASELINE.rst](BASELINE.rst)；已有实验记录中的本机绝对路径
+以及 [AUTORESEARCH.rst](AUTORESEARCH.rst) 中的相邻工作树路径是原实验环境，
+复现时应按自己的目录设置数据和输出路径。
+
+以下为上游项目说明；徽章指向上游构建。
+
 [![Build](https://github.com/Continuous-Collision-Detection/Tight-Inclusion/actions/workflows/continuous.yml/badge.svg)](https://github.com/Continuous-Collision-Detection/Tight-Inclusion/actions/workflows/continuous.yml)
 
 ![](https://continuous-collision-detection.github.io/assets/tight-inclusion-teaser.png)
